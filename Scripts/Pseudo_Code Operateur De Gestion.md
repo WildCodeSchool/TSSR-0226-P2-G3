@@ -102,7 +102,7 @@ Tester si le répertoire existe si oui alors;
     apres confirmation supprimer le répertoire
         Informer l'utilisateur que le répertoire a été supprimé
 Sinon 
-    Informer que le répertoire n'existe pas
+    Informer que le répertoire n_existe pas
 Fin
 
 ##########################
