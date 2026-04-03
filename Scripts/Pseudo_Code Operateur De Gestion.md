@@ -86,7 +86,7 @@ Si le repertoire n'existe pas alors;
 affiche voulez vous vraiment creer ce repertoire ?
     si oui alors,     
         le creer
-        informer l'utilisateur que le repertoire a ete creer
+        informer l_utilisateur que le repertoire a ete creer
     sinon 
         affiche "ce repertoire existe deja , creation du repertoire refuse"
     fi
@@ -94,6 +94,7 @@ affiche voulez vous vraiment creer ce repertoire ?
 ############################
 #SUPPRIMER UN REPERTOIRE
 ############################
+
 Log "Accès suppression de répertoire par $USER"
 
 Tester si le répertoire existe si oui alors;
