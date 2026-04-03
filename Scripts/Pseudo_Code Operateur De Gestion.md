@@ -98,9 +98,9 @@ affiche voulez vous vraiment creer ce repertoire ?
 Log "Accès suppression de répertoire par $USER"
 
 Tester si le répertoire existe si oui alors;
-    verifier que l'utilisateur souhaite bien creer ce repertoire
+    verifier que l_utilisateur souhaite bien creer ce repertoire
     apres confirmation supprimer le répertoire
-        Informer l'utilisateur que le répertoire a été supprimé
+        Informer l_utilisateur que le répertoire a été supprimé
 Sinon 
     Informer que le répertoire n_existe pas
 Fin
@@ -129,7 +129,7 @@ fin du script reboot
 
 Log "Accès menu Prise de main à distance par $USER"
 
-#Saisie et validation de l'IP cible
+#Saisie et validation de l_IP cible
 affiche "Entrez l'adresse IP de la machine distante : " IP_cible
 
 Si saisie vide alors
