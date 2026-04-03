@@ -62,7 +62,9 @@ affiche "- Quitter le script"
 
 CAS ou $CHOISE est 
 
+#############################
 # 1. GESTION DE REPERTOIRE
+#############################
 
 Log "Accès menu Gestion De Répertoire par $USER"
 Affiche "Gestion De Répertoire"
@@ -73,7 +75,9 @@ Demande CHOICE_REP
 
 CAS ou $CHOICE_REP est
 
+###############################
 #CREER UN REPERTOIRE
+###############################
 
 Log "Accès création de répertoire par $USER"
 
@@ -87,9 +91,9 @@ affiche voulez vous vraiment creer ce repertoire ?
         affiche "ce repertoire existe deja , creation du repertoire refuse"
     fi
 
-
+############################
 #SUPPRIMER UN REPERTOIRE
-
+############################
 Log "Accès suppression de répertoire par $USER"
 
 Tester si le répertoire existe si oui alors;
@@ -100,7 +104,10 @@ Sinon
     Informer que le répertoire n'existe pas
 Fin
 
+##########################
 # 2. REDEMARRER
+##########################
+
 Log "Accès menu Reboot par $USER"
 
 Voulez-vous vraiment reboot le pc ?
@@ -115,7 +122,10 @@ Sinon
 Fi
 fin du script reboot
 
+#####################################
 # 3. PRISE DE MAIN A DISTANCE (CLI)
+#####################################
+
 Log "Accès menu Prise de main à distance par $USER"
 
 #Saisie et validation de l'IP cible
@@ -161,7 +171,10 @@ Fi
 Affiche Vous avez été déconnecté de $IP_CIBLE
 Retour au menu Opérateur de Maintenance
 
+##############################
 # 4. ACTIVATION DU PARE-FEU                        
+##############################
+
 Log Activation du pare-feu par $USER
 
 L'utilisateur souhaite-il activer son pare feu
@@ -178,7 +191,10 @@ L'utilisateur souhaite-il activer son pare feu
         Retourne au menu Opérateur de Maintenance
     Fi
 
+#################################################
 # 5. EXECUTION DE SCRIPT SUR LA MACHINE DISTANTE
+#################################################
+
 Log Execution de script sur la machine distante par $USER
 Quel script l'utilisateur souhaite-il lancer
 
@@ -191,7 +207,10 @@ Le script existe-il ?
         Le script est introuvable
     Fi
 
+#####################################
 # 6. LISTE DES UTILISATEURS LOCAUX
+#####################################
+
 Log Liste des utilisateurs locaux par $USER
 Récupérer la liste des utilisateurs locaux via la commande
     si recuperation ok alors;
