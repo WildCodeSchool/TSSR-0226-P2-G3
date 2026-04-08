@@ -56,4 +56,4 @@
 # 5. Configuration sur le client windows (Windows 10)
 
 
-## 6. FAQ
+# 6. FAQ
