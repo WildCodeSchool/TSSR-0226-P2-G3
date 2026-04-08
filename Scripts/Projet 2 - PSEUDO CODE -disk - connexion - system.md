@@ -10,7 +10,7 @@ taille ram machine, ajouter utilisateur ou retirer utilisateur groupe ...
 # Mes scripts
 
 1. Connexions
-	5 Derniers Loggings
+	5 Derniers Login
 	Adresse IP, masque, passerelle
 
 2. Disques
