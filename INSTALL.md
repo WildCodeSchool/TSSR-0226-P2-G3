@@ -49,9 +49,10 @@
 ### Configuration de la carte réseau
 
 
-### Configuration de l'interconnaxion avec le serveur Debian
+## Configuration de l'interconnaxion SSH avec le serveur Debian
+. **Commencer par installer openssh-server**  
 
-Commencer par installer openssh-server 
+![Screen cifs](Ressources/UBU_installSSH_server.png)
 
 
 
