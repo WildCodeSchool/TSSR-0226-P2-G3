@@ -50,7 +50,7 @@
 
 
 ## Configuration de l'interconnaxion SSH avec le serveur Debian
-. **Commencer par installer openssh-server**  
+- **Commencer par installer openssh-server**  
 
 ![Screen cifs](Ressources/UBU_installSSH_server.png)
 
