@@ -46,6 +46,14 @@
 
 
 # 4. Configuration sur le client Linux (Ubuntu 24.04 LTS)
+### Configuration de la carte réseau
+
+
+### Configuration de l'interconnaxion avec le serveur Debian
+
+Commencer par installer openssh-server 
+
+ ![Commencer par installer openssh-server:](Capture d'écran 2026-04-10 181139.png)
 
 
 # 5. Configuration sur le client windows (Windows 10)
