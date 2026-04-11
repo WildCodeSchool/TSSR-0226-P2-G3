@@ -91,7 +91,7 @@ systemctl restart networking.service;ifup enp0s8
 ```
 ![Screen Snap](Ressources/SCREENSHOT/Config_Debian_SERV/Config_Reseau/DEB_restart_network+ifup.png)
 
-**Verifier si votre carte réseau est désormais active, votre adresse IP et votre masque de sous-réseau sont bien configuré **
+**Verifier si votre carte réseau est désormais active, votre adresse IP et votre masque de sous-réseau sont bien configuré**
 ``` bash
 ip addr show
 ```
