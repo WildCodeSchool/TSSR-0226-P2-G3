@@ -95,9 +95,9 @@ systemctl restart networking.service;ifup enp0s8
 ``` bash
 ip addr show
 ```
-![Screen Snap]()
+![Screen Snap](Ressources/SCREENSHOT/Config_Debian_SERV/Config_Reseau/DEB_IP_adress_show2.png)
 
-**Vous pouvez tester la confiuration avec un ping vers une autre machine sur le meme réseau** (exemple avec la machine ubuntu préalablement configuré)
+**Vous pouvez tester la configuration avec un ping vers une autre machine sur le meme réseau** (exemple avec la machine ubuntu préalablement configuré)
 
 ``` bash
 ping -c 4 172.16.30.30
