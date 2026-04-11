@@ -41,7 +41,7 @@
 
 # 2. Configuration sur le serveur Debian (Debian 13)
 
-## - Configuration de l'interface réseau
+## 1) Configuration de l'interface réseau
 
 **Allez voir votre configuration de carte réseau**
 
