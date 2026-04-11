@@ -48,14 +48,15 @@
 ``` bash
 ip adds show
 ```
-![Screen Snap](Ressources/DEB_IP_adress_show.png)
+![Screen Snap](Ressources/SCREENSHOT/Config Debian serveur/Config Réseau/DEB_IP_adress_show.png)
+Comme vous pouvez le voir l'adresse ip existante n'est pas celle souhaité.
 
 **Après avoir vérifié les cartes réseau,Si vous avez une carte réseau deja active ajoutez simplement une nouvelle adresse ip a la carte réseau souhaité**
 
 ``` bash
 ip addr add 172.16.30.10/24 dev enp0s8
 ```
-![Screen Snap](Ressources/DEB_IP_adress_add_.png)
+![Screen Snap]()
 
 **Sinon ouvrez le fichier d'interface réseau**
 
