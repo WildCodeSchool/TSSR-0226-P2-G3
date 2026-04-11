@@ -150,10 +150,10 @@ ss -tnlp | grep :22
 ## Configuration de la carte réseau
 
 
-## Configuration de l'interconnaxion SSH avec le serveur Windows 
+## Configuration de l'interconnexion SSH avec le serveur Windows 
 
 
-## Configuration de l'interconnaxion SSH avec le serveur Debian
+## Configuration de l'interconnexion SSH avec le serveur Debian
 
 **Commencer par installer openssh-server**
 
