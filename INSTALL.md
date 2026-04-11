@@ -41,7 +41,7 @@
 
 # 2. Configuration sur le serveur Debian (Debian 13)
 
-## Configuration de l'interface réseau
+## - Configuration de l'interface réseau
 
 **Allez voir votre configuration de carte réseau**
 
@@ -106,9 +106,9 @@ ping -c 4 172.16.30.30
 **Et voila comme vous pouvez le constaté la création ainsi que la configuration de votre carte réseau est bien effectué ! **
 
 
-## Configuration de l'interconnexion SSH avec le client windows
+## - Configuration de l'interconnexion SSH avec le client windows
 
-## Configuration de l'interconnexion SSH avec le client ubuntu
+## - Configuration de l'interconnexion SSH avec le client ubuntu
 
 **Commencer par installer openssh-server**
 
