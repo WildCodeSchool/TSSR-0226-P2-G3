@@ -41,7 +41,7 @@
 
 # 2. Configuration sur le serveur Debian (Debian 13)
 
-## 1) Configuration de l'interface réseau
+## 1. Configuration de l'interface réseau
 
 **Allez voir votre configuration de carte réseau**
 
@@ -106,9 +106,9 @@ ping -c 4 172.16.30.30
 **Et voila comme vous pouvez le constaté la création ainsi que la configuration de votre carte réseau est bien effectué ! **
 
 
-## - Configuration de l'interconnexion SSH avec le client windows
+## 2. Configuration de l'interconnexion SSH avec le client windows
 
-## - Configuration de l'interconnexion SSH avec le client ubuntu
+## 3. Configuration de l'interconnexion SSH avec le client ubuntu
 
 **Commencer par installer openssh-server**
 
@@ -147,13 +147,13 @@ ss -tnlp | grep :22
 
 
 # 4. Configuration sur le client Linux (Ubuntu 24.04 LTS)
-## Configuration de la carte réseau
+## 1. Configuration de la carte réseau
 
 
-## Configuration de l'interconnexion SSH avec le serveur Windows 
+## 2. Configuration de l'interconnexion SSH avec le serveur Windows 
 
 
-## Configuration de l'interconnexion SSH avec le serveur Debian
+## 3. Configuration de l'interconnexion SSH avec le serveur Debian
 
 **Commencer par installer openssh-server**
 
