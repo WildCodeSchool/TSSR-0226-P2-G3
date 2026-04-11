@@ -48,7 +48,7 @@
 ``` bash
 ip adds show
 ```
-![Screen Snap](Ressources/SCREENSHOT/Config Debian serveur/Config Réseau/DEB_IP_adress_add_.png).
+![Screen Snap](Config Réseau/DEB_IP_adress_add_.png).
 
 Comme vous pouvez le voir l'adresse ip existante n'est pas celle souhaité.
 
