@@ -41,12 +41,108 @@
 
 # 2. Configuration sur le serveur Debian (Debian 13)
 
+## Configuration de l'interface réseau
+
+**Allez voir votre configuration de carte réseau**
+
+``` bash
+ip adds show
+```
+![Screen Snap](Ressources/DEB_IP_adress_show.png)
+
+**Après avoir vérifié les cartes réseau,Si vous avez une carte réseau deja active ajoutez simplement une nouvelle adresse ip a la carte réseau souhaité**
+
+``` bash
+ip addr add 172.16.30.10/24 dev enp0s8
+```
+![Screen Snap](Ressources/DEB_IP_adress_add_.png)
+
+**Sinon ouvrez le fichier d'interface réseau**
+
+``` bash
+ip addr add 172.16.30.10/24 dev enp0s8
+```
+
+**Une fois dans le fichier interface ajouter votre carte réseau non configurer ainsi que les informations voulus**
+
+``` bash
+ip addr add 172.16.30.10/24 dev enp0s8
+```
+
+![Screen Snap](Ressources/DEB_new_network_interface.png)
+
+### Mettez a jour votre service de gestion reseau
+**Pour ce faire vous pouvez soit : Relancer le service de gestion du reseau puis activer la configuration du réseau en deux commandes distinctes**
+``` bash
+systemctl restart networking.service
+```
+``` bash
+ifup enp0s8
+```
+![Screen Snap](Ressources/DEB_restart_network.png)
+![Screen Snap](Ressources/DEB_activate_network.png)
+
+**Soit faire les deux actions en une seule commande**(recommandé)
+
+``` bash
+systemctl restart networking.service;ifup enp0s8
+```
+![Screen Snap](Ressources/DEB_restart_network+ifup.png)
+
+**Verifier si votre carte réseau est désormais active, votre adresse IP et votre masque de sous-réseau sont bien configuré **
+``` bash
+ip addr show
+```
+![Screen Snap](Ressources/DEB_IP_adress_show2.png)
+
+**Vous pouvez tester la confiuration avec un ping vers une autre machine sur le meme réseau** (exemple avec la machine ubuntu préalablement configuré)
+
+``` bash
+ping -c 4 172.16.30.30
+```
+![Screen Snap](Ressources/DEB_ping_test_succes.png)
+
+**Et voila la création et configuration de votre carte réseau est bien effectué ! **
+
+
+## Configuration de l'interconnaxion SSH avec le client windows
+
+## Configuration de l'interconnaxion SSH avec le client ubuntu
+
+**Commencer par installer openssh-server**
+
+``` bash
+sudo apt install openssh-server
+```
+
+![Screen Snap](Ressources/DEB_SSH_install.png)
+
+**Permet de configurer le service SSH pour qu'il démarre automatiquement chaque fois que le système d'exploitation est redémarré** 
+
+``` bash
+sudo systemctl enable ssh
+```
+
+![Screen Snap](Ressources/DEB_systemctl_enable_SSH.png)
+
+**Vérifier le status de la configuration ssh** 
+
+``` bash
+sudo systemctl status ssh
+```
+
+![Screen Snap](Ressources/DEB_systemctl_status.png)
+
+**Et voilà l’interconnexion sécurisé via OpenSSH entre vos deux machines est desormais possible vous trouverez la suite de la configuration sur la machine ubuntu.**
 
 # 3. Configuration sur le serveur Windows (Windows serveur 2022)
 
 
 # 4. Configuration sur le client Linux (Ubuntu 24.04 LTS)
-### Configuration de la carte réseau
+## Configuration de la carte réseau
+
+
+## Configuration de l'interconnaxion SSH avec le serveur Windows 
 
 
 ## Configuration de l'interconnaxion SSH avec le serveur Debian
