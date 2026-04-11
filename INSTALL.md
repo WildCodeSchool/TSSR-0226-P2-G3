@@ -48,7 +48,7 @@
 ``` bash
 ip adds show
 ```
-![Screen Snap](Ressources/SCREENSHOT/Config Debian serveur/Config Réseau/DEB_IP_adress_show.png)
+![Screen Snap](https://github.com/WildCodeSchool/TSSR-0226-P2-G3/commit/6668574e141503815531b6b614ff23ab9b8a4692#diff-9be2c4dd524c8b6699c342721c516cf3ea4f1bac1644f943b4272ff86a4b7004)
 Comme vous pouvez le voir l'adresse ip existante n'est pas celle souhaité.
 
 **Après avoir vérifié les cartes réseau,Si vous avez une carte réseau deja active ajoutez simplement une nouvelle adresse ip a la carte réseau souhaité**
