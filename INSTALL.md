@@ -48,30 +48,30 @@
 ``` bash
 ip adds show
 ```
-![Screen Snap](Config Réseau/DEB_IP_adress_add_.png).
+![Screen Snap](Ressources/SCREENSHOT/Config_Debian_SERV/Config_Reseau/DEB_IP_adress_show.png).
 
 Comme vous pouvez le voir l'adresse ip existante n'est pas celle souhaité.
 
-**Après avoir vérifié les cartes réseau,Si vous avez une carte réseau deja active ajoutez simplement une nouvelle adresse ip a la carte réseau souhaité**
+**Ajoutez la nouvelle adresse ip a la carte réseau**
 
 ``` bash
 ip addr add 172.16.30.10/24 dev enp0s8
 ```
-![Screen Snap]()
+![Screen Snap](Ressources/SCREENSHOT/Config_Debian_SERV/Config_Reseau/DEB_IP_adress_add_.png)
 
-**Sinon ouvrez le fichier d'interface réseau**
+**Si vous n'avez pas de carte réseau configuré ouvrez le fichier d'interface réseau**
+
+``` bash
+nano /etc/network/interface
+```
+
+**Une fois dans le fichier interface ajouter votre carte réseau ainsi que les informations souhaité**
 
 ``` bash
 ip addr add 172.16.30.10/24 dev enp0s8
 ```
 
-**Une fois dans le fichier interface ajouter votre carte réseau non configurer ainsi que les informations voulus**
-
-``` bash
-ip addr add 172.16.30.10/24 dev enp0s8
-```
-
-![Screen Snap](Ressources/DEB_new_network_interface.png)
+![Screen Snap](Ressources/SCREENSHOT/Config_Debian_SERV/Config_Reseau/DEB_new_network_interface.png)
 
 ### Mettez a jour votre service de gestion reseau
 **Pour ce faire vous pouvez soit : Relancer le service de gestion du reseau puis activer la configuration du réseau en deux commandes distinctes**
@@ -81,30 +81,29 @@ systemctl restart networking.service
 ``` bash
 ifup enp0s8
 ```
-![Screen Snap](Ressources/DEB_restart_network.png)
-![Screen Snap](Ressources/DEB_activate_network.png)
+![Screen Snap](Ressources/SCREENSHOT/Config_Debian_SERV/Config_Reseau/DEB_restart_network.png)
+![Screen Snap](Ressources/SCREENSHOT/Config_Debian_SERV/Config_Reseau/DEB_activate_network.png)
 
 **Soit faire les deux actions en une seule commande**(recommandé)
 
 ``` bash
 systemctl restart networking.service;ifup enp0s8
 ```
-![Screen Snap](Ressources/DEB_restart_network+ifup.png)
+![Screen Snap](Ressources/SCREENSHOT/Config_Debian_SERV/Config_Reseau/DEB_restart_network+ifup.png)
 
 **Verifier si votre carte réseau est désormais active, votre adresse IP et votre masque de sous-réseau sont bien configuré **
 ``` bash
 ip addr show
 ```
-![Screen Snap](Ressources/DEB_IP_adress_show2.png)
+![Screen Snap]()
 
 **Vous pouvez tester la confiuration avec un ping vers une autre machine sur le meme réseau** (exemple avec la machine ubuntu préalablement configuré)
 
 ``` bash
 ping -c 4 172.16.30.30
 ```
-![Screen Snap](Ressources/DEB_ping_test_succes.png)
-
-**Et voila la création et configuration de votre carte réseau est bien effectué ! **
+![Screen Snap](Ressources/SCREENSHOT/Config_Debian_SERV/Config_Reseau/DEB_IP_adress_show2.png)
+**Et voila comme vous pouvez le constaté la création ainsi que la configuration de votre carte réseau est bien effectué ! **
 
 
 ## Configuration de l'interconnaxion SSH avec le client windows
@@ -117,7 +116,7 @@ ping -c 4 172.16.30.30
 sudo apt install openssh-server
 ```
 
-![Screen Snap](Ressources/DEB_SSH_install.png)
+![Screen Snap](Ressources/SCREENSHOT/Config_Debian_SERV/Config_SSH_DEBSERV_UBU/DEB_SSH_install.png)
 
 **Permet de configurer le service SSH pour qu'il démarre automatiquement chaque fois que le système d'exploitation est redémarré** 
 
@@ -125,7 +124,7 @@ sudo apt install openssh-server
 sudo systemctl enable ssh
 ```
 
-![Screen Snap](Ressources/DEB_systemctl_enable_SSH.png)
+![Screen Snap](Ressources/SCREENSHOT/Config_Debian_SERV/Config_SSH_DEBSERV_UBU/DEB_systemctl_enable_SSH.png)
 
 **Vérifier le status de la configuration ssh** 
 
@@ -133,7 +132,14 @@ sudo systemctl enable ssh
 sudo systemctl status ssh
 ```
 
-![Screen Snap](Ressources/DEB_systemctl_status.png)
+![Screen Snap](Ressources/SCREENSHOT/Config_Debian_SERV/Config_SSH_DEBSERV_UBU/DEB_systemctl_status.png)
+
+**Tester si le port 22 est bien ouvert**
+
+``` bash
+ss -tnlp | grep :22
+```
+![Screen Snap](Ressources/SCREENSHOT/Config_Debian_SERV/Config_SSH_DEBSERV_UBU/DEB_test_port_22.png)
 
 **Et voilà l’interconnexion sécurisé via OpenSSH entre vos deux machines est desormais possible vous trouverez la suite de la configuration sur la machine ubuntu.**
 
@@ -155,22 +161,23 @@ sudo systemctl status ssh
 sudo apt install openssh-server
 ```
 
-![Screen Snap](Ressources/UBU_installSSH_server.png)
+![Screen Snap](Ressources/SCREENSHOT/Config_Ubuntu/Config_Ssh_UBU_DEBSERV/UBU_installSSH_server.png)
 
 **Verifier si openssh est bien installer en tapant la commande suivante**  
 ``` bash
 sudo systemctl status ssh
 ```
 
-![Screen Snap](Ressources/UBU_systemctl_status.png)
+![Screen Snap](Ressources/SCREENSHOT/Config_Ubuntu/Config_Ssh_UBU_DEBSERV/UBU_systemctl_status.png)
+Comme vous pouvez le voir le service ssh est bien installer mais il ne demarrera pas automatiquement a chaque demarrage de votre machine.
 
-**Permet de configurer le service SSH pour qu'il démarre automatiquement chaque fois que le système d'exploitation est redémarré** 
+**Configuration du service SSH pour démarrage automatique** 
 
 ``` bash
 sudo systemctl enable ssh
 ```
 
-![Screen Snap](Ressources/UBU_systemctl_enable.png)
+![Screen Snap](Ressources/SCREENSHOT/Config_Ubuntu/Config_Ssh_UBU_DEBSERV/UBU_systemctl_enable.png)
 
 **Revérifier le status de la configuration ssh** 
 
@@ -178,7 +185,8 @@ sudo systemctl enable ssh
 sudo systemctl status ssh
 ```
 
-![Screen Snap](Ressources/UBU_systemctl_status_enable.png)
+![Screen Snap](Ressources/SCREENSHOT/Config_Ubuntu/Config_Ssh_UBU_DEBSERV/UBU_systemctl_status_enable.png)
+Ca y est maintenant a chaque redemarrage de votre machine vous n'aurais pas a réactiver votre service ssh, il se lancer automatiquement.
 
 **Créer une cle ssh pour la connection securisé entre notre machine et notre serveur** 
 
@@ -190,7 +198,7 @@ ou
 ssh-keygen -t ed25519
 ```
 
-![Screen Snap](Ressources/UBU_SSH_creation_keygen.png)
+![Screen Snap](Ressources/SCREENSHOT/Config_Ubuntu/Config_Ssh_UBU_DEBSERV/UBU_SSH_creation_keygen.png)
 
 **Vous trouverez la clé publique à l’aide de cette commande** (.pub correspond a la clé public)  
 
@@ -198,15 +206,16 @@ ssh-keygen -t ed25519
 cat ~/.ssh/id_ed25519.pub
 ```
 
-![Screen Snap](Ressources/UBU_command_check_ssh_pub.png)
+![Screen Snap](Ressources/SCREENSHOT/Config_Ubuntu/Config_Ssh_UBU_DEBSERV/UBU_command_check_ssh_pub.png)
 
-**Une fois la clé SSH crée, copiez la vers le serveur voulu avec ssh-copy-id et répondez yes a la question suivante** (confirmation de connexion) 
+**Une fois la clé SSH crée, copiez la vers le serveur voulu avec ssh-copy-id** (confirmation de connexion) 
 
 ``` bash
 ssh-copy-id -i ~/.ssh/id_ed25519.pub wilder@172.16.30.10
 ```
 
-![Screen Snap](Ressources/UBU_SSH_copy_id.png)
+![Screen Snap](Ressources/SCREENSHOT/Config_Ubuntu/Config_Ssh_UBU_DEBSERV/UBU_SSH_copy_id.png)
+Comme vous pouvez le constater on vous pose une question avant de passer a la suite repondez yes si vous souhaité continuer la copie si les informations renseignés sont bonnes.
 
 **Entrez le mot de passe de votre serveur Debian** 
 
@@ -214,19 +223,19 @@ ssh-copy-id -i ~/.ssh/id_ed25519.pub wilder@172.16.30.10
 # wilder@172.16.30.10's password: "Votre mot de passe"
 ```
 
-![Screen Snap](Ressources/UBU_password_copy_id.png)
+![Screen Snap](Ressources/SCREENSHOT/Config_Ubuntu/Config_Ssh_UBU_DEBSERV/UBU_password_copy_id.png)
 
 **Et voilà la clé publique est enregistrée sur votre machine client**
 
-![Screen Snap](Ressources/UBU_copy_id_success.png)
+![Screen Snap](Ressources/SCREENSHOT/Config_Ubuntu/Config_Ssh_UBU_DEBSERV/UBU_copy_id_success.png)
 
-**Pour éviter de retaper votre passphrase à chaque connexion vous pouvez activer l’agent SSH sur le client avec ssh-add ~/votre_chemin puis entrez un mot de passe pour sécuriser votre connexion à l’agent ** 
+**Pour éviter de retaper votre passphrase à chaque connexion vous pouvez activer l’agent SSH sur le client avec ssh-add ~/votre_chemin puis entrez un mot de passe ou pas pour sécuriser votre connexion** 
 
 ``` bash
 ssh-add ~/.ssh/id_ed25519
 ```
 
-![Screen Snap](Ressources/UBU_ssh_add.png)
+![Screen Snap](Ressources/SCREENSHOT/Config_Ubuntu/Config_Ssh_UBU_DEBSERV/UBU_ssh_add.png)
 
 Et voilà l’interconnexion sécurisé via OpenSSH entre vos deux machines est desormais établie. 
 
