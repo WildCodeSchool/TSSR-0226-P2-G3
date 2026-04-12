@@ -223,7 +223,7 @@ Comme vous pouvez le constater on vous pose une question avant de passer a la su
 # wilder@172.16.30.10's password: "Votre mot de passe"
 ```
 
-![Screen Snap](Ressources/SCREENSHOT/Config_Ubuntu/Config_Ssh_UBU_DEBSERV/UBU_password_copy_id.png)
+![Screen Snap](Ressources/SCREENSHOT/Config_Ubuntu/Config_Ssh_UBU_DEBSERV/UBU_password_copy_id.png)  
 
 **Et voilà la clé publique est enregistrée sur votre machine client**
 
