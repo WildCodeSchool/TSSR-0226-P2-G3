@@ -77,11 +77,11 @@ ip addr add 172.16.30.10/24 dev enp0s8
 **Pour ce faire vous pouvez soit : Relancer le service de gestion du reseau puis activer la configuration du réseau en deux commandes distinctes**
 ``` bash
 systemctl restart networking.service
-```  
+```
 ``` bash
 ifup enp0s8
 ```
-![Screen Snap](Ressources/SCREENSHOT/Config_Debian_SERV/Config_Reseau/DEB_restart_network.png)
+![Screen Snap](Ressources/SCREENSHOT/Config_Debian_SERV/Config_Reseau/DEB_restart_network.png)  
 ![Screen Snap](Ressources/SCREENSHOT/Config_Debian_SERV/Config_Reseau/DEB_activate_network.png)
 
 **Soit faire les deux actions en une seule commande**(recommandé)
