@@ -102,7 +102,7 @@ ip addr show
 ``` bash
 ping -c 4 172.16.30.30
 ```
-![Screen Snap](Ressources/SCREENSHOT/Config_Debian_SERV/Config_Reseau/DEB_IP_adress_show2.png)
+![Screen Snap](Ressources/SCREENSHOT/Config_Debian_SERV/Config_Reseau/DEB_ping_test_succes.png)
 **Et voila comme vous pouvez le constaté la création ainsi que la configuration de votre carte réseau est bien effectué ! **
 
 
