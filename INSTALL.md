@@ -103,7 +103,7 @@ ip addr show
 ping -c 4 172.16.30.30
 ```
 ![Screen Snap](Ressources/SCREENSHOT/Config_Debian_SERV/Config_Reseau/DEB_ping_test_succes.png)  
-**Et voila comme vous pouvez le constaté la création ainsi que la configuration de votre carte réseau est bien effectué ! **
+**Et voila comme vous pouvez le constaté la création ainsi que la configuration de votre carte réseau est bien effectué !**
 
 
 ## 2. Configuration de l'interconnexion SSH avec le client windows
