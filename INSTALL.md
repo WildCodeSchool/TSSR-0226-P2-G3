@@ -168,7 +168,7 @@ sudo apt install openssh-server
 sudo systemctl status ssh
 ```
 
-![Screen Snap](Ressources/SCREENSHOT/Config_Ubuntu/Config_Ssh_UBU_DEBSERV/UBU_systemctl_status.png)
+![Screen Snap](Ressources/SCREENSHOT/Config_Ubuntu/Config_Ssh_UBU_DEBSERV/UBU_systemctl_status.png)  
 Comme vous pouvez le voir le service ssh est bien installer mais il ne demarrera pas automatiquement a chaque demarrage de votre machine.
 
 **Configuration du service SSH pour démarrage automatique** 
@@ -185,7 +185,7 @@ sudo systemctl enable ssh
 sudo systemctl status ssh
 ```
 
-![Screen Snap](Ressources/SCREENSHOT/Config_Ubuntu/Config_Ssh_UBU_DEBSERV/UBU_systemctl_status_enable.png)
+![Screen Snap](Ressources/SCREENSHOT/Config_Ubuntu/Config_Ssh_UBU_DEBSERV/UBU_systemctl_status_enable.png)  
 Ca y est maintenant a chaque redemarrage de votre machine vous n'aurais pas a réactiver votre service ssh, il se lancer automatiquement.
 
 **Créer une cle ssh pour la connection securisé entre notre machine et notre serveur** 
@@ -214,7 +214,7 @@ cat ~/.ssh/id_ed25519.pub
 ssh-copy-id -i ~/.ssh/id_ed25519.pub wilder@172.16.30.10
 ```
 
-![Screen Snap](Ressources/SCREENSHOT/Config_Ubuntu/Config_Ssh_UBU_DEBSERV/UBU_SSH_copy_id.png)
+![Screen Snap](Ressources/SCREENSHOT/Config_Ubuntu/Config_Ssh_UBU_DEBSERV/UBU_SSH_copy_id.png)  
 Comme vous pouvez le constater on vous pose une question avant de passer a la suite repondez yes si vous souhaité continuer la copie si les informations renseignés sont bonnes.
 
 **Entrez le mot de passe de votre serveur Debian** 
