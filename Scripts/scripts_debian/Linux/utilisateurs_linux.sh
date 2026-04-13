@@ -1,13 +1,15 @@
 #!/bin/bash
 #
 # Sous-menu pour gérer la navigation après chaque action
-function menu_secondaire {
+function menu_secondaire 
+{
     echo "1 - Revenir au menu Utilisateurs"
     echo "2 - Revenir au menu principal"
     echo "q - Quitter le script"
     read -p "Quel est votre choix ? " choix_secondaire
 
     case $choix_secondaire in
+    
     1)
         log "Retour menu utilisateurs"
         echo "Vous retournez au menu Utilisateurs"
