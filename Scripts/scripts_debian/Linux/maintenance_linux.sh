@@ -29,7 +29,7 @@ function menu_secondaire
         ;;
     *)
         echo "L'option choisi n'existe pas, veuillez recommencer"
-        sleep 3s
+        sleep 3
         menu_secondaire
         ;;
     esac
@@ -44,8 +44,9 @@ do
     echo "1 - Redemarrage de la machine"
     echo "2 - Prise en main a distance"
     echo "3 - Activation de pare feu"
-    echo "3 - Execution de script a distance"
-    echo "3 - Liste des utilisateurs locaux"
+    echo "4 - Execution de script a distance"
+    echo "5 - Liste des utilisateurs locaux"
+    echo "r - revenir en arrière"
     read -p "Votre choix : " choix
 
     case $choix in
@@ -161,6 +162,18 @@ do
         ;;
     5)
         log "Liste_Utilisateurs_Locaux"
+        ;;
+    r)
+        log "Retour arrière"
+	    echo "Vous allez revenir au menu principal"
+	    sleep 3
+	    exit 0
+        ;;
+    q)
+	    log "EndScript"
+	    echo "Vous quittez le script"
+	    sleep 3
+	    exit 50
         ;;
     *)
         echo "Choix invalide, réessayez."
