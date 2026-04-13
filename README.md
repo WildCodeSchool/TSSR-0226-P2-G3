@@ -37,10 +37,10 @@ Notre équipe applique la méthode Scrum avec des rôles tournants à chaque spr
   
 | Membre de l'équipe | Rôle Sprint 1 | Rôle Sprint 2 | Rôle Sprint 3 | Rôle Sprint 4 |
 | :--- | :--- | :--- | :--- | :--- |
-| **Alexandre** | Scrum Master | Product Owner | *(à définir)* | *(à définir)* |
-| **Anass** | Product Owner | Technicien | *(à définir)* | *(à définir)* |
-| **Camille** | Technicien | Technicien | *(à définir)* | *(à définir)* |
-| **Jeremy** | Technicien | Scrum Master | *(à définir)* | *(à définir)* |
+| **Alexandre** | Scrum Master | Product Owner | Technicien | *(à définir)* |
+| **Anass** | Product Owner | Technicien | Scrum Master | *(à définir)* |
+| **Camille** | Technicien | Technicien | Product Owner | *(à définir)* |
+| **Jeremy** | Technicien | Scrum Master | Technicien | *(à définir)* |
 
 </div>
 
