@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# Destination du fichier logs
 export log_file=/var/log/log_evt.log
 
 function log {
@@ -17,6 +18,11 @@ log "StartScript"
 read -p  "Quel est votre identifiant de connexion ? :" ssh_user && export ssh_user
 read -p "Quelle est la machine cible ? (nom de la machine ou IP) :" ip_client && export ip_client
 
+# SSH-Agent permettant la connexion sans interrogation du mot de passe
+eval $(ssh-agent -s)
+ssh-add ~/.ssh/id_ed25519
+
+# Verification du type d'OS Linux ou Windows pour executer les bons scripts enfants
 os_type=$(ssh $ssh_user@$ip_client "uname")
 
 
