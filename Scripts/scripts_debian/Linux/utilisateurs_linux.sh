@@ -1,7 +1,8 @@
 #!/bin/bash
-#
+
 # Sous-menu pour gérer la navigation après chaque action
-function menu_secondaire {
+function menu_secondaire 
+{
     echo "1 - Revenir au menu Utilisateurs"
     echo "2 - Revenir au menu principal"
     echo "q - Quitter le script"
