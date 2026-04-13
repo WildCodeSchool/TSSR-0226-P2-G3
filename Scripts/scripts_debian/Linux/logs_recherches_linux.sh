@@ -67,7 +67,7 @@ do
             echo "$historique_cible"
         fi
         log "Recherche logs pour $cible_utilisateur"
-        secondary_menu
+        menu_secondaire
         ;;
 # 
     2) 
@@ -80,7 +80,7 @@ do
         echo "$historique_machine"
         fi
         log "Recherche logs pour $machine"
-        secondary_menu
+        menu_secondaire
         ;;
         3) 
         log "Retour arrière"
