@@ -12,24 +12,24 @@ function menu_secondaire
     1)
         log "Retour menu utilisateurs"
         echo "Vous retournez au menu Utilisateurs"
-        sleep 3s
+        sleep 3
         return
         ;;
     2)
         log "Retour au menu principal"
         echo "Vous retournez au menu principal"
-        sleep 3s
+        sleep 3
         exit 0
         ;;
     q)
         log "Quitte le script"
         echo "Vous quittez le script"
-        sleep 3s
+        sleep 3
         exit 50
         ;;
     *)
         echo "L'option choisie n'existe pas, veuillez recommencer"
-        sleep 3s
+        sleep 3
         menu_secondaire
         ;;
     esac
@@ -38,7 +38,7 @@ function menu_secondaire
 log "Demande sur utilisateurs"
 
 echo "Bienvenue dans la gestion des Utilisateurs"
-sleep 3s
+sleep 3
 clear
 
 # Boucle principale du menu
@@ -117,20 +117,20 @@ do
     4)
         log "Retour au menu principal"
         echo "Vous revenez au menu principal"
-        sleep 3s
+        sleep 3
         exit 0
         ;;
 
     q)
         log "Quitte le script"
         echo "Vous quittez le script"
-        sleep 3s
+        sleep 3
         exit 50
         ;;
 
     *)
         echo "L'option choisie n'existe pas, veuillez recommencer"
-        sleep 3s
+        sleep 3
         ;;
     esac
 done
