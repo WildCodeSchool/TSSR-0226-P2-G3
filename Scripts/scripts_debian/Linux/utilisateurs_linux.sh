@@ -1,14 +1,14 @@
 #!/bin/bash
 
 # Sous-menu pour gérer la navigation après chaque action
-function secondary_menu
+function menu_secondaire
 {
     echo "1 - Revenir au menu Utilisateurs"
     echo "2 - Revenir au menu principal"
     echo "q - Quitter le script"
-    read -p "Quel est votre choix ? " choice_secondary
+    read -p "Quel est votre choix ? " choix_secondaire
 
-    case $choice_secondary in
+    case $choix_secondaire in
     1)
         log "Retour menu utilisateurs"
         echo "Vous retournez au menu Utilisateurs"
@@ -30,7 +30,7 @@ function secondary_menu
     *)
         echo "L'option choisie n'existe pas, veuillez recommencer"
         sleep 3s
-        secondary_menu
+        menu_secondaire
         ;;
     esac
 }
@@ -51,66 +51,67 @@ do
     echo "3 - Suppression de compte utilisateur local"
     echo "4 - Revenir au menu principal"
     echo "q - Quitter le script"
-    read -p "Quel est votre choix ? : " choice
+    read -p "Quel est votre choix ? : " choix
 
-    case $choice in
+    case $choix in
 
     1)
         # Création de compte
-        log "Initiation création utilisateur client"
-        read -p "Saisissez le nom du nouvel utilisateur : " target_username
+        log "Initialisation création utilisateur client"
+        read -p "Saisissez le nom du nouvel utilisateur : " cible_username
         
         # Check si le compte existe déjà sur la machine distante pour éviter les erreurs
-        user_exists=$(ssh $ssh_user@$ip_client "grep '^$target_username:' /etc/passwd")
+        utilisateur_exist=$(ssh $ssh_user@$ip_client "grep '^$cible_username:' /etc/passwd")
 
-        if [ -z "$user_exists" ]; then
+        if [ -z "$utilisateur_exist" ]; then
             # L'option -m permet de forcer la création du repertoire /home/
-            ssh $ssh_user@$ip_client "sudo useradd -m $target_username"
-            echo "L'utilisateur $target_username a été créé avec succès."
-            log "Succès création utilisateur $target_username"
+            ssh $ssh_user@$ip_client "sudo useradd -m $cible_username"
+            echo "L'utilisateur $cible_username a été créé avec succès."
+            log "Succès création utilisateur $cible_username"
         else
-            echo "Erreur : L'utilisateur $target_username existe déjà."
-            log "Erreur création utilisateur $target_username (existe déjà)"
+            echo "Erreur : L'utilisateur $cible_username existe déjà."
+            log "Erreur création utilisateur $cible_username (existe déjà)"
         fi
-        secondary_menu
+        menu_secondaire
         ;;
 
     2)
         # Modif du mot de passe
-        log "Initiation changement de mot de passe client"
-        read -p "Saisissez le nom de l'utilisateur : " target_username
-        read -s -p "Saisissez le nouveau mot de passe : " new_password
+        log "Initialisation changement de mot de passe client"
+        read -p "Saisissez le nom de l'utilisateur : " cible_username
+        read -s -p "Saisissez le nouveau mot de passe : " nouveau_password
         echo ""
 
         # On passe le mdp via chpasswd pour éviter l'invite interactive qui fait planter le script
-        ssh $ssh_user@$ip_client "echo '$target_username:$new_password' | sudo chpasswd"
+        ssh $ssh_user@$ip_client "echo '$cible_username:$nouveau_password' | sudo chpasswd"
 
         if [ $? -eq 0 ]; then
-            echo "Le mot de passe de $target_username a été mis à jour."
-            log "Succès changement mdp $target_username"
+            echo "Le mot de passe de $cible_username a été mis à jour."
+            log "Succès changement mdp $cible_username"
         else
             echo "Erreur lors du changement de mot de passe."
-            log "Erreur changement mdp $target_username"
+            log "Erreur changement mdp $cible_username"
         fi
-        secondary_menu
+        menu_secondaire
         ;;
 
     3)
         # Suppression de compte
         log "Initiation suppression utilisateur client"
-        read -p "Saisissez le nom de l'utilisateur à supprimer : " target_username
-        read -p "Êtes-vous sûr de vouloir supprimer $target_username ? (o/n) : " confirm
+        read -p "Saisissez le nom de l'utilisateur à supprimer : " cible_username
+        read -p "Êtes-vous sûr de vouloir supprimer $cible_username ? (o/n) : " confirm
 
-        if [ "$confirm" = "o" ]; then
+        if [ "$confirm" = "o" ]; 
+        then
             # L'option -r supprime aussi le dossier personnel de l'utilisateur
-            ssh $ssh_user@$ip_client "sudo userdel -r $target_username"
+            ssh $ssh_user@$ip_client "sudo userdel -r $cible_username"
             echo "L'utilisateur $target_username a été supprimé."
-            log "Succès suppression utilisateur $target_username"
+            log "Succès suppression utilisateur $cible_username"
         else
             echo "Action annulée."
-            log "Annulation suppression utilisateur $target_username"
+            log "Annulation suppression utilisateur $cible_username"
         fi
-        secondary_menu
+        menu_secondaire
         ;;
 
     4)

@@ -1,14 +1,14 @@
 #!/bin/bash
 
 # Sous-menu pour gérer la navigation après chaque action
-function secondary_menu
+function menu_secondaire
 {
     echo "1 - Revenir au menu Groupes"
     echo "2 - Revenir au menu principal"
     echo "q - Quitter le script"
-    read -p "Quel est votre choix ? " choice_secondary
+    read -p "Quel est votre choix ? " choix_secondaire
 
-    case $choice_secondary in
+    case $choix_secondaire in
     1)
         log "Retour menu groupes"
         echo "Vous retournez au menu Groupes"
@@ -30,7 +30,7 @@ function secondary_menu
     *)
         echo "L'option choisie n'existe pas, veuillez recommencer"
         sleep 3s
-        secondary_menu
+        menu_secondaire
         ;;
     esac
 }
@@ -51,32 +51,32 @@ do
     echo "3 - Sortie d'un groupe"
     echo "4 - Revenir au menu principal"
     echo "q - Quitter le script"
-    read -p "Quel est votre choix ? : " choice
+    read -p "Quel est votre choix ? : " choix
 
-    case $choice in
+    case $choix in
 
     1)
         # Ajout au groupe admin
         log "Initiation ajout admin client"
-        read -p "Quel utilisateur doit devenir administrateur ? : " target_username
+        read -p "Quel utilisateur doit devenir administrateur ? : " cible_username
 
         # Le groupe admin sous Ubuntu s'appelle sudo
-        ssh $ssh_user@$ip_client "sudo usermod -aG sudo $target_username"
-        echo "$target_username a été ajouté au groupe d'administration (sudo)."
-        log "Succès ajout admin (sudo) pour $target_username"
-        secondary_menu
+        ssh $ssh_user@$ip_client "sudo usermod -aG sudo $cible_username"
+        echo "$cible_username a été ajouté au groupe d'administration (sudo)."
+        log "Succès ajout admin (sudo) pour $cible_username"
+        menu_secondaire
         ;;
 
     2)
         # Ajout à un groupe basique
         log "Initiation ajout groupe client"
         read -p "Nom de l'utilisateur : " target_username
-        read -p "Dans quel groupe souhaitez-vous l'ajouter ? : " target_group
+        read -p "Dans quel groupe souhaitez-vous l'ajouter ? : " cible_groupe
 
-        ssh $ssh_user@$ip_client "sudo usermod -aG $target_group $target_username"
-        echo "$target_username a été ajouté au groupe $target_group."
-        log "Succès ajout groupe $target_group pour $target_username"
-        secondary_menu
+        ssh $ssh_user@$ip_client "sudo usermod -aG $cible_groupe $cible_username"
+        echo "$cible_username a été ajouté au groupe $cible_groupe."
+        log "Succès ajout groupe $cible_groupe pour $cible_username"
+        menu_secondaire
         ;;
 
     3)
@@ -86,10 +86,10 @@ do
         read -p "De quel groupe souhaitez-vous le retirer ? : " target_group
 
         # Utilisation de gpasswd -d plus simple que usermod pour cette action
-        ssh $ssh_user@$ip_client "sudo gpasswd -d $target_username $target_group"
-        echo "$target_username a été retiré du groupe $target_group."
-        log "Succès sortie groupe $target_group pour $target_username"
-        secondary_menu
+        ssh $ssh_user@$ip_client "sudo gpasswd -d $cible_username $cible_groupe"
+        echo "$cible_username a été retiré du groupe $cible_groupe."
+        log "Succès sortie groupe $cible_groupe pour $cible_username"
+        menu_secondaire
         ;;
 
     4)
