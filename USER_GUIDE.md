@@ -27,7 +27,7 @@ Lancez le script parent avec la commande suivante :
 
 **Étape 3 : Navigation**
 
-  1. Le script vous demandera d'abord l'identifiant de connexion SSH et l'adresse IP de la machine cible.
+  1. Le script vous demandera d'abord ???????????????????? et l'adresse IP de la machine cible.
      
   2. Le Menu Principal s'affiche. Tapez le numéro correspondant à l'action souhaitée (ex: `1` pour Utilisateurs, `2` pour Groupes).
      
