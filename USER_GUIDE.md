@@ -1,6 +1,8 @@
 # Guide d'Utilisation - Outil d'Administration
 
-Bienvenue dans la documentation utilisateur de notre outil d'administration de parc informatique. Cet outil vous permet de gérer de manière centralisée les utilisateurs et les groupes sur des machines clientes Linux (Ubuntu) et Windows (10/11), depuis un serveur Debian ou un Windows Server.
+Bienvenue dans la documentation utilisateur de notre outil d'administration de parc informatique. 
+
+Cet outil vous permet de gérer de manière centralisée les utilisateurs et les groupes sur des machines clientes Linux (Ubuntu) et Windows (10/11), depuis un serveur Debian ou un Windows Server.
 
 ---
 
