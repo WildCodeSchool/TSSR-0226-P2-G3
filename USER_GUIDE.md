@@ -62,4 +62,5 @@ La logique est strictement identique à la version Linux : entrez les identifian
 - Vérifiez que le service SSH (OpenSSH) est bien installé et démarré sur la machine cliente cible (surtout sur les clients Windows 10/11 où il n'est pas toujours actif par défaut).
 
 **Q : Pourquoi mon script `parental_linux.sh` se ferme-t-il brusquement après une action ?**
+
 **R :** Si le script s'arrête au lieu d'afficher le sous-menu de retour, c'est généralement lié à une erreur de syntaxe cachée. Assurez-vous que tous les sous-scripts enfants (dans `child_linux` et `child_windows`) possèdent bien l'extension `.sh` et sont présents dans le même dossier que le script parent.
