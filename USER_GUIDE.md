@@ -4,16 +4,16 @@ Bienvenue dans la documentation utilisateur de notre outil d'administration de p
 
 Cet outil vous permet de gérer de manière centralisée les utilisateurs et les groupes sur des machines clientes Linux (Ubuntu) et Windows (10/11), depuis un serveur Debian ou un Windows Server.
 
-## 📑 Sommaire
+## Sommaire
 
-- [1. Utilisation : Comment exécuter le script ?](#1-utilisation--comment-exécuter-le-script-)
+- [Utilisation : Comment exécuter le script ?](#utilisation--comment-exécuter-le-script-)
   - [Depuis le serveur d'administration Linux (Debian)](#depuis-le-serveur-dadministration-linux-debian)
   - [Depuis le serveur d'administration Windows (Windows Serveur 2022)](#depuis-le-serveur-dadministration-windows-windows-serveur-2022)
-- [2. FAQ](#2-faq)
+- [FAQ](#faq)
 
 ---
 
-## 1. Utilisation : Comment exécuter le script ?
+## Utilisation : Comment exécuter le script ?
 
 L'outil a été conçu de manière interactive. Vous n'avez pas besoin de mémoriser de longues commandes, il vous suffit de lancer le script parent et de vous laisser guider par les menus à l'écran.
 
@@ -60,7 +60,7 @@ La logique est strictement identique à la version Linux : entrez les identifian
 
 ---
 
-## 2. FAQ
+## FAQ
 
 **Q : Où puis-je consulter l'historique des actions effectuées par le script ?**
 **R :** Notre outil intègre une journalisation .................................... Où ??????
