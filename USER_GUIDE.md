@@ -1,4 +1,4 @@
-# Guide d'Utilisation - Outil d'Administration
+# Guide d'Utilisation - Outil d'administration
 
 Bienvenue dans la documentation utilisateur de notre outil d'administration de parc informatique. 
 
@@ -38,14 +38,17 @@ Lancez le script parent avec la commande suivante :
 Cette partie permet d'administrer votre parc depuis l'environnement PowerShell de votre serveur Windows.
 
 **Étape 1 : Préparation**
+
 Ouvrez une console **PowerShell en tant qu'Administrateur** et naviguez vers le dossier du script :
 `cd C:\chemin\vers\votre\dossier\scripts_windows_server\`
 
 **Étape 2 : Exécution**
+
 Lancez le script parent avec la commande :
 `.\parental_windows.ps1`
 
 **Étape 3 : Navigation**
+
 La logique est strictement identique à la version Linux : entrez les identifiants de la machine cible, puis naviguez dans les menus chiffrés pour créer, modifier ou supprimer vos comptes utilisateurs et groupes.
 
 ---
