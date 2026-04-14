@@ -4,11 +4,11 @@ Bienvenue dans la documentation utilisateur de notre outil d'administration de p
 
 ---
 
-## 1. Utilisation : Comment exécuter le script
+## 1. Utilisation : Comment exécuter le script ?
 
 L'outil a été conçu de manière interactive. Vous n'avez pas besoin de mémoriser de longues commandes, il vous suffit de lancer le script parent (le chef d'orchestre) et de vous laisser guider par les menus à l'écran.
 
-### Depuis le Serveur d'Administration Linux (Debian)
+### Depuis le serveur d'administration Linux (Debian)
 
 Cette partie permet d'administrer n'importe quel client (Linux ou Windows) depuis le terminal de votre serveur Debian.
 
@@ -31,7 +31,7 @@ Lancez le script parent avec la commande suivante :
      
   3. L'outil détectera automatiquement si la cible est un Linux ou un Windows et lancera les commandes adaptées en arrière-plan.
 
-### Depuis le Serveur d'Administration Windows
+### Depuis le serveur d'administration Windows (Windows Serveur 2022)
 
 Cette partie permet d'administrer votre parc depuis l'environnement PowerShell de votre serveur Windows.
 
