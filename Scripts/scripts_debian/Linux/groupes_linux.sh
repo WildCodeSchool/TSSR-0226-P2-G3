@@ -70,7 +70,7 @@ do
     2)
         # Ajout à un groupe basique
         log "Initiation ajout groupe client"
-        read -p "Nom de l'utilisateur : " target_username
+        read -p "Nom de l'utilisateur : " cible_username
         read -p "Dans quel groupe souhaitez-vous l'ajouter ? : " cible_groupe
 
         ssh $ssh_user@$ip_client "sudo usermod -aG $cible_groupe $cible_username"
@@ -82,8 +82,8 @@ do
     3)
         # Retrait d'un groupe
         log "Initiation sortie groupe client"
-        read -p "Nom de l'utilisateur : " target_username
-        read -p "De quel groupe souhaitez-vous le retirer ? : " target_group
+        read -p "Nom de l'utilisateur : " cible_username
+        read -p "De quel groupe souhaitez-vous le retirer ? : " cible_group
 
         # Utilisation de gpasswd -d plus simple que usermod pour cette action
         ssh $ssh_user@$ip_client "sudo gpasswd -d $cible_username $cible_groupe"
