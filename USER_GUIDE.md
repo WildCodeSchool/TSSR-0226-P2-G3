@@ -8,7 +8,7 @@ Cet outil vous permet de gérer de manière centralisée les utilisateurs et les
 
 ## 1. Utilisation : Comment exécuter le script ?
 
-L'outil a été conçu de manière interactive. Vous n'avez pas besoin de mémoriser de longues commandes, il vous suffit de lancer le script parent (le chef d'orchestre) et de vous laisser guider par les menus à l'écran.
+L'outil a été conçu de manière interactive. Vous n'avez pas besoin de mémoriser de longues commandes, il vous suffit de lancer le script parent et de vous laisser guider par les menus à l'écran.
 
 ### Depuis le serveur d'administration Linux (Debian)
 
@@ -29,7 +29,7 @@ Lancez le script parent avec la commande suivante :
 
   1. Le script vous demandera d'abord ???????????????????? et l'adresse IP de la machine cible.
      
-  2. Le Menu Principal s'affiche. Tapez le numéro correspondant à l'action souhaitée (ex: `1` pour Utilisateurs, `2` pour Groupes).
+  2. Le Menu Principal s'affiche. Tapez le numéro correspondant à l'action souhaitée (ex: `1` pour Utilisateurs, `2` pour Groupes, ...).
      
   3. L'outil détectera automatiquement si la cible est un Linux ou un Windows et lancera les commandes adaptées en arrière-plan.
 
@@ -49,7 +49,7 @@ Lancez le script parent avec la commande :
 
 **Étape 3 : Navigation**
 
-La logique est strictement identique à la version Linux : entrez les identifiants de la machine cible, puis naviguez dans les menus chiffrés pour créer, modifier ou supprimer vos comptes utilisateurs et groupes.
+La logique est strictement identique à la version Linux : entrez les identifiants de la machine cible, puis naviguez dans les menus choisis.
 
 ---
 
