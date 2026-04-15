@@ -60,10 +60,9 @@ do
         log "Initiation ajout admin client"
         read -p "Quel utilisateur doit devenir administrateur ? : " cible_username
 
-        # Le groupe admin sous Ubuntu s'appelle sudo
-        ssh $ssh_user@$ip_client "sudo usermod -aG sudo $cible_username"
-        echo "$cible_username a été ajouté au groupe d'administration (sudo)."
-        log "Succès ajout admin (sudo) pour $cible_username"
+        ssh $ssh_user@$ip_client "usermod -aG $cible_username"
+        echo "$cible_username a été ajouté au groupe d'administration."
+        log "Succès ajout admin pour $cible_username"
         menu_secondaire
         ;;
 
@@ -73,7 +72,7 @@ do
         read -p "Nom de l'utilisateur : " cible_username
         read -p "Dans quel groupe souhaitez-vous l'ajouter ? : " cible_groupe
 
-        ssh $ssh_user@$ip_client "sudo usermod -aG $cible_groupe $cible_username"
+        ssh $ssh_user@$ip_client "usermod -aG $cible_groupe $cible_username"
         echo "$cible_username a été ajouté au groupe $cible_groupe."
         log "Succès ajout groupe $cible_groupe pour $cible_username"
         menu_secondaire
@@ -86,7 +85,7 @@ do
         read -p "De quel groupe souhaitez-vous le retirer ? : " cible_group
 
         # Utilisation de gpasswd -d plus simple que usermod pour cette action
-        ssh $ssh_user@$ip_client "sudo gpasswd -d $cible_username $cible_groupe"
+        ssh $ssh_user@$ip_client "gpasswd -d $cible_username $cible_groupe"
         echo "$cible_username a été retiré du groupe $cible_groupe."
         log "Succès sortie groupe $cible_groupe pour $cible_username"
         menu_secondaire
