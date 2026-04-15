@@ -3,8 +3,8 @@
 #initialisation des variables principales
 
 nombre_disque_client=$(ssh $ssh_user@$ip_client "lsblk -d | grep disk | wc -l")
-liste_disque_client=$(ssh $ssh_user@$ip_client "lsblk -d | grep disk | awk '{print $1}'")
-liste_lecteur_client=$(ssh $ssh_user@$ip_client "lsblk -o NAME,TYPE,MOUNTPOINT | awk '\$3 != \"\"' | awk '{print $1, $2, $3}'")
+liste_disque_client=$(ssh $ssh_user@$ip_client "lsblk -d | grep disk | awk '{print \$1}'")
+liste_lecteur_client=$(ssh $ssh_user@$ip_client "lsblk -o NAME,TYPE,MOUNTPOINT | awk '\$3 != \"\"' | awk '{print \$1, \$2, \$3}'")
 
 
 function menu_secondaire
