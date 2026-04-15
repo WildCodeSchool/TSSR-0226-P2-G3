@@ -22,7 +22,7 @@ eval $(ssh-agent -s)
 ssh-add ~/.ssh/id_ed25519
 
 # Verification du type d'OS Linux ou Windows pour executer les bons scripts enfants
-os_type=$(ssh ssh_client "uname")
+os_type=$(ssh $ssh_client "uname")
 
 
 while true
