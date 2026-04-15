@@ -64,7 +64,7 @@ do
 
         if [ -z "$utilisateur_exist" ]; then
             # L'option -m permet de forcer la création du repertoire /home/
-            ssh $ssh_client "useradd -m $cible_username"
+            ssh $ssh_client "useradd -m --disabled-password $cible_username"
             echo "L'utilisateur $cible_username a été créé avec succès."
             log "Succès création utilisateur $cible_username"
         else
