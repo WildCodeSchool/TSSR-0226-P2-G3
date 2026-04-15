@@ -45,7 +45,7 @@ clear
 while true
 do
     echo "Menu Utilisateurs"
-    echo "Que souhaitez-vous faire sur le poste client ($ip_client) ?"
+    echo "Que souhaitez-vous faire sur le poste client ?"
     echo "1 - Création de compte utilisateur local"
     echo "2 - Changement de mot de passe"
     echo "3 - Suppression de compte utilisateur local"
@@ -58,7 +58,6 @@ do
         # Création de compte
         log "Initialisation création utilisateur client"
         read -p "Saisissez le nom du nouvel utilisateur : " cible_username
-        read -p "Entrez un mot de passe initiale :" defaut_password
         
         # Check si le compte existe déjà sur la machine distante pour éviter les erreurs
         utilisateur_exist=$(ssh $ssh_client "grep '^$cible_username:' /etc/passwd")
