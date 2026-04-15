@@ -4,8 +4,8 @@
 export log_file=/var/log/log_evt.log
 
 function log {
-    local cible=${2:-$ssh_user}
-    echo "$(date '+%Y%m%d_%H%M%S')_${USER}_$1_[${cible}]_[${ip_client}]" >> "$log_file"
+    local cible=${2:-$ssh_client}
+    echo "$(date '+%Y%m%d_%H%M%S')_${USER}_$1_[${user}]_[${ip_client}]" >> "$log_file"
 }
 export -f log
 
@@ -15,15 +15,14 @@ log "StartScript"
 #initialisation des variables principales
 
 
-read -p  "Quel est votre identifiant de connexion ? :" ssh_user && export ssh_user
-read -p "Quelle est la machine cible ? (nom de la machine ou IP) :" ip_client && export ip_client
+read -p  "Quel est le nom de la machine sur laquelle vous souhaitez vous connecter ?  :" ssh_client && export ssh_client
 
 # SSH-Agent permettant la connexion sans interrogation du mot de passe
 eval $(ssh-agent -s)
 ssh-add ~/.ssh/id_ed25519
 
 # Verification du type d'OS Linux ou Windows pour executer les bons scripts enfants
-os_type=$(ssh $ssh_user@$ip_client "uname")
+os_type=$(ssh ssh_client "uname")
 
 
 while true
