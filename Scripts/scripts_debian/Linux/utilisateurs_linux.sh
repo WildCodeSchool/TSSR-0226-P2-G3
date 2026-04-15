@@ -64,7 +64,7 @@ do
 
         if [ -z "$utilisateur_exist" ]; then
             # L'option -m permet de forcer la création du repertoire /home/
-            ssh $ssh_client "sudo useradd -m $cible_username"
+            ssh $ssh_client "useradd -m $cible_username"
             echo "L'utilisateur $cible_username a été créé avec succès."
             log "Succès création utilisateur $cible_username"
         else
@@ -82,7 +82,7 @@ do
         echo ""
 
         # On passe le mdp via chpasswd pour éviter l'invite interactive qui fait planter le script
-        ssh $ssh_client "echo '$cible_username:$nouveau_password' | sudo chpasswd"
+        ssh $ssh_client "echo '$cible_username:$nouveau_password' | chpasswd"
 
         if [ $? -eq 0 ]; then
             echo "Le mot de passe de $cible_username a été mis à jour."
@@ -103,7 +103,7 @@ do
         if [ "$confirm" = "o" ]; 
         then
             # L'option -r supprime aussi le dossier personnel de l'utilisateur
-            ssh $ssh_client "sudo userdel -r $cible_username"
+            ssh $ssh_client "userdel -r $cible_username"
             echo "L'utilisateur $cible_username a été supprimé."
             log "Succès suppression utilisateur $cible_username"
         else
