@@ -58,13 +58,14 @@ do
         # Création de compte
         log "Initialisation création utilisateur client"
         read -p "Saisissez le nom du nouvel utilisateur : " cible_username
+        read -p "Entrez un mot de passe initiale :" defaut_password
         
         # Check si le compte existe déjà sur la machine distante pour éviter les erreurs
         utilisateur_exist=$(ssh $ssh_client "grep '^$cible_username:' /etc/passwd")
 
         if [ -z "$utilisateur_exist" ]; then
             # L'option -m permet de forcer la création du repertoire /home/
-            ssh $ssh_client "useradd -m --disabled-password $cible_username"
+            ssh $ssh_client "useradd -m  $cible_username -p $defaut_password"
             echo "L'utilisateur $cible_username a été créé avec succès."
             log "Succès création utilisateur $cible_username"
         else
