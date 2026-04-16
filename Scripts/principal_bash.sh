@@ -3,12 +3,21 @@
 # Destination du fichier logs
 export log_file=/var/log/log_evt.log
 
+# Fonction de log d'utilisation du script
 function log {
     local cible=${2:-$ssh_client}
     echo "$(date '+%Y%m%d_%H%M%S')_${USER}_$1_[${user}]_[${ip_client}]" >> "$log_file"
 }
 export -f log
 
+# lanceur des scripts enfants avec exit 50 pour exit script total depuis script enfant
+function lancement_enfant {
+    bash "$1"
+    if [[ $? == 50 ]]; then
+        log "EndScript"
+        exit 0
+    fi
+}
 
 log "StartScript"
 
@@ -48,9 +57,9 @@ do
         log "Start_Menu_Utilisateurs"
         if [[ $os_type == "Linux" ]]
         then
-            bash ./scripts_debian/Linux/utilisateurs_linux.sh
+            lancement_enfant ./scripts_debian/Linux/utilisateurs_linux.sh
         else
-            bash ./scripts_debian/Windows/utilisateurs_windows.sh
+            lancement_enfant ./scripts_debian/Windows/utilisateurs_windows.sh
         fi
         ;;
     1?)
@@ -64,9 +73,9 @@ do
         log "Start_Menu_Groupes"
         if [[ $os_type == "Linux" ]]
         then
-            bash ./scripts_debian/Linux/groupes_linux.sh
+            lancement_enfant ./scripts_debian/Linux/groupes_linux.sh
         else
-            bash ./scripts_debian/Windows/groupes_windows.sh
+            lancement_enfant ./scripts_debian/Windows/groupes_windows.sh
         fi
         ;;
     2?)
@@ -80,9 +89,9 @@ do
         log "Start_Menu_Repertoires"
         if [[ $os_type == "Linux" ]]
         then
-            bash ./scripts_debian/Linux/repertoires_linux.sh
+            lancement_enfant ./scripts_debian/Linux/repertoires_linux.sh
         else
-            bash ./scripts_debian/Windows/repertoires_windows.sh
+            lancement_enfant ./scripts_debian/Windows/repertoires_windows.sh
         fi
         ;;
     3?)
@@ -95,9 +104,9 @@ do
         log "Start_Menu_Maintenance"
         if [[ $os_type == "Linux" ]]
         then
-            bash ./scripts_debian/Linux/maintenance_linux.sh
+            lancement_enfant ./scripts_debian/Linux/maintenance_linux.sh
         else
-            bash ./scripts_debian/Windows/maintenance_windows.sh
+            lancement_enfant ./scripts_debian/Windows/maintenance_windows.sh
         fi
         ;;
     4?)
@@ -112,9 +121,9 @@ do
         log "Start_Menu_Connexions"
         if [[ $os_type == "Linux" ]]
         then
-            bash ./scripts_debian/Linux/connexions_linux.sh
+            lancement_enfant ./scripts_debian/Linux/connexions_linux.sh
         else
-            bash ./scripts_debian/Windows/connexions_windows.sh
+            lancement_enfant ./scripts_debian/Windows/connexions_windows.sh
         fi
         ;;
     5?)
@@ -127,9 +136,9 @@ do
         log "Start_Menu_Disques"
         if [[ $os_type == "Linux" ]]
         then
-            bash ./scripts_debian/Linux/disques_linux.sh
+            lancement_enfant ./scripts_debian/Linux/disques_linux.sh
         else
-            bash ./scripts_debian/Windows/disques_windows.sh
+            lancement_enfant ./scripts_debian/Windows/disques_windows.sh
         fi
         ;;
     6?)
@@ -143,9 +152,9 @@ do
         log "Start_Menu_Systeme"
         if [[ $os_type == "Linux" ]]
         then
-            bash ./scripts_debian/Linux/systeme_linux.sh
+            lancement_enfant ./scripts_debian/Linux/systeme_linux.sh
         else
-            bash ./scripts_debian/Windows/systeme_windows.sh
+            lancement_enfant ./scripts_debian/Windows/systeme_windows.sh
         fi
         ;;
     7?)
@@ -160,9 +169,9 @@ do
         log "Start_Menu_Historique"
         if [[ $os_type == "Linux" ]]
         then
-            bash ./scripts_debian/Linux/historique_linux.sh
+            lancement_enfant ./scripts_debian/Linux/historique_linux.sh
         else
-            bash ./scripts_debian/Windows/historique_windows.sh
+            lancement_enfant ./scripts_debian/Windows/historique_windows.sh
         fi
         ;;
     8?)
@@ -176,9 +185,9 @@ do
         log "Start_Menu_Recherche_logs"
         if [[ $os_type == "Linux" ]]
         then
-            bash ./scripts_debian/Linux/logs_recherches_linux.sh
+            lancement_enfant ./scripts_debian/Linux/logs_recherches_linux.sh
         else
-            bash ./scripts_debian/Windows/logs_recherches_windows.sh
+            lancement_enfant ./scripts_debian/Windows/logs_recherches_windows.sh
         fi
         ;;
     9?)
