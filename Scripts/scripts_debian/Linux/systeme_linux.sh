@@ -2,10 +2,10 @@
 
 #initialisation des variables principales
 
-version_os=$(ssh $ssh_user@$ip_client "cat /etc/os-release | grep 'VERSION=' | cut -d '=' -f2 | tr -d '\"'")
-maj_critiques=$(ssh $ssh_user@$ip_client "apt list --upgradable 2>/dev/null | grep 'security'")
+version_os=$(ssh $ssh_client "cat /etc/os-release | grep 'VERSION=' | cut -d '=' -f2 | tr -d '\"'")
+maj_critiques=$(ssh $ssh_client "apt list --upgradable 2>/dev/null | grep 'security'")
 nombre_maj_critiques=$(echo "$critical_update" | wc -l)
-marque_modele=$(ssh $ssh_user@$ip_client "dmidecode -t system | grep -E 'Manufacturer|Version'")
+marque_modele=$(ssh $ssh_client "dmidecode -t system | grep -E 'Manufacturer|Version'")
 
 
 
