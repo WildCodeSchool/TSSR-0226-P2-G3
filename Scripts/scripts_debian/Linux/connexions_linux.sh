@@ -4,10 +4,10 @@
 
 #initialisation des variables principales
 
-derniers_logins=$(ssh $ssh_user@$ip_client "last -n 5 | grep 'pts'")
-ipcon_client=$(ssh $ssh_user@$ip_client "ip route get 1 | awk '{print $7; exit}'")
-masque_client=$(ssh $ssh_user@$ip_client "ipcalc $ipcon_client | grep 'Netmask' | awk '{print $2}'")
-passerelle_client=$(ssh $ssh_user@$ip_client "ip route | grep 'default' | awk '{print $3}'")
+derniers_logins=$(ssh $ssh_client "last -n 5 | grep 'pts'")
+ipcon_client=$(ssh $ssh_client "ip route get 1 | awk '{print $7; exit}'")
+masque_client=$(ssh $ssh_client "ipcalc $ipcon_client | grep 'Netmask' | awk '{print /$2}'")
+passerelle_client=$(ssh $ssh_client "ip route | grep 'default' | awk '{print /$3}'")
 
 
 
