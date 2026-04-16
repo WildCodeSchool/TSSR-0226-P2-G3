@@ -80,7 +80,7 @@ do
             echo "Nom du disque : $disk"
             echo "Nombre de partitions de $disk : $part_nombre\n"
 
-            for partition in $(ssh $ssh_client "lsblk -o NAME,TYPE | grep \"$disk\" | grep 'part' | awk '{print $1}'")
+            for partition in $(ssh $ssh_client "lsblk -o NAME,TYPE | grep \"$disk\" | grep 'part' | awk '{print \$1}'")
             do
                 partition_data=$(ssh $ssh_client "lsblk -o NAME,FSTYPE,SIZE | grep \"$partition\"")
                 fs_part=$(echo "$partition_data" | awk '{print $2}')
