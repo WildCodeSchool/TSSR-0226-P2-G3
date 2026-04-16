@@ -2,9 +2,9 @@
 
 #initialisation des variables principales
 
-nombre_disque_client=$(ssh $ssh_user@$ip_client "lsblk -d | grep disk | wc -l")
-liste_disque_client=$(ssh $ssh_user@$ip_client "lsblk -d | grep disk | awk '{print \$1}'")
-liste_lecteur_client=$(ssh $ssh_user@$ip_client "lsblk -o NAME,TYPE,MOUNTPOINT | awk '\$3 != \"\"' | awk '{print \$1, \$2, \$3}'")
+nombre_disque_client=$(ssh $ssh_client "lsblk -d | grep disk | wc -l")
+liste_disque_client=$(ssh $ssh_client "lsblk -d | grep disk | awk '{print \$1}'")
+liste_lecteur_client=$(ssh $ssh_client "lsblk -o NAME,TYPE,MOUNTPOINT | awk '\$3 != \"\"' | awk '{print \$1, \$2, \$3}'")
 
 
 function menu_secondaire
@@ -66,23 +66,23 @@ do
     # Affichage du nombre de disques sur le poste client
     1)
         log "Consultation nombre de disques client"
-        echo "Le nombre de disques de $ip_client est de $nombre_disque_client"
+        echo "Le nombre de disques de $ssh_client est de $nombre_disque_client"
         secondary_menu
         ;;
     # Affichage détaillé des partitions
     2)
         log "Consultation détail des partitions"
-        echo "Le poste <CLIENT NOM> contient $nombre_disque_client avec en détail :\n"
+        echo "Le poste $ssh_client contient $nombre_disque_client avec en détail :\n"
 
         for disk in $liste_disque_client
         do
-            part_nombre=$(ssh $ssh_user@$ip_client "lsblk | grep $disk | grep part | wc -l")
+            part_nombre=$(ssh $ssh_client "lsblk | grep $disk | grep part | wc -l")
             echo "Nom du disque : $disk"
             echo "Nombre de partitions de $disk : $part_nombre\n"
 
-            for partition in $(ssh $ssh_user@$ip_client "lsblk -o NAME,TYPE | grep \"$disk\" | grep 'part' | awk '{print $1}'")
+            for partition in $(ssh $ssh_client "lsblk -o NAME,TYPE | grep \"$disk\" | grep 'part' | awk '{print $1}'")
             do
-                partition_data=$(ssh $ssh_user@$ip_client "lsblk -o NAME,FSTYPE,SIZE | grep \"$partition\"")
+                partition_data=$(ssh $ssh_client "lsblk -o NAME,FSTYPE,SIZE | grep \"$partition\"")
                 fs_part=$(echo "$partition_data" | awk '{print $2}')
                 taille_part=$(echo "$partition_data" | awk '{print $3}')
                 echo "Concernant la partition $partition"
