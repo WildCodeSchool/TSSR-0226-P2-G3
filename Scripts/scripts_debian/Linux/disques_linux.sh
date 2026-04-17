@@ -67,7 +67,7 @@ do
     1)
         log "Consultation nombre de disques client"
         echo "Le nombre de disques de $ssh_client est de $nombre_disque_client"
-        secondary_menu
+        menu_secondaire
         ;;
     # Affichage détaillé des partitions
     2)
