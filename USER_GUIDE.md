@@ -30,7 +30,7 @@ Ouvrez votre terminal et placez-vous dans le dossier contenant le script :
 
 Lancez le script parent avec la commande suivante :
 `./pincipal_bash.sh`
-*(Note : Si le système vous indique "Permission non accordée", tapez d'abord `chmod +x parental_linux.sh` pour lui donner les droits d'exécution).*
+*(Note : Si le système vous indique "Permission non accordée", tapez d'abord `chmod +x principal_bash.sh` pour lui donner les droits d'exécution).*
 
 ![Screen Snap](Ressources/SCREENSHOT/Lancement_et_navigation_du_script/commande_a_taper_pour_lancer_le_script.png)
 
