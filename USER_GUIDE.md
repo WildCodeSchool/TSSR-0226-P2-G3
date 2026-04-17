@@ -37,8 +37,12 @@ Lancez le script parent avec la commande suivante :
 **Étape 3 : Navigation**
 
   1. Le script vous demandera d'abord le nom de la machine cible.
+
+  ![Screen Snap](Ressources/SCREENSHOT/Lancement_et_navigation_du_script/renseigner_la_machine_a_connecter.png)
      
   2. Le Menu Principal s'affiche. Tapez le numéro correspondant à l'action souhaitée (ex: `1` pour Utilisateurs, `2` pour Groupes, ...).
+
+  ![Screen Snap](Ressources/SCREENSHOT/Lancement_et_navigation_du_script/renseigner_votre_choix.png)
      
   3. L'outil détectera automatiquement si la cible est un Linux ou un Windows et lancera les commandes adaptées en arrière-plan.
 
