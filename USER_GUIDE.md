@@ -29,8 +29,10 @@ Ouvrez votre terminal et placez-vous dans le dossier contenant le script :
 **Étape 2 : Exécution**
 
 Lancez le script parent avec la commande suivante :
-`./parental_linux.sh`
+`./pincipal_bash.sh`
 *(Note : Si le système vous indique "Permission non accordée", tapez d'abord `chmod +x parental_linux.sh` pour lui donner les droits d'exécution).*
+
+![Screen Snap](Ressources/SCREENSHOT/Lancement_et_navigation_du_script/commande_a_taper_pour_lancer_le_script.png).
 
 **Étape 3 : Navigation**
 
@@ -52,7 +54,7 @@ Ouvrez une console **PowerShell en tant qu'Administrateur** et naviguez vers le 
 **Étape 2 : Exécution**
 
 Lancez le script parent avec la commande :
-`.\parental_windows.ps1`
+`.\principal_windows.ps1`
 
 **Étape 3 : Navigation**
 
