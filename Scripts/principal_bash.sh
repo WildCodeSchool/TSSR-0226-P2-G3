@@ -30,12 +30,16 @@ read -p  "Quel est le nom de la machine sur laquelle vous souhaitez vous connect
 eval $(ssh-agent -s)
 ssh-add ~/.ssh/id_ed25519
 
+sleep 3
+clear
+
 # Verification du type d'OS Linux ou Windows pour executer les bons scripts enfants
 os_type=$(ssh $ssh_client "uname")
 
 
 while true
 do
+    echo "Bienvenue sur la gestion de $ssh_client"
     echo "Menu Principal"
     echo "Quel menu souhaitez-vous utiliser ?"
     echo "1 - Gestion des utilisateurs"
