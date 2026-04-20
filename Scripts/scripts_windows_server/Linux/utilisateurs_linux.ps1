@@ -39,14 +39,14 @@ function Show-MenuSecondaire {
     }
 }
 
-Write-Log "Demande sur utilisateurs (Cible: Linux)"
-Write-Host "Bienvenue dans la gestion des Utilisateurs (Cible : Ubuntu)" -ForegroundColor Green
+Write-Log "Demande sur utilisateurs"
+Write-Host "Bienvenue dans la gestion des Utilisateurs" -ForegroundColor Green
 Start-Sleep -Seconds 1
 Clear-Host
 
 # Boucle principale du menu Utilisateurs
 while ($true) {
-    Write-Host "Menu Utilisateurs (Cible Linux)" -ForegroundColor Yellow
+    Write-Host "Menu Utilisateurs" -ForegroundColor Yellow
     Write-Host "Que souhaitez-vous faire sur le poste client ($ip_client) ?"
     Write-Host "1 - Création de compte utilisateur local"
     Write-Host "2 - Changement de mot de passe"
