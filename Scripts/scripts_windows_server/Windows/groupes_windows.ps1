@@ -1,0 +1,140 @@
+# Définition de la fonction de journalisation (à adapter si elle est gérée par le parent)
+function Write-Log {
+    param([string]$Message)
+    $Date = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
+    Add-Content -Path "C:\logs\log_evt.log" -Value "[$Date] $Message"
+}
+
+# Sous-menu pour gérer la navigation
+function Show-MenuSecondaire {
+    Write-Host "1 - Revenir au menu Groupes"
+    Write-Host "2 - Revenir au menu principal"
+    Write-Host "q - Quitter le script"
+    $choix_secondaire = Read-Host "Quel est votre choix ?"
+
+    switch ($choix_secondaire) {
+        '1' {
+            Write-Log "Retour menu groupes"
+            Write-Host "Vous retournez au menu Groupes" -ForegroundColor Cyan
+            Start-Sleep -Seconds 1
+            return
+        }
+        '2' {
+            Write-Log "Retour au menu principal"
+            Write-Host "Vous retournez au menu principal" -ForegroundColor Cyan
+            Start-Sleep -Seconds 1
+            exit 0
+        }
+        'q' {
+            Write-Log "Quitte le script"
+            Write-Host "Vous quittez le script" -ForegroundColor Cyan
+            Start-Sleep -Seconds 1
+            exit 50
+        }
+        default {
+            Write-Host "L'option choisie n'existe pas, veuillez recommencer" -ForegroundColor Red
+            Start-Sleep -Seconds 1
+            Show-MenuSecondaire
+        }
+    }
+}
+
+Write-Log "Demande sur groupes"
+Write-Host "Bienvenue dans la gestion des Groupes" -ForegroundColor Green
+Start-Sleep -Seconds 1
+Clear-Host
+
+# Boucle principale du menu
+while ($true) {
+    Write-Host "Menu Groupes" -ForegroundColor Yellow
+    Write-Host "Que souhaitez-vous faire sur le poste client ($ip_client) ?"
+    Write-Host "1 - Ajout à un groupe d'administration"
+    Write-Host "2 - Ajout à un groupe standard"
+    Write-Host "3 - Sortie d'un groupe"
+    Write-Host "4 - Revenir au menu principal"
+    Write-Host "q - Quitter le script"
+    $choix = Read-Host "Quel est votre choix ?"
+
+    switch ($choix) {
+        '1' {
+            Write-Log "Initiation ajout admin client"
+            $cible_username = Read-Host "Quel utilisateur doit devenir administrateur ?"
+
+            $ScriptBlock = {
+                param($user)
+                Add-LocalGroupMember -Group "Administrateurs" -Member $user
+            }
+
+            try {
+                Invoke-Command -ComputerName $ip_client -Credential $cred -ScriptBlock $ScriptBlock -ArgumentList $cible_username -ErrorAction Stop
+                Write-Host "$cible_username a été ajouté au groupe d'administration." -ForegroundColor Green
+                Write-Log "Succès ajout admin pour $cible_username"
+            } catch {
+                Write-Host "Erreur lors de l'ajout au groupe d'administration." -ForegroundColor Red
+                Write-Log "Erreur ajout admin pour $cible_username"
+            }
+            Show-MenuSecondaire
+        }
+
+        '2' {
+            Write-Log "Initiation ajout groupe client"
+            $cible_username = Read-Host "Nom de l'utilisateur"
+            $cible_groupe = Read-Host "Dans quel groupe souhaitez-vous l'ajouter ?"
+
+            $ScriptBlock = {
+                param($group, $user)
+                Add-LocalGroupMember -Group $group -Member $user
+            }
+
+            try {
+                Invoke-Command -ComputerName $ip_client -Credential $cred -ScriptBlock $ScriptBlock -ArgumentList $cible_groupe, $cible_username -ErrorAction Stop
+                Write-Host "$cible_username a été ajouté au groupe $cible_groupe." -ForegroundColor Green
+                Write-Log "Succès ajout groupe $cible_groupe pour $cible_username"
+            } catch {
+                Write-Host "Erreur lors de l'ajout de l'utilisateur au groupe." -ForegroundColor Red
+                Write-Log "Erreur ajout groupe $cible_groupe pour $cible_username"
+            }
+            Show-MenuSecondaire
+        }
+
+        '3' {
+            Write-Log "Initiation sortie groupe client"
+            $cible_username = Read-Host "Nom de l'utilisateur"
+            $cible_groupe = Read-Host "De quel groupe souhaitez-vous le retirer ?"
+
+            $ScriptBlock = {
+                param($group, $user)
+                Remove-LocalGroupMember -Group $group -Member $user
+            }
+
+            try {
+                Invoke-Command -ComputerName $ip_client -Credential $cred -ScriptBlock $ScriptBlock -ArgumentList $cible_groupe, $cible_username -ErrorAction Stop
+                Write-Host "$cible_username a été retiré du groupe $cible_groupe." -ForegroundColor Green
+                Write-Log "Succès sortie groupe $cible_groupe pour $cible_username"
+            } catch {
+                Write-Host "Erreur lors du retrait de l'utilisateur du groupe." -ForegroundColor Red
+                Write-Log "Erreur sortie groupe $cible_groupe pour $cible_username"
+            }
+            Show-MenuSecondaire
+        }
+
+        '4' {
+            Write-Log "Retour au menu principal"
+            Write-Host "Vous revenez au menu principal" -ForegroundColor Cyan
+            Start-Sleep -Seconds 1
+            exit 0
+        }
+
+        'q' {
+            Write-Log "Quitte le script"
+            Write-Host "Vous quittez le script" -ForegroundColor Cyan
+            Start-Sleep -Seconds 1
+            exit 50
+        }
+
+        default {
+            Write-Host "L'option choisie n'existe pas, veuillez recommencer" -ForegroundColor Red
+            Start-Sleep -Seconds 1
+        }
+    }
+}
