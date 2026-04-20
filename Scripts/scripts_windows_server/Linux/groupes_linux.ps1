@@ -39,14 +39,14 @@ function Show-MenuSecondaire {
     }
 }
 
-Write-Log "Demande sur groupes (Cible: Linux)"
-Write-Host "Bienvenue dans la gestion des Groupes (Cible : Ubuntu)" -ForegroundColor Green
+Write-Log "Demande sur groupes"
+Write-Host "Bienvenue dans la gestion des Groupes" -ForegroundColor Green
 Start-Sleep -Seconds 1
 Clear-Host
 
 # Boucle principale du menu Groupes
 while ($true) {
-    Write-Host "Menu Groupes (Cible Linux)" -ForegroundColor Yellow
+    Write-Host "Menu Groupes" -ForegroundColor Yellow
     Write-Host "Que souhaitez-vous faire sur le poste client ($ip_client) ?"
     Write-Host "1 - Ajout à un groupe d'administration"
     Write-Host "2 - Ajout à un groupe standard"
@@ -64,8 +64,8 @@ while ($true) {
             ssh $ssh_user@$ip_client "sudo usermod -aG sudo $cible_username"
             
             if ($LASTEXITCODE -eq 0) {
-                Write-Host "$cible_username a été ajouté au groupe d'administration (sudo)." -ForegroundColor Green
-                Write-Log "Succès ajout admin (sudo) pour $cible_username"
+                Write-Host "$cible_username a été ajouté au groupe d'administration." -ForegroundColor Green
+                Write-Log "Succès ajout admin pour $cible_username"
             } else {
                 Write-Host "Erreur lors de l'ajout au groupe d'administration." -ForegroundColor Red
                 Write-Log "Erreur ajout admin pour $cible_username"
