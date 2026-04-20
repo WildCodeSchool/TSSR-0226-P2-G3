@@ -186,9 +186,9 @@ sudo systemctl status ssh
 ```
 
 ![Screen Snap](Ressources/SCREENSHOT/Config_Ubuntu/Config_Ssh_UBU_DEBSERV/UBU_systemctl_status_enable.png)  
-Ca y est maintenant a chaque redemarrage de votre machine vous n'aurais pas a réactiver votre service ssh, il se lancer automatiquement.
+Ca y est maintenant a chaque redemarrage de votre machine vous n'aurais pas a réactiver votre service ssh, il se lancera automatiquement.
 
-**Créer une cle ssh pour la connection securisé entre notre machine et notre serveur** 
+**Créer une cle ssh pour la connection sécurisé pour executer le script depuis sa propre machine sur le serveur debian qui lui meme administre une machine client** 
 
 ``` bash
 ssh-keygen 
