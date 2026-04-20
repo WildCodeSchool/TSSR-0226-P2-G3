@@ -259,25 +259,40 @@ sudo apt install ipcalc
 ``` powershell
 ip adds show
 ```
-![Screen Snap]().
+![Screen Snap](Ressources/SCREENSHOT/Config_Win11/Commande_installation_SSH.png).
+
+**Une fois l'installation lancé cette page va s'afficher veillez a bien attendre la fin du chargement c'est assez long.**
+![Screen Snap](Ressources/SCREENSHOT/Config_Win11/chargement_installation_serveur_ssh.png).
+
+**Consulter l'etat du service SSH**
+``` powershell
+ip adds show
+```
+![Screen Snap](Ressources/SCREENSHOT/Config_Win11/Vérifier_letat_du_service.png).
 
 **Démarrer et activer au démarrage**
 
-- Lancer SSH au demarrage:
+- Demarrere:
 ``` powershell
-ip adds show
+Start-Service sshd
 ```
 ![Screen Snap]().
 
 - Activer SSH au demarrage
 ``` powershell
-ip adds show
+Set-Service -Name sshd -StartupType Automatic
 ```
 ![Screen Snap]().
 
-**Créer le fichier sur Windows ou mes clés seront stockés**
+**Consulter l'etat du service SSH**
 ``` powershell
-ip adds show
+Get-Service sshd
+```
+![Screen Snap](Ressources/SCREENSHOT/Config_Win11/Vérifier_letat_du_service.png).
+
+**Ensuite il faut créer le fichier ou mes clés seront stockés**
+``` powershell
+New-Item File
 ```
 ![Screen Snap]().
 **Appliquer les permissions pour que le copie-id que tu as fait sur ta debian soit pris en compte**
@@ -285,15 +300,23 @@ ip adds show
 ip adds show
 ```
 ![Screen Snap]().
-**Redémarrage du service SSH**
+**Recuperation de la Clé SSH Etape 1:**
 ``` powershell
 ip adds show
 ```
 ![Screen Snap]()
 
+**Etape 2: Tapez yes pour continuer**
+![Screen Snap]()
+
+**Etape 3: Entrez le mot de passe crée sur votre debian**
+![Screen Snap]()
+
+Connection SSH établie.
+
 ### Si la commande SSH affiche ce message d'erreur : Vérifier que le service SSH ecoute bien le port 22
 ``` powershell
-ssh: connect to host 172.16.30.20 port 22: Connection refused
+ssh: connect to host 172.16.30.10 port 22: Connection refused
 ```
 ![Screen Snap]().
 
