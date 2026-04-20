@@ -239,6 +239,16 @@ ssh-add ~/.ssh/id_ed25519
 
 Et voilà l’interconnexion sécurisé via OpenSSH entre vos deux machines est desormais établie. 
 
+## 4. Logiciels et configurations complémentaires
+
+### Logiciels
+
+Pour le bon fonctionnement du menu connexion il est nécessaire d'installer sur le client Linux l'outil ipcalc avec la commande suivante :
+
+```bash
+sudo apt install ipcalc
+```
+
 
 # 5. Configuration sur le client windows (Windows 10)
 
