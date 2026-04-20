@@ -19,24 +19,24 @@ function menu_secondaire
     1)
         log "Retour menu disque"
         echo "Vous retournez au menu Disques"
-        sleep 3
+        sleep 1
         return
         ;;
     2)
         log "Retour au menu principal"
         echo "Vous retournez au menu principal"
-        sleep 3
+        sleep 1
         exit 0
         ;;
     q)
         log "Quitte le script"
         echo "Vous quittez le script"
-        sleep 3
+        sleep 1
         exit 50
         ;;
     *)
         echo "L'option choisi n'existe pas, veuillez recommencer"
-        sleep 3s
+        sleep 1
         menu_secondaire
         ;;
     esac
@@ -45,7 +45,7 @@ function menu_secondaire
 log "Demande sur disques"
 
 echo "Bienvenue dans la gestion des Disques et Lecteurs"
-sleep 3
+sleep 1
 clear
 
 # Menu disques
@@ -100,19 +100,19 @@ do
     4)
         log "Retour au menu principal"
         echo "Vous revenez au menu principal"
-        sleep 3
+        sleep 1
         exit 0
         ;;
     q)
 
         log "Quitte le script"
         echo "Vous quittez le script"
-        sleep 3
+        sleep 1
         exit 50
         ;;
     *)
         echo "L'option choisi n'existe pas, veuillez recommencer"
-        sleep 3
+        sleep 1
         ;;
     esac
 done
