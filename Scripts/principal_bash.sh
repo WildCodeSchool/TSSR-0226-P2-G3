@@ -21,10 +21,19 @@ function lancement_enfant {
 
 log "StartScript"
 
-#initialisation des variables principales
+#initialisation de la connexion avec verification de la bonne machine
+while true
+do
+    read -p "Quel est le nom de la machine cible ? :" ssh_client
+    if ssh -q -o ConnectTimeout=5 $ssh_user@$ssh_client "exit" 2>/dev/null
+    then
+        break
+    else
+        echo "Impossible de joindre $ssh_client — vérifiez le nom ou l'IP"
+    fi
+done
 
-
-read -p  "Quel est le nom de la machine sur laquelle vous souhaitez vous connecter ?  :" ssh_client && export ssh_client
+export ssh_client
 
 # SSH-Agent permettant la connexion sans interrogation du mot de passe
 eval $(ssh-agent -s)
