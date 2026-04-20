@@ -23,24 +23,24 @@ function menu_secondaire
     1)
         log "Retour menu connexion"
         echo "Vous retournez au menu connexion"
-        sleep 3
+        sleep 1
         return
         ;;
     2)
         log "Retour au menu principal"
         echo "Vous retournez au menu principal"
-        sleep 3
+        sleep 1
         exit 0
         ;;
     q)
         log "Quitte le script"
         echo "Vous quittez le script"
-        sleep 3
+        sleep 1
         exit 50
         ;;
     *)
         echo "L'option choisi n'existe pas, veuillez recommencer"
-        sleep 3
+        sleep 1
         menu_secondaire
         ;;
     esac
@@ -49,7 +49,7 @@ function menu_secondaire
 log "Demande sur connexion"
 
 echo "Bienvenue dans le menu connexion"
-sleep 3
+sleep 1
 clear
 
 # Menu Connexion
@@ -85,14 +85,14 @@ do
     3)
         log "Retour arrière"
         echo "Vous allez revenir au menu principal"
-        sleep 3
+        sleep 1
         exit 0
         ;;
 
     q)
         log "EndScript"
         echo "Vous quittez le script"
-        sleep 3
+        sleep 1
         exit 50
         ;;
     *) 
