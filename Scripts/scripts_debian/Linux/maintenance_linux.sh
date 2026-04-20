@@ -60,7 +60,7 @@ do
             reboot
         else
             echo "Redémarrage annulé."
-            secondary_menu
+            menu_secondaire
         fi
         ;;
     2)
@@ -100,7 +100,7 @@ do
         if ! ping -c 3 -W 2 "$IP_cible" &>/dev/null; then
             echo "Erreur : la machine $IP_cible ne répond pas au ping."
             echo "Vérifiez que la machine est allumée et accessible sur le réseau."
-            secondary_menu
+            menu_secondaire
             return
         fi
 
@@ -129,7 +129,7 @@ do
         else
             echo "Activation Pare-feu annulé"
         fi
-        secondary_menu
+        menu_secondaire
         ;;
     4)
         log "Execution_Script_A_Distance"
@@ -137,7 +137,7 @@ do
             echo "Connexion SSH établie"
         else
             echo "Connexion SSH impossible"
-            secondary_menu
+            menu_secondaire
         fi
 
         read -p "Quel script souhaitez vous lancer ? " script
@@ -153,11 +153,11 @@ do
                 fi
             else
                 echo "Retour au menu Operateur De Maintenance"
-                secondary_menu
+                menu_secondaire
             fi
         else
             echo "Le script est introuvable ou non exécutable"
-            secondary_menu
+            menu_secondaire
         fi
         ;;
     5)
