@@ -12,24 +12,24 @@ function menu_secondaire
     1)
         log "Retour menu répertoires"
         echo "Vous retournez au menu répertoires"
-        sleep 3
+        sleep 1
         return
         ;;
     2)
         log "Retour au menu principal"
         echo "Vous retournez au menu principal"
-        sleep 3
+        sleep 1
         exit 0
         ;;
     q)
         log "Quitte le script"
         echo "Vous quittez le script"
-        sleep 3
+        sleep 1
         exit 50
         ;;
     *)
         echo "L'option choisi n'existe pas, veuillez recommencer"
-        sleep 3s
+        sleep 1
         menu_secondaire
         ;;
     esac
@@ -41,7 +41,7 @@ function menu_secondaire
 
 log "Demande sur répertoire"
 echo "Bienvenue dans le menu répertoires"
-sleep 3
+sleep 1
 clear
 
 while true
@@ -108,13 +108,13 @@ do
     r)
         log "Retour arrière"
         echo "Vous allez revenir au menu principal"
-        sleep 3
+        sleep 1
         exit 0
         ;;
     q)
         log "Quitte le script"
         echo "Vous quittez le script"
-        sleep 3
+        sleep 1
         exit 50
         ;;
     *)
