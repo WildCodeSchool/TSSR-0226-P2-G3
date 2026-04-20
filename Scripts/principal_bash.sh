@@ -24,7 +24,7 @@ log "StartScript"
 while true
 do
     read -p "Quel est le nom de la machine cible ? :" ssh_client
-    if ssh -q -o ConnectTimeout=5 $ssh_user@$ssh_client "exit" 2>/dev/null
+    if ssh -q -o ConnectTimeout=5 $ssh_client "exit" 2>/dev/null
     then
         break
     else
