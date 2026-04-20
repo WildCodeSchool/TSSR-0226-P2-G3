@@ -187,12 +187,7 @@ do
         ;;
     9)
         log "Start_Menu_Recherche_logs"
-        if [[ $os_type == "Linux" ]]
-        then
-            lancement_enfant ./scripts_debian/Linux/logs_recherches_linux.sh
-        else
-            lancement_enfant ./scripts_debian/Windows/logs_recherches_windows.sh
-        fi
+        lancement_enfant ./scripts_debian/logs_recherches.sh
         ;;
     9?)
         echo "La recherche d'évènement dans les logs peut se faire :"
