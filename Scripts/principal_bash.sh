@@ -38,7 +38,7 @@ export ssh_client
 eval $(ssh-agent -s)
 ssh-add ~/.ssh/id_ed25519
 
-sleep 3
+sleep 1
 clear
 
 # Verification du type d'OS Linux ou Windows pour executer les bons scripts enfants
@@ -61,9 +61,9 @@ do
     echo "9 - Recherche d'évènements dans les logs"
     echo "q - quitter le script"
     echo "Aide : Pour connaitre le détail des options il vous suffit de taper le numéro suivi d'un point d'interrogation, par exemple 1?"
-    read -p "quel est votre choix ? :" choice
+    read -p "quel est votre choix ? :" choix
 
-    case $choice in
+    case $choix in
 
     1)
         log "Start_Menu_Utilisateurs"
@@ -206,7 +206,7 @@ do
     q)
         log "EndScript"
         echo "Vous quittez le script"
-        sleep 3
+        sleep 1
         exit 0
         ;;
     *) 
