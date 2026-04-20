@@ -1,9 +1,5 @@
-# Définition de la fonction de journalisation (à adapter si elle est gérée par le parent)
-function Write-Log {
-    param([string]$Message)
-    $Date = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
-    Add-Content -Path "C:\logs\log_evt.log" -Value "[$Date] $Message"
-}
+# Appel utilitaires pour logs
+. "./scripts_windows_server/utilitaire.ps1"
 
 # Sous-menu pour gérer la navigation
 function Show-MenuSecondaire {
