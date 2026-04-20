@@ -5,8 +5,7 @@ export log_file=/var/log/log_evt.log
 
 # Fonction de log d'utilisation du script
 function log {
-    local cible=${2:-$ssh_client}
-    echo "$(date '+%Y%m%d_%H%M%S')_${USER}_$1_[${user}]_[${ip_client}]" >> "$log_file"
+    echo "$(date '+%Y%m%d_%H%M%S')_${USER}_$1" >> "$log_file"
 }
 export -f log
 
