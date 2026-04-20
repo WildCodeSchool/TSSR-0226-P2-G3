@@ -57,7 +57,7 @@ do
         if [ "$redemarre" = "O" ] || [ "$redemarre" = "o" ]; then
             echo "Le pc redémarre..."
             sleep 1
-            reboot
+            ssh $ssh_client "reboot"
         else
             echo "Redémarrage annulé."
             menu_secondaire
@@ -119,9 +119,11 @@ do
     3)
         log "Activation_Du_pare_Feu"
         read -p "Voulez vous vraiment activer les pare-feu ? (O/N) " reponse
-        if [ "$reponse" = "O" ] || [ "$reponse" = "o" ]; then
-            ufw enable
-                if ufw status | grep -q "Status: active"; then
+        if [ "$reponse" = "O" ] || [ "$reponse" = "o" ]
+		then
+            ssh $ssh_client ufw enable
+                if ufw status | grep -q "Status: active"
+				then
                     echo "Vos Pare-Feu ont bien été activé"
                 else
                     echo "Activation Pare-Feu impossible"
@@ -144,9 +146,11 @@ do
 
         if [ -f "$script" ] && [ -x "$script" ]; then
             read -p "Le script existe et est exécutable voulez vous vraiment lancer ce script (O/N)" reponse
-            if [ "$reponse" = "O" ] || [ "$reponse" = "o" ]; then
+            if [ "$reponse" = "O" ] || [ "$reponse" = "o" ]
+			then
             bash "$script"
-                if [ $? -eq 0 ]; then
+                if [ $? -eq 0 ]
+				then
                     echo "Script exécuté avec succès"
                 else
                     echo "Erreur lors de l'exécution du script"
