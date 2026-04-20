@@ -250,8 +250,89 @@ sudo apt install ipcalc
 ```
 
 
-# 5. Configuration sur le client windows (Windows 10)
+# 5. Configuration sur le client windows (Windows 11)
+## 1. Configuration de la carte réseau
 
+## 2. Configuration de l'interconnexion SSH avec le serveur Linux Debian
+
+**Installer le serveur OpenSSH**
+``` powershell
+ip adds show
+```
+![Screen Snap]().
+
+**Démarrer et activer au démarrage**
+
+- Lancer SSH au demarrage:
+``` powershell
+ip adds show
+```
+![Screen Snap]().
+
+- Activer SSH au demarrage
+``` powershell
+ip adds show
+```
+![Screen Snap]().
+
+**Créer le fichier sur Windows ou mes clés seront stockés**
+``` powershell
+ip adds show
+```
+![Screen Snap]().
+**Appliquer les permissions pour que le copie-id que tu as fait sur ta debian soit pris en compte**
+``` powershell
+ip adds show
+```
+![Screen Snap]().
+**Redémarrage du service SSH**
+``` powershell
+ip adds show
+```
+![Screen Snap]()
+
+### Si la commande SSH affiche ce message d'erreur : Vérifier que le service SSH ecoute bien le port 22
+``` powershell
+ssh: connect to host 172.16.30.20 port 22: Connection refused
+```
+![Screen Snap]().
+
+**Verifier l'état du service SSH**
+
+``` powershell
+Get-service sshd
+```
+![Screen Snap]().
+
+**Ensuite demarrer le service si arreté**
+
+``` powershell
+Start-Service sshd
+```
+![Screen Snap]().
+
+**Vérifier que le port 22 est bien ouvert**
+
+``` powershell
+netstat -ano | findstr :22
+```
+![Screen Snap]().
+
+Normalement il devrait y avoir LISTENING
+
+### Si la commande d'erreur s'affiche toujours
+
+**Vérifier le pare-feu Windows**
+
+![Screen Snap]().
+Si la règle est absente ou désactivée :
+
+**Allez dans les parametres**
+![Screen Snap]().
+**Taper dans la barre de recherche firewall ou pare-feu**
+![Screen Snap]().
+**Puis desactivé un a un les firewalls activés**
+![Screen Snap]().
 
 # 6. FAQ
 
