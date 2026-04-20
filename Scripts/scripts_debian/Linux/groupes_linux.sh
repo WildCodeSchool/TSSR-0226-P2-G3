@@ -60,7 +60,7 @@ do
         log "Initiation ajout admin client"
         read -p "Quel utilisateur doit devenir administrateur ? : " cible_username
 
-        ssh $ssh_client "usermod -aG $cible_username"
+        ssh $ssh_client "usermod -aG sudo $cible_username"
         echo "$cible_username a été ajouté au groupe d'administration."
         log "Succès ajout admin pour $cible_username"
         menu_secondaire
@@ -82,7 +82,7 @@ do
         # Retrait d'un groupe
         log "Initiation sortie groupe client"
         read -p "Nom de l'utilisateur : " cible_username
-        read -p "De quel groupe souhaitez-vous le retirer ? : " cible_group
+        read -p "De quel groupe souhaitez-vous le retirer ? : " cible_groupe
 
         # Utilisation de gpasswd -d plus simple que usermod pour cette action
         ssh $ssh_client "gpasswd -d $cible_username $cible_groupe"
