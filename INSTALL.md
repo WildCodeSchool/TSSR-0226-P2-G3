@@ -1,3 +1,6 @@
+
+
+
 # Sommaire
 
 1. [Prérequis technique](#1-prérequis-techniques)
@@ -133,18 +136,18 @@ sudo systemctl status ssh
 ``` bash
 ssh-keygen -t ed25519
 ```
-![Screen Snap]() 
+![Screen Snap](Ressources/SCREENSHOT/Config_Win11/Creation_mdp.png) 
 
 **Sur votre serveur debian - Il faudra copier la clé plublique vers Windows11**
 ``` bash
 ssh-copy-id -i ~/.ssh/Win11.pub wilder@172.16.30.20
 ```
-![Screen Snap]() 
+![Screen Snap](Ressources/SCREENSHOT/Config_Win11/copie_clé_SSH_Debian_vers_Windows.png) 
 
 **Sur Windows - Verifier que la clé est bien ajouté a votre fichier**
 ``` bash
 ``` bash
-ssh-copy-id -i ~/.ssh/Win11.pub wilder@172.16.30.20
+Get-Content C:\Users\wilder\.ssh\authorized_keys.txt
 ```
 ![Screen Snap]() 
 
@@ -156,10 +159,11 @@ ssh wilder@172.16.30.20
 
 **Connexion a votre client Windows effectué**
 
-![Screen Snap]()
+![Screen Snap](Ressources/SCREENSHOT/Config_Win11/SSH_etablie.png)
 
 **Pour se deconnecter de la machine client Windows il vous suffit de taper exit**
-![Screen Snap]()
+![Screen Snap](Ressources/SCREENSHOT/Config_Win11/deco_client_Win11.png)
+
 ## 3. Configuration de l'interconnexion SSH avec le client ubuntu
 
 **Créer une cle ssh pour la connection sécurisé pour executer le script depuis sa propre machine sur le serveur debian qui lui meme administre une machine client** 
@@ -284,36 +288,25 @@ Add-WindowsCapability -Online -Name OpenSSH.Server~~~~0.0.1.0
 
 **Démarrer et activer au démarrage**
 
-- Demarrere:
+- Demarrage et Activation du service SSH au demarrage:
 ``` powershell
 Start-Service sshd
 ```
-![Screen Snap]().
-
-- Activer SSH au demarrage
 ``` powershell
 Set-Service -Name sshd -StartupType Automatic
 ```
-![Screen Snap]().
+![Screen Snap](Ressources/SCREENSHOT/Config_Win11/Lancer_et_automatiser_SSH.png).
 
 **Consulter l'etat du service SSH**
 ``` powershell
-
+Get-Service sshd
 ```
-![Screen Snap]().
-
-**Créer le dossier .ssh s'il n'existe pas**
-``` powershell
-New-Item -ItemType Directory -Path $env:USERPROFILE\.ssh -Force
-```
-![Screen Snap]()
+![Screen Snap](Ressources/SCREENSHOT/Config_Win11/Vérifier_letat_du_service.png).
 
 **Ensuite il faut créer le fichier ou mes clés seront stockés**
 ``` powershell
-New-Item -ItemType File -Path $env:USERPROFILE\.ssh\authorized_keys -Force
+New-Item -ItemType File -Path "C:\ProgramData\ssh\authorized_keys" -Force
 ```
-![Screen Snap]()
+![Screen Snap](Ressources/SCREENSHOT/Config_Win11/Creation_du_fichier_ou_coller_les_clés_publiques.png)
 
 # 6. FAQ
-
-
