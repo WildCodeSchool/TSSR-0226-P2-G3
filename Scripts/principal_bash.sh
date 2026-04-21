@@ -36,7 +36,7 @@ export ssh_client
 
 # SSH-Agent permettant la connexion sans interrogation du mot de passe
 eval $(ssh-agent -s)
-ssh-add ~/.ssh/id_ed25519
+ssh-add ~/.ssh/id_rsa
 
 sleep 1
 clear
