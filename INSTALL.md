@@ -130,16 +130,7 @@ sudo systemctl enable ssh
 
 ``` bash
 sudo systemctl status ssh
-```
-
-![Screen Snap](Ressources/SCREENSHOT/Config_Debian_SERV/Config_SSH_DEBSERV_UBU/DEB_systemctl_status.png)
-
-**Tester si le port 22 est bien ouvert**
-
-``` bash
-ss -tnlp | grep :22
-```
-![Screen Snap](Ressources/SCREENSHOT/Config_Debian_SERV/Config_SSH_DEBSERV_UBU/DEB_test_port_22.png)  
+``` 
 
 **Et voilà l’interconnexion sécurisé via OpenSSH entre vos deux machines est desormais possible vous trouverez la suite de la configuration sur la machine ubuntu.**
 
