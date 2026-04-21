@@ -67,7 +67,7 @@ do
         return
         fi
 
-        if [ -d "$repo" ]; 
+        if ssh $ssh_client "[ -d \"$repo\" ]" 
         then
             echo "Ce répertoire existe déjà, création refusée."
         return
@@ -76,7 +76,7 @@ do
         read -p "Voulez-vous vraiment créer ce répertoire ? (O/N) : " creation
         if [ "$creation" = "o" ] || [ "$creation" = "O" ]; 
         then
-            mkdir -p "$repo"
+            ssh $ssh_client "mkdir -p \"$repo\""
             echo "Le répertoire '$repo' a été créé avec succès."
         else
             echo "Création annulée."
@@ -89,7 +89,7 @@ do
         echo -e "Exemple: /tmp/monrepertoire ou /home/user/repertoire"
         read -p "Entrez le chemin du répertoire à supprimer : " reposupp
 
-        if [ ! -d "$reposupp" ]; 
+        if ssh $ssh_client "[ ! -d \"$reposupp\" ]"
         then
             echo "Le répertoire '$reposupp' n'existe pas."
         return
@@ -98,7 +98,7 @@ do
         read -p "Voulez-vous vraiment supprimer ce répertoire ? (O/N) : " supprime
         if [ "$supprime" = "o" ] || [ "$supprime" = "O" ]; 
         then
-            rm -rf "$reposupp"
+            ssh $ssh_client "rm -rf \"$reposupp\""
             echo "Le répertoire '$reposupp' a été supprimé avec succès."
         else
             echo "Suppression annulée."
