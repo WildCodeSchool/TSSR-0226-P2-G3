@@ -106,11 +106,7 @@ ping -c 4 172.16.30.30
 **Et voila comme vous pouvez le constaté la création ainsi que la configuration de votre carte réseau est bien effectué !**
 
 
-## 2. Configuration de l'interconnexion SSH avec le client windows
-
-## 3. Configuration de l'interconnexion SSH avec le client ubuntu
-
-**Commencer par installer openssh-server**
+## 2. Installation du service OpenSSH
 
 ``` bash
 sudo apt install openssh-server
@@ -131,6 +127,40 @@ sudo systemctl enable ssh
 ``` bash
 sudo systemctl status ssh
 ``` 
+
+## 3. Configuration de l'interconnexion SSH avec le client windows
+**Sur votre serveur debian - Générer une clé ssh**
+``` bash
+ssh-keygen -t ed25519
+```
+![Screen Snap]() 
+
+**Sur votre serveur debian - Il faudra copier la clé plublique vers Windows11**
+``` bash
+ssh-copy-id -i ~/.ssh/Win11.pub wilder@172.16.30.20
+```
+![Screen Snap]() 
+
+**Sur Windows - Verifier que la clé est bien ajouté a votre fichier**
+``` bash
+``` bash
+ssh-copy-id -i ~/.ssh/Win11.pub wilder@172.16.30.20
+```
+![Screen Snap]() 
+
+**Pour finir tentative de connexion depuis le serveur Debian**
+``` bash
+ssh wilder@172.16.30.20
+```
+![Screen Snap]() 
+
+**Connexion a votre client Windows effectué**
+
+![Screen Snap]()
+
+**Pour se deconnecter de la machine client Windows il vous suffit de taper exit**
+![Screen Snap]()
+## 3. Configuration de l'interconnexion SSH avec le client ubuntu
 
 **Créer une cle ssh pour la connection sécurisé pour executer le script depuis sa propre machine sur le serveur debian qui lui meme administre une machine client** 
 
@@ -189,14 +219,9 @@ Et voilà l’interconnexion sécurisé via OpenSSH entre vos deux machines est 
 # 4. Configuration sur le client Linux (Ubuntu 24.04 LTS)
 ## 1. Configuration de la carte réseau
 
+## 2. Installation du service OpenSSH
 
-## 2. Configuration de l'interconnexion SSH avec le serveur Windows 
-
-
-## 3. Configuration de l'interconnexion SSH avec le serveur Debian
-
-**Commencer par installer openssh-server**
-
+**Installer le service OpenSSH**
 ``` bash
 sudo apt install openssh-server
 ```
@@ -230,6 +255,8 @@ Et voilà maintenant a chaque redemarrage de votre machine vous n'aurais pas a r
 
 Et voilà l’interconnexion sécurisé via OpenSSH entre vos deux machines est desormais établie. 
 
+## 3. Configuration de l'interconnexion SSH avec le serveur Windows 
+
 ## 4. Logiciels et configurations complémentaires
 
 ### Logiciels
@@ -245,21 +272,15 @@ sudo apt install ipcalc
 ## 1. Configuration de la carte réseau
 
 ## 2. Configuration de l'interconnexion SSH avec le serveur Linux Debian
-
+#### Avant toute chose pensez a lancer PowerShell en administrateur (évite tout problème de droit)
 **Installer le serveur OpenSSH**
 ``` powershell
-ip adds show
+Add-WindowsCapability -Online -Name OpenSSH.Server~~~~0.0.1.0
 ```
 ![Screen Snap](Ressources/SCREENSHOT/Config_Win11/Commande_installation_SSH.png).
 
 **Une fois l'installation lancé cette page va s'afficher veillez a bien attendre la fin du chargement c'est assez long.**
 ![Screen Snap](Ressources/SCREENSHOT/Config_Win11/chargement_installation_serveur_ssh.png).
-
-**Consulter l'etat du service SSH**
-``` powershell
-ip adds show
-```
-![Screen Snap](Ressources/SCREENSHOT/Config_Win11/Vérifier_letat_du_service.png).
 
 **Démarrer et activer au démarrage**
 
@@ -277,76 +298,21 @@ Set-Service -Name sshd -StartupType Automatic
 
 **Consulter l'etat du service SSH**
 ``` powershell
-Get-Service sshd
+
 ```
-![Screen Snap](Ressources/SCREENSHOT/Config_Win11/Vérifier_letat_du_service.png).
+![Screen Snap]().
+
+**Créer le dossier .ssh s'il n'existe pas**
+``` powershell
+New-Item -ItemType Directory -Path $env:USERPROFILE\.ssh -Force
+```
+![Screen Snap]()
 
 **Ensuite il faut créer le fichier ou mes clés seront stockés**
 ``` powershell
-New-Item File
-```
-![Screen Snap]().
-**Appliquer les permissions pour que le copie-id que tu as fait sur ta debian soit pris en compte**
-``` powershell
-ip adds show
-```
-![Screen Snap]().
-**Recuperation de la Clé SSH Etape 1:**
-``` powershell
-ip adds show
+New-Item -ItemType File -Path $env:USERPROFILE\.ssh\authorized_keys -Force
 ```
 ![Screen Snap]()
-
-**Etape 2: Tapez yes pour continuer**
-![Screen Snap]()
-
-**Etape 3: Entrez le mot de passe crée sur votre debian**
-![Screen Snap]()
-
-Connection SSH établie.
-
-### Si la commande SSH affiche ce message d'erreur : Vérifier que le service SSH ecoute bien le port 22
-``` powershell
-ssh: connect to host 172.16.30.10 port 22: Connection refused
-```
-![Screen Snap]().
-
-**Verifier l'état du service SSH**
-
-``` powershell
-Get-service sshd
-```
-![Screen Snap]().
-
-**Ensuite demarrer le service si arreté**
-
-``` powershell
-Start-Service sshd
-```
-![Screen Snap]().
-
-**Vérifier que le port 22 est bien ouvert**
-
-``` powershell
-netstat -ano | findstr :22
-```
-![Screen Snap]().
-
-Normalement il devrait y avoir LISTENING
-
-### Si la commande d'erreur s'affiche toujours
-
-**Vérifier le pare-feu Windows**
-
-![Screen Snap]().
-Si la règle est absente ou désactivée :
-
-**Allez dans les parametres**
-![Screen Snap]().
-**Taper dans la barre de recherche firewall ou pare-feu**
-![Screen Snap]().
-**Puis desactivé un a un les firewalls activés**
-![Screen Snap]().
 
 # 6. FAQ
 
