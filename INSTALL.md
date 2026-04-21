@@ -164,7 +164,6 @@ Get-Content C:\Users\wilder\.ssh\authorized_keys.txt
 ``` bash
 ssh wilder@172.16.30.20
 ```
-![Screen Snap]() 
 
 **Connexion a votre client Windows effectué**  
 
