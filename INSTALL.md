@@ -235,11 +235,47 @@ ssh-add ~/.ssh/id_ed25519
 
 Et voilà l’interconnexion sécurisé via OpenSSH entre vos deux machines est desormais établie.
 
+
+
+
+
+
+
+
+
+
 # 3. Configuration sur le serveur Windows (Windows serveur 2022)
 
 
 # 4. Configuration sur le client Linux (Ubuntu 24.04 LTS)
+
 ## 1. Configuration de la carte réseau
+**Ouvrir les paramètres**
+
+![Screen Snap](Ressources/SCREENSHOT/Config_Ubuntu/Config_Reseau/Roue_cranté.png)
+Cliquer sur la roue cranté  
+
+**Ouvrir l'interface réseau**  
+  
+![Screen Snap](Ressources/SCREENSHOT/Config_Ubuntu/Config_Reseau/network_enp0s8.png)  
+
+- Etape 1: Cliquer sur l'onglet network ou réseau  
+
+- Etape 2: Cliquer sur la roue cranté de l'interface souhaiter (exemple enp0s8) 
+
+**Configuration de l'interface réseau** 
+
+![Screen Snap](Ressources/SCREENSHOT/Config_Ubuntu/Config_Reseau/modif_ip_mask.png)
+
+- Etape 1: Cocher manual.  
+- Etape 2: Entrer l'adresse IPv4 voulu.  
+- Etape 3: Entrer l'adresse de sous-réseau correspondante.  
+- Etape 4: Entrer l'adresse DNS.  
+- Etape 5: Cliquer sur apply pour terminer la configuration réseau.  
+
+**Et voila la configuration réseau de votre machine ubuntu est terminée**  
+
+
 
 ## 2. Installation du service OpenSSH
 
