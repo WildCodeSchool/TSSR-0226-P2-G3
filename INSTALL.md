@@ -106,6 +106,9 @@ ping -c 4 172.16.30.30
 **Et voila comme vous pouvez le constaté la création ainsi que la configuration de votre carte réseau est bien effectué !**
 
 
+
+
+
 ## 2. Installation du service OpenSSH
 
 ``` bash
@@ -163,12 +166,16 @@ ssh wilder@172.16.30.20
 ```
 ![Screen Snap]() 
 
-**Connexion a votre client Windows effectué**
+**Connexion a votre client Windows effectué**  
 
 ![Screen Snap](Ressources/SCREENSHOT/Config_Win11/SSH_etablie.png)
 
 **Pour se deconnecter de la machine client Windows il vous suffit de taper exit**
+  
 ![Screen Snap](Ressources/SCREENSHOT/Config_Win11/deco_client_Win11.png)
+
+
+
 
 ## 3. Configuration de l'interconnexion SSH avec le client ubuntu
 
