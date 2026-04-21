@@ -132,7 +132,56 @@ sudo systemctl enable ssh
 sudo systemctl status ssh
 ``` 
 
-**Et voilà l’interconnexion sécurisé via OpenSSH entre vos deux machines est desormais possible vous trouverez la suite de la configuration sur la machine ubuntu.**
+**Créer une cle ssh pour la connection sécurisé pour executer le script depuis sa propre machine sur le serveur debian qui lui meme administre une machine client** 
+
+``` bash
+ssh-keygen 
+```  
+ou
+``` bash
+ssh-keygen -t ed25519
+```
+
+![Screen Snap](Ressources/SCREENSHOT/Config_Ubuntu/Config_Ssh_UBU_DEBSERV/UBU_SSH_creation_keygen.png)
+
+**Vous trouverez la clé publique à l’aide de cette commande** (.pub correspond a la clé public)  
+
+``` bash
+cat ~/.ssh/id_ed25519.pub
+```
+
+![Screen Snap](Ressources/SCREENSHOT/Config_Ubuntu/Config_Ssh_UBU_DEBSERV/UBU_command_check_ssh_pub.png)
+
+**Une fois la clé SSH crée, copiez la vers le serveur voulu avec ssh-copy-id** (confirmation de connexion) 
+
+``` bash
+ssh-copy-id -i ~/.ssh/id_ed25519.pub wilder@172.16.30.10
+```
+
+![Screen Snap](Ressources/SCREENSHOT/Config_Ubuntu/Config_Ssh_UBU_DEBSERV/UBU_SSH_copy_id.png)  
+Comme vous pouvez le constater on vous pose une question avant de passer a la suite repondez yes si vous souhaité continuer la copie si les informations renseignés sont bonnes.
+
+**Entrez le mot de passe de votre serveur Debian** 
+
+``` bash
+# wilder@172.16.30.10's password: "Votre mot de passe"
+```
+
+![Screen Snap](Ressources/SCREENSHOT/Config_Ubuntu/Config_Ssh_UBU_DEBSERV/UBU_password_copy_id.png)  
+
+**Et voilà la clé publique est enregistrée sur votre machine client**
+
+![Screen Snap](Ressources/SCREENSHOT/Config_Ubuntu/Config_Ssh_UBU_DEBSERV/UBU_copy_id_success.png)
+
+**Pour éviter de retaper votre passphrase à chaque connexion vous pouvez activer l’agent SSH sur le client avec ssh-add ~/votre_chemin puis entrez un mot de passe ou pas pour sécuriser votre connexion** 
+
+``` bash
+ssh-add ~/.ssh/id_ed25519
+```
+
+![Screen Snap](Ressources/SCREENSHOT/Config_Ubuntu/Config_Ssh_UBU_DEBSERV/UBU_ssh_add.png)
+
+Et voilà l’interconnexion sécurisé via OpenSSH entre vos deux machines est desormais établie.
 
 # 3. Configuration sur le serveur Windows (Windows serveur 2022)
 
