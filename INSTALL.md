@@ -136,7 +136,7 @@ ssh-keygen -t ed25519
 ```
 ![Screen Snap](Ressources/SCREENSHOT/Config_Win11/Creation_clé_SSH.png)
 
-**Renseigner où et a quel nom seront les clés SSH**
+**Renseigner quel nom et ou seront stocké la paire de clé SSH**
 
 ![Screen Snap](Ressources/SCREENSHOT/Config_Win11/Destination_clé.png)
 
