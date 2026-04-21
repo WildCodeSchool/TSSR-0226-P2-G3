@@ -357,9 +357,14 @@ Get-Service sshd
 ```
 ![Screen Snap](Ressources/SCREENSHOT/Config_Win11/Vérifier_letat_du_service.png).
 
+**Créer un dossier pour contenir le fichier**
+``` powershell
+New-Item -ItemType Directory -Path "C:\ProgramData\ssh" -Force
+```
+
 **Ensuite il faut créer le fichier ou mes clés seront stockés**
 ``` powershell
-New-Item -ItemType File -Path $env:USERPROFILE\.ssh\authorized_keys -Force
+New-Item -ItemType File -Path "C:\ProgramData\ssh\authorized_keys" -Force
 ```
 ![Screen Snap]().
 
