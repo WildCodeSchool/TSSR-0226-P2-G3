@@ -361,5 +361,7 @@ Get-Service sshd
 ``` powershell
 New-Item -ItemType File -Path $env:USERPROFILE\.ssh\authorized_keys -Force
 ```
+![Screen Snap]().
+
 **Vous trouverez la suite de la procedure jusqte ici : 3. Configuration de l'interconnexion SSH avec le client windows.**
 # 6. FAQ
