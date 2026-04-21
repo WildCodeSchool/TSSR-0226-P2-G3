@@ -131,6 +131,10 @@ sudo systemctl enable ssh
 sudo systemctl status ssh
 ``` 
 
+
+
+
+
 ## 3. Configuration de l'interconnexion SSH avec le client windows
 
 **Sur votre serveur debian - Générer une clé ssh**
@@ -176,7 +180,9 @@ ssh wilder@172.16.30.20
 
 
 
-## 3. Configuration de l'interconnexion SSH avec le client ubuntu
+
+
+## 4. Configuration de l'interconnexion SSH avec le client ubuntu
 
 **Créer une cle ssh pour la connection sécurisé pour executer le script depuis sa propre machine sur le serveur debian qui lui meme administre une machine client** 
 
@@ -317,8 +323,7 @@ Get-Service sshd
 
 **Ensuite il faut créer le fichier ou mes clés seront stockés**
 ``` powershell
-New-Item -ItemType File -Path "C:\ProgramData\ssh\authorized_keys" -Force
+New-Item -ItemType File -Path $env:USERPROFILE\.ssh\authorized_keys -Force
 ```
-![Screen Snap](Ressources/SCREENSHOT/Config_Win11/Creation_du_fichier_ou_coller_les_clés_publiques.png)
-
+**Vous trouverez la suite de la procedure a : 3. Configuration de l'interconnexion SSH avec le client windows.**
 # 6. FAQ
