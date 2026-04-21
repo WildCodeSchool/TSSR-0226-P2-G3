@@ -142,7 +142,7 @@ ou
 ssh-keygen -t ed25519
 ```
 
-![Screen Snap](Ressources/SCREENSHOT/Config_Ubuntu/Config_Ssh_UBU_DEBSERV/UBU_SSH_creation_keygen.png)
+![Screen Snap]()
 
 **Vous trouverez la clé publique à l’aide de cette commande** (.pub correspond a la clé public)  
 
@@ -150,7 +150,7 @@ ssh-keygen -t ed25519
 cat ~/.ssh/id_ed25519.pub
 ```
 
-![Screen Snap](Ressources/SCREENSHOT/Config_Ubuntu/Config_Ssh_UBU_DEBSERV/UBU_command_check_ssh_pub.png)
+![Screen Snap]()
 
 **Une fois la clé SSH crée, copiez la vers le serveur voulu avec ssh-copy-id** (confirmation de connexion) 
 
@@ -158,7 +158,7 @@ cat ~/.ssh/id_ed25519.pub
 ssh-copy-id -i ~/.ssh/id_ed25519.pub wilder@172.16.30.10
 ```
 
-![Screen Snap](Ressources/SCREENSHOT/Config_Ubuntu/Config_Ssh_UBU_DEBSERV/UBU_SSH_copy_id.png)  
+![Screen Snap]()  
 Comme vous pouvez le constater on vous pose une question avant de passer a la suite repondez yes si vous souhaité continuer la copie si les informations renseignés sont bonnes.
 
 **Entrez le mot de passe de votre serveur Debian** 
@@ -167,11 +167,11 @@ Comme vous pouvez le constater on vous pose une question avant de passer a la su
 # wilder@172.16.30.10's password: "Votre mot de passe"
 ```
 
-![Screen Snap](Ressources/SCREENSHOT/Config_Ubuntu/Config_Ssh_UBU_DEBSERV/UBU_password_copy_id.png)  
+![Screen Snap]()  
 
 **Et voilà la clé publique est enregistrée sur votre machine client**
 
-![Screen Snap](Ressources/SCREENSHOT/Config_Ubuntu/Config_Ssh_UBU_DEBSERV/UBU_copy_id_success.png)
+![Screen Snap]()
 
 **Pour éviter de retaper votre passphrase à chaque connexion vous pouvez activer l’agent SSH sur le client avec ssh-add ~/votre_chemin puis entrez un mot de passe ou pas pour sécuriser votre connexion** 
 
@@ -179,7 +179,7 @@ Comme vous pouvez le constater on vous pose une question avant de passer a la su
 ssh-add ~/.ssh/id_ed25519
 ```
 
-![Screen Snap](Ressources/SCREENSHOT/Config_Ubuntu/Config_Ssh_UBU_DEBSERV/UBU_ssh_add.png)
+![Screen Snap]()
 
 Et voilà l’interconnexion sécurisé via OpenSSH entre vos deux machines est desormais établie.
 
@@ -226,56 +226,7 @@ sudo systemctl status ssh
 ```
 
 ![Screen Snap](Ressources/SCREENSHOT/Config_Ubuntu/Config_Ssh_UBU_DEBSERV/UBU_systemctl_status_enable.png)  
-Ca y est maintenant a chaque redemarrage de votre machine vous n'aurais pas a réactiver votre service ssh, il se lancera automatiquement.
-
-**Créer une cle ssh pour la connection sécurisé pour executer le script depuis sa propre machine sur le serveur debian qui lui meme administre une machine client** 
-
-``` bash
-ssh-keygen 
-```  
-ou
-``` bash
-ssh-keygen -t ed25519
-```
-
-![Screen Snap](Ressources/SCREENSHOT/Config_Ubuntu/Config_Ssh_UBU_DEBSERV/UBU_SSH_creation_keygen.png)
-
-**Vous trouverez la clé publique à l’aide de cette commande** (.pub correspond a la clé public)  
-
-``` bash
-cat ~/.ssh/id_ed25519.pub
-```
-
-![Screen Snap](Ressources/SCREENSHOT/Config_Ubuntu/Config_Ssh_UBU_DEBSERV/UBU_command_check_ssh_pub.png)
-
-**Une fois la clé SSH crée, copiez la vers le serveur voulu avec ssh-copy-id** (confirmation de connexion) 
-
-``` bash
-ssh-copy-id -i ~/.ssh/id_ed25519.pub wilder@172.16.30.10
-```
-
-![Screen Snap](Ressources/SCREENSHOT/Config_Ubuntu/Config_Ssh_UBU_DEBSERV/UBU_SSH_copy_id.png)  
-Comme vous pouvez le constater on vous pose une question avant de passer a la suite repondez yes si vous souhaité continuer la copie si les informations renseignés sont bonnes.
-
-**Entrez le mot de passe de votre serveur Debian** 
-
-``` bash
-# wilder@172.16.30.10's password: "Votre mot de passe"
-```
-
-![Screen Snap](Ressources/SCREENSHOT/Config_Ubuntu/Config_Ssh_UBU_DEBSERV/UBU_password_copy_id.png)  
-
-**Et voilà la clé publique est enregistrée sur votre machine client**
-
-![Screen Snap](Ressources/SCREENSHOT/Config_Ubuntu/Config_Ssh_UBU_DEBSERV/UBU_copy_id_success.png)
-
-**Pour éviter de retaper votre passphrase à chaque connexion vous pouvez activer l’agent SSH sur le client avec ssh-add ~/votre_chemin puis entrez un mot de passe ou pas pour sécuriser votre connexion** 
-
-``` bash
-ssh-add ~/.ssh/id_ed25519
-```
-
-![Screen Snap](Ressources/SCREENSHOT/Config_Ubuntu/Config_Ssh_UBU_DEBSERV/UBU_ssh_add.png)
+Et voilà maintenant a chaque redemarrage de votre machine vous n'aurais pas a réactiver votre service ssh, il se lancera automatiquement.
 
 Et voilà l’interconnexion sécurisé via OpenSSH entre vos deux machines est desormais établie. 
 
