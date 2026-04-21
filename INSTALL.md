@@ -129,6 +129,7 @@ sudo systemctl status ssh
 ``` 
 
 ## 3. Configuration de l'interconnexion SSH avec le client windows
+
 **Sur votre serveur debian - Générer une clé ssh**
 ``` bash
 ssh-keygen -t ed25519
@@ -136,16 +137,18 @@ ssh-keygen -t ed25519
 ![Screen Snap](Ressources/SCREENSHOT/Config_Win11/Creation_clé_SSH.png)
 
 **Renseigner où et a quel nom seront les clés SSH**
+
 ![Screen Snap](Ressources/SCREENSHOT/Config_Win11/Destination_clé.png)
 
 **Enfin renseigner le mot de passe que vous souhaiter créer pour cette paire de clé**
+
 ![Screen Snap](Ressources/SCREENSHOT/Config_Win11/Creation_mdp.png)
 
 **Sur votre serveur debian - Il faudra copier la clé plublique vers Windows11**
 ``` bash
 ssh-copy-id -i ~/.ssh/Win11.pub wilder@172.16.30.20
 ```
-![Screen Snap](Ressources/SCREENSHOT/Config_Win11/procedure_complete_de_copie.png) 
+![Screen Snap](Ressources/SCREENSHOT/Config_Win11/procedure_complete_de_copie.png)  
 Pour terminer la copie il vous sera demander de taper le mot de passe de votre utilisé pour vous connecter a votre compte windows (seconde flèche rouge).
 
 **Sur Windows - Verifier que la clé est bien ajouté a votre fichier**
