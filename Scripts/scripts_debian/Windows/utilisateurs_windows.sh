@@ -45,7 +45,7 @@ clear
 while true
 do
     echo "Menu Utilisateurs Windows"
-    echo "Que souhaitez-vous faire sur le poste client ($ip_client) ?"
+    echo "Que souhaitez-vous faire sur le poste client $ssh_client ?"
     echo "1 - Création de compte utilisateur local"
     echo "2 - Changement de mot de passe"
     echo "3 - Suppression de compte utilisateur local"
