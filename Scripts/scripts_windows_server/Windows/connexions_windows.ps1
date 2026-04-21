@@ -17,24 +17,24 @@ function MenuSecondaire {
         "1" {
             Log "Retour menu connexion"
             Write-Host "Vous retournez au menu connexion"
-            Start-Sleep 3
+            Start-Sleep 1
             return
         }
         "2" {
             Log "Retour au menu principal"
             Write-Host "Vous retournez au menu principal"
-            Start-Sleep 3
+            Start-Sleep 1
             exit 0
         }
         "q" {
             Log "Quitte le script"
             Write-Host "Vous quittez le script"
-            Start-Sleep 3
+            Start-Sleep 1
             exit 50
         }
         default {
             Write-Host "L'option choisie n'existe pas, veuillez recommencer"
-            Start-Sleep 3
+            Start-Sleep 1
             MenuSecondaire
         }
     }
@@ -42,7 +42,7 @@ function MenuSecondaire {
 
 Log "Demande sur connexion"
 Write-Host "Bienvenue dans le menu connexion"
-Start-Sleep 3
+Start-Sleep 1
 Clear-Host
 
 while ($true) {
@@ -71,13 +71,13 @@ while ($true) {
         "3" {
             Log "Retour arrière"
             Write-Host "Vous allez revenir au menu principal"
-            Start-Sleep 3
+            Start-Sleep 1
             exit 0
         }
         "q" {
             Log "EndScript"
             Write-Host "Vous quittez le script"
-            Start-Sleep 3
+            Start-Sleep 1
             exit 50
         }
         default {
