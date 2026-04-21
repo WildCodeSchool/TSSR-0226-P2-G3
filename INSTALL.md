@@ -153,7 +153,6 @@ Pour terminer la copie il vous sera demander de taper le mot de passe de votre u
 
 **Sur Windows - Verifier que la clé est bien ajouté a votre fichier**
 ``` bash
-``` bash
 Get-Content C:\Users\wilder\.ssh\authorized_keys.txt
 ```
 ![Screen Snap](Ressources/SCREENSHOT/Config_Win11/verification_clé_SSH_bien_copié_Win11.png) 
