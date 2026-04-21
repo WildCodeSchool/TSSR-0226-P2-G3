@@ -66,7 +66,8 @@ do
     2)
         log "Prise_En_Main_A_Distance"
         # --- Saisie et validation de l'IP cible ---
-        while true; do
+        while true
+		do
             read -p "Entrez l'adresse IP de la machine distante : " IP_cible
 
             if [ -z "$IP_cible" ]; then
@@ -83,7 +84,8 @@ do
         done
 
         # --- Saisie du nom d'utilisateur distant ---
-        while true; do
+        while true
+		do
             read -p "Entrez le nom d'utilisateur distant : " utilisateur_distant
 
             if [ -z "$utilisateur_distant" ]; then
@@ -97,7 +99,8 @@ do
         # --- Test de connectivité avant SSH ---
         echo "Test de connectivité vers $IP_cible..."
 
-        if ! ping -c 3 -W 2 "$IP_cible" &>/dev/null; then
+        if ! ping -c 3 -W 2 "$IP_cible" &>/dev/null
+		then
             echo "Erreur : la machine $IP_cible ne répond pas au ping."
             echo "Vérifiez que la machine est allumée et accessible sur le réseau."
             menu_secondaire
@@ -109,7 +112,8 @@ do
         # --- #connexion_ssh ---
         echo "Tentative de connexion SSH vers $utilisateur_distant@$IP_cible..."
 
-        if ssh "$utilisateur_distant@$IP_cible"; then
+        if ssh "$utilisateur_distant@$IP_cible"
+		then
             echo "Vous êtes maintenant connecté à $IP_cible."
         else
             echo "Connexion SSH impossible vers $IP_cible."
@@ -135,7 +139,8 @@ do
         ;;
     4)
         log "Execution_Script_A_Distance"
-        if ssh -q -o BatchMode=yes -o ConnectTimeout=5 "$utilisateur_distant@$IP_cible" exit; then
+        if ssh -q -o BatchMode=yes -o ConnectTimeout=5 "$utilisateur_distant@$IP_cible" exit
+		then
             echo "Connexion SSH établie"
         else
             echo "Connexion SSH impossible"
@@ -144,7 +149,8 @@ do
 
         read -p "Quel script souhaitez vous lancer ? " script
 
-        if [ -f "$script" ] && [ -x "$script" ]; then
+        if [ -f "$script" ] && [ -x "$script" ]
+		then
             read -p "Le script existe et est exécutable voulez vous vraiment lancer ce script (O/N)" reponse
             if [ "$reponse" = "O" ] || [ "$reponse" = "o" ]
 			then
