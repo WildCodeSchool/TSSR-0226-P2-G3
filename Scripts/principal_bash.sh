@@ -49,6 +49,7 @@ os_type=$(ssh $ssh_client "uname" 2>/dev/null)
 
 while true
 do
+    clear
     echo "Bienvenue sur la gestion de $ssh_client"
     echo "Menu Principal"
     echo "Quel menu souhaitez-vous utiliser ?"
