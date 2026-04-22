@@ -3,16 +3,16 @@
 
 #initialisation des variables principales
 
-version_os=$(ssh $ssh_client "powershell.exe -Command '(Get-WmiObject Win32_OperatingSystem).Caption'")
-maj_critiques=$(ssh $ssh_client "powershell.exe -Command 'Import-Module PSWindowsUpdate; Get-WindowsUpdate -Category ''Security Updates'' | Select-Object Title, Size'")
+version_os=$(ssh $ssh_client "powershell.exe -Command 'Get-ComputerInfo | Select-Object -ExpandProperty OsName'")
+maj_critiques=$(ssh $ssh_client "powershell.exe -Command 'Set-ExecutionPolicy Bypass -Scope Process -Force; Import-Module PSWindowsUpdate; Get-WindowsUpdate -Category Security | Select-Object Title'")
 nombre_maj_critiques=$(echo "$maj_critiques" | wc -l)
-marque_modele=$(ssh $ssh_client "powershell.exe -Command '(Get-WmiObject Win32_ComputerSystem).Manufacturer + '' '' + (Get-WmiObject Win32_ComputerSystem).Model'")
-uac_status=$(ssh $ssh_client "powershell.exe -Command '(Get-ItemProperty HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System).EnableLUA'")
+marque_modele=$(ssh $ssh_client "powershell.exe -Command 'Get-ComputerInfo -Property CsManufacturer,CsModel'")
+uac_status=$(ssh $ssh_client "powershell.exe -Command '(Get-ItemProperty HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System).EnableLUA'" | tr -d '[:space:]')
 
 
 function menu_secondaire
 {
-    echo "1 - Revenir au menu Disques"
+    echo "1 - Revenir au menu Système"
     echo "2 - Revenir au menu principal"
     echo "q - Quitter le script"
     read -p "Quel est votre choix ?" choix_secondaire
@@ -51,7 +51,7 @@ function menu_secondaire
 
 
 log "Demande sur systeme"
-echo "Bienvenue dans les informations système"
+echo "Direction les informations système"
 sleep 1
 clear
 
@@ -90,7 +90,8 @@ do
         ;;
     4)
         log "Consulte statut UAC"
-        if [[ $uac_status -eq 1 ]]; then
+        if [[ "$uac_status" == "1" ]]
+		then
             echo "L'UAC est activé sur $ssh_client"
         else
             echo "L'UAC est désactivé sur $ssh_client"
