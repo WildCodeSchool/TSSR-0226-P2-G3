@@ -23,7 +23,10 @@ log "StartScript"
 #initialisation de la connexion avec verification de la bonne machine
 while true
 do
-    read -p "Quel est le nom de la machine cible ? :" ssh_client
+    clear
+    echo -e "Bonjour Bienvenue dans votre gestionnaire de machine cliente à distance"
+    echo "Tout d'abord il est nécessaire de vous connecter à l'aide du nom de la machine ciblée"
+    read -p "Quel est le nom de la machine cible ? : " ssh_client
     if ssh -q -o ConnectTimeout=5 $ssh_client "exit" 2>/dev/null
     then
         break
@@ -50,8 +53,10 @@ os_type=$(ssh $ssh_client "uname" 2>/dev/null)
 while true
 do
     clear
+    echo "------------------------------------------------"
     echo "Bienvenue sur la gestion de $ssh_client"
-    echo "Menu Principal"
+    echo -e "------------------------------------------------\n"
+    echo -e "Menu Principal\n"
     echo "Quel menu souhaitez-vous utiliser ?"
     echo "1 - Gestion des utilisateurs"
     echo "2 - Gestion des groupes"
@@ -62,8 +67,8 @@ do
     echo "7 - Gestion du système"
     echo "8 - Historique Utilisateur"
     echo "9 - Recherche d'évènements dans les logs"
-    echo "q - quitter le script"
-    echo "Aide : Pour connaitre le détail des options il vous suffit de taper le numéro suivi d'un point d'interrogation, par exemple 1?"
+    echo -e "q - quitter le script\n"
+    echo -e "Aide : Pour connaitre le détail des options il vous suffit de taper le numéro suivi d'un point d'interrogation, par exemple 1?\n"
     read -p "quel est votre choix ? :" choix
 
     case $choix in
