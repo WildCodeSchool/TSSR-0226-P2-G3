@@ -13,8 +13,6 @@ function menu_secondaire
     echo "2 - Revenir au menu principal"
     echo "q - Quitter le script"
     read -p "Quel est votre choix ?" choix_secondaire
-    sleep 1
-    clear
 
     case $choix_secondaire in
 
@@ -22,6 +20,7 @@ function menu_secondaire
         log "Retour menu disque"
         echo "Vous retournez au menu Disques"
         sleep 1
+        clear
         return
         ;;
     2)
@@ -54,6 +53,7 @@ clear
 
 while true
 do
+    clear
     echo "Menu Disques"
     echo "Que souhaitez-vous connaitre ?"
     echo "1 - Le nombre de disques"
