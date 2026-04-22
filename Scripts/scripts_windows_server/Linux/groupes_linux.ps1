@@ -29,7 +29,7 @@ function MenuSecondaire {
         default {
             Write-Host "L'option choisie n'existe pas, veuillez recommencer" -ForegroundColor Red
             Start-Sleep -Seconds 1
-            Show-MenuSecondaire
+            MenuSecondaire
         }
     }
 }
@@ -65,7 +65,7 @@ while ($true) {
                 Write-Host "Erreur lors de l'ajout au groupe d'administration." -ForegroundColor Red
                 Log "Erreur ajout admin pour $cible_username"
             }
-            Show-MenuSecondaire
+            MenuSecondaire
         }
 
         '2' {
@@ -83,7 +83,7 @@ while ($true) {
                 Write-Host "Erreur lors de l'ajout au groupe $cible_groupe." -ForegroundColor Red
                 Log "Erreur ajout groupe $cible_groupe pour $cible_username"
             }
-            Show-MenuSecondaire
+            MenuSecondaire
         }
 
         '3' {
@@ -101,7 +101,7 @@ while ($true) {
                 Write-Host "Erreur lors de la sortie du groupe $cible_groupe." -ForegroundColor Red
                 Log "Erreur sortie groupe $cible_groupe pour $cible_username"
             }
-            Show-MenuSecondaire
+            MenuSecondaire
         }
 
         '4' {
