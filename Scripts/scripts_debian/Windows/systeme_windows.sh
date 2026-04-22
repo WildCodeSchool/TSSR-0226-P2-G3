@@ -5,7 +5,6 @@
 
 version_os=$(ssh $ssh_client "powershell.exe -Command 'Get-ComputerInfo | Select-Object -ExpandProperty OsName'")
 maj_critiques=$(ssh $ssh_client "powershell.exe -Command 'Set-ExecutionPolicy Bypass -Scope Process -Force; Import-Module PSWindowsUpdate; Get-WindowsUpdate -Category Security | Select-Object Title'")
-nombre_maj_critiques=$(echo "$maj_critiques" | wc -l)
 marque_modele=$(ssh $ssh_client "powershell.exe -Command 'Get-ComputerInfo -Property CsManufacturer,CsModel'")
 uac_status=$(ssh $ssh_client "powershell.exe -Command '(Get-ItemProperty HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System).EnableLUA'" | tr -d '[:space:]')
 
@@ -72,20 +71,27 @@ do
         # Affichage Version OS
     1) 
 	    log "Consulte version OS"
-	    echo "La version de l'OS est : $os_version"
+	    echo "La version de l'OS est : $version_os"
 	    menu_secondaire
         ;;
         # Mises à jours critiques
     2) 
 	    log "Consulte mises à jours critiques"
-	    echo "Il y a $number_critical_update mises à jours critiques à faire"
-	    echo "Liste des mises à jours :"
-        echo "$critical_update"
+	    if [[ -z "$maj_critiques" ]]
+		then
+        	nombre_maj_critiques=0
+        	echo "Il y a 0 mises à jour critiques à faire"
+    	else
+        	nombre_maj_critiques=$(echo "$maj_critiques" | grep -c "KB")
+        	echo "Il y a $nombre_maj_critiques mises à jour critiques à faire"
+        	echo "Liste des mises à jours :"
+        	echo "$maj_critiques"
+    	fi
         menu_secondaire
         ;;
     3) 
 	    log "Consulte marque et modele"
-	    echo "Le client est de la marque/modèle : $brand_and_model"
+	    echo "Le client est de la marque/modèle : $marque_modele"
         menu_secondaire
         ;;
     4)
