@@ -67,7 +67,7 @@ do
         fi
 
         # Vérification si le répertoire existe déjà sur Windows
-        EXISTE=$(ssh "$utilisateur_distant@$IP_cible" \
+        EXISTE=$(ssh "$ssh_client" \
             "powershell -Command \"Test-Path -Path '$repo'\"")
 
         if echo "$EXISTE" | grep -qi "true";
@@ -79,7 +79,7 @@ do
         read -p "Voulez-vous vraiment créer ce répertoire ? (O/N) : " creation
         if [ "$creation" = "o" ] || [ "$creation" = "O" ]; 
         then
-            ssh "$utilisateur_distant@$IP_cible" \
+            ssh "$ssh_client" \
                 "powershell -Command \"New-Item -ItemType Directory -Path '$repo'\""
             echo "Le répertoire '$repo' a été créé avec succès."
         else
@@ -94,7 +94,7 @@ do
         read -p "Entrez le chemin du répertoire à supprimer : " reposupp
 
         # Vérification si le répertoire existe sur Windows
-        EXISTE=$(ssh "$utilisateur_distant@$IP_cible" \
+        EXISTE=$(ssh "$ssh_client" \
             "powershell -Command \"Test-Path -Path '$reposupp'\"")
 
         if echo "$EXISTE" | grep -qi "false";
@@ -106,7 +106,7 @@ do
         read -p "Voulez-vous vraiment supprimer ce répertoire ? (O/N) : " supprime
         if [ "$supprime" = "o" ] || [ "$supprime" = "O" ]; 
         then
-            ssh "$utilisateur_distant@$IP_cible" \
+            ssh "$ssh_client" \
                 "powershell -Command \"Remove-Item -Recurse -Force -Path '$reposupp'\""
             echo "Le répertoire '$reposupp' a été supprimé avec succès."
         else
