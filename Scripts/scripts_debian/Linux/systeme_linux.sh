@@ -22,6 +22,7 @@ function menu_secondaire
         log "Retour menu systeme"
         echo "Vous retournez au menu systeme"
         sleep 1
+		clear
         return
         ;;
     2)
@@ -56,7 +57,7 @@ clear
 
 while true
 do
-
+	clear
     echo "Que souhaitez-vous savoir ?"
     echo "1- Version de l'OS"
     echo "2- Mise à jours critiques"
