@@ -74,7 +74,7 @@ do
     # Affichage détaillé des partitions
     2)
         log "Consultation détail des partitions"
-        echo "Le poste $ssh_client contient $nombre_disque_client avec en détail :\n"
+        echo -e "Le poste $ssh_client contient $nombre_disque_client disque(s) avec en détail :\n"
 
         for disk in $liste_disque_client
         do
@@ -96,7 +96,7 @@ do
         ;;
     3)
         log "Consultation disques montés"
-        echo "La liste des lecteurs montés sur <CLIENT NOM> est : $liste_lecteur_client"
+        echo "La liste des lecteurs montés sur $ssh_client est : $liste_lecteur_client"
         menu_secondaire
         ;;
     4)
