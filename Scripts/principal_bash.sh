@@ -54,7 +54,7 @@ while true
 do
     clear
     echo "------------------------------------------------"
-    echo "-    Bienvenue sur la gestion de $ssh_client   -"
+    echo "-     Bienvenue sur la gestion de $ssh_client     -"
     echo -e "------------------------------------------------\n"
     echo -e "Menu Principal\n"
     echo "Quel menu souhaitez-vous utiliser ?"
@@ -69,7 +69,7 @@ do
     echo "9 - Recherche d'évènements dans les logs"
     echo -e "q - quitter le script\n"
     echo -e "Aide : Pour connaitre le détail des options il vous suffit de taper le numéro suivi d'un point d'interrogation, par exemple 1?\n"
-    read -p "quel est votre choix ? :" choix
+    read -p "quel est votre choix ? : " choix
 
     case $choix in
 
