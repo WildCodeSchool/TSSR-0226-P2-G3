@@ -3,16 +3,17 @@
 
 #initialisation des variables principales
 
-last_logins=$(ssh $ssh_client "powershell.exe -Command 'Get-EventLog -LogName Security -InstanceId 4624 -Newest 5 | Select-Object TimeGenerated, UserName'")
+last_logins=$(ssh $ssh_client "powershell.exe -Command 'Get-EventLog -LogName Security -InstanceId 4624 -Newest 20 | Where-Object {\$_.ReplacementStrings[8] -eq \"2\" -or \$_.ReplacementStrings[8] -eq \"10\"} | Select-Object -First 5 TimeGenerated, @{Name=\"UserName\";Expression={\$_.ReplacementStrings[5]}}'")
 ipcon_client=$(ssh $ssh_client "powershell.exe -Command 'Get-NetIPAddress -AddressFamily IPv4 | Where-Object {\$_.InterfaceAlias -notlike ''*Loopback*''} | Select-Object -ExpandProperty IPAddress'")
-mask_client=$(ssh $ssh_client "powershell.exe -Command ")
-gateway_client=$(ssh $ssh_client "powershell.exe -Command ")
+$prefixe = ssh $ssh_client "powershell.exe -Command 'Get-NetIPAddress -AddressFamily IPv4 | Where-Object {\$_.InterfaceAlias -notlike ''*Loopback*''} | Select-Object -ExpandProperty PrefixLength'"
+mask_client=$(ssh $ssh_client "powershell.exe -Command '\$prefix = (Get-NetIPAddress -AddressFamily IPv4 | Where-Object {\$_.InterfaceAlias -notlike ''*Loopback*''}).PrefixLength; \$mask = [uint32]0; for(\$i=0;\$i -lt \$prefix;\$i++){\$mask = \$mask -bor (1 -shl (31-\$i))}; ([System.Net.IPAddress]\$mask).ToString()'")
+gateway_client=$(ssh $ssh_client "powershell.exe -Command 'Get-NetRoute -DestinationPrefix 0.0.0.0/0 | Select-Object -ExpandProperty NextHop'")
 
 
 
 function menu_secondaire
 {
-    echo "1 - Revenir au menu Disques"
+    echo "1 - Revenir au menu Connexion"
     echo "2 - Revenir au menu principal"
     echo "q - Quitter le script"
     read -p "Quel est votre choix ?" choix_secondaire
@@ -55,7 +56,7 @@ clear
 
 while true
 do
-    echo "Menu Disques"
+    echo "Menu Connexion"
     echo "Que souhaitez-vous connaitre ?"
     echo "1 - Les 5 dernières connexions à distance"
     echo "2 - Adresse IP, masque IP et passerelle du Client"
@@ -78,7 +79,7 @@ do
 	    log "Affichage IP, Masque, Passerelle "
 	    echo "L'adresse IP du client est $ipcon_client"
 	    echo "Le masque de sous-réseau du client est $mask_client"
-	    echo "La passerelle du client est $gateway_client"
+	    echo -e "La passerelle du client est $gateway_client\n"
 	    menu_secondaire
         ;;
     3)
