@@ -5,7 +5,6 @@
 
 last_logins=$(ssh $ssh_client "powershell.exe -Command 'Get-EventLog -LogName Security -InstanceId 4624 -Newest 20 | Where-Object {\$_.ReplacementStrings[8] -eq 2 -or \$_.ReplacementStrings[8] -eq 10} | Select-Object -First 5 TimeGenerated, ReplacementStrings'")
 ipcon_client=$(ssh $ssh_client "powershell.exe -Command 'Get-NetIPAddress -AddressFamily IPv4 | Where-Object {\$_.InterfaceAlias -notlike ''*Loopback*''} | Select-Object -ExpandProperty IPAddress'")
-$prefixe = ssh $ssh_client "powershell.exe -Command 'Get-NetIPAddress -AddressFamily IPv4 | Where-Object {\$_.InterfaceAlias -notlike ''*Loopback*''} | Select-Object -ExpandProperty PrefixLength'"
 mask_client=$(ssh $ssh_client "powershell.exe -Command '\$prefix = (Get-NetIPAddress -AddressFamily IPv4 | Where-Object {\$_.InterfaceAlias -notlike ''*Loopback*''}).PrefixLength; \$mask = [uint32]0; for(\$i=0;\$i -lt \$prefix;\$i++){\$mask = \$mask -bor (1 -shl (31-\$i))}; ([System.Net.IPAddress]\$mask).ToString()'")
 gateway_client=$(ssh $ssh_client "powershell.exe -Command 'Get-NetRoute -DestinationPrefix 0.0.0.0/0 | Select-Object -ExpandProperty NextHop'")
 
