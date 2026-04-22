@@ -47,7 +47,7 @@ while true
 do
     clear
     echo "Menu Groupes"
-    echo "Que souhaitez-vous faire sur le poste client ($ip_client) ?"
+    echo "Que souhaitez-vous faire sur le poste client ($ssh_client) ?"
     echo "1 - Ajout à un groupe d'administration"
     echo "2 - Ajout à un groupe standard"
     echo "3 - Sortie d'un groupe"
