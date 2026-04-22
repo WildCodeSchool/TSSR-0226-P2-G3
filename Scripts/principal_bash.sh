@@ -54,7 +54,7 @@ while true
 do
     clear
     echo "------------------------------------------------"
-    echo "Bienvenue sur la gestion de $ssh_client"
+    echo "-    Bienvenue sur la gestion de $ssh_client   -"
     echo -e "------------------------------------------------\n"
     echo -e "Menu Principal\n"
     echo "Quel menu souhaitez-vous utiliser ?"
