@@ -71,35 +71,39 @@ do
         # Affichage Version OS
     1) 
 	    log "Consulte version OS"
-	    echo "La version de l'OS est : $version_os"
+		clear
+	    echo -e "La version de l'OS est : $version_os\n"
 	    menu_secondaire
         ;;
         # Mises à jours critiques
     2) 
 	    log "Consulte mises à jours critiques"
+		clear
 	    if [[ $(echo "$maj_critiques" | grep -c "KB") -eq 0 ]]
 		then
-    		echo "Il y a 0 mises à jour critiques à faire"
+    		echo -e "Il y a 0 mises à jour critiques à faire\n"
 		else
     		nombre_maj_critiques=$(echo "$maj_critiques" | grep -c "KB")
     		echo "Il y a $nombre_maj_critiques mises à jour critiques à faire"
     		echo "Liste des mises à jours :"
-    		echo "$maj_critiques"
+    		echo -e "$maj_critiques\n"
     	fi
         menu_secondaire
         ;;
     3) 
 	    log "Consulte marque et modele"
-	    echo "Le client est de la marque/modèle : $marque_modele"
+		clear
+	    echo -e "Le client est de la marque/modèle : $marque_modele\n"
         menu_secondaire
         ;;
     4)
         log "Consulte statut UAC"
+		clear
         if [[ "$uac_status" == "1" ]]
 		then
             echo "L'UAC est activé sur $ssh_client"
         else
-            echo "L'UAC est désactivé sur $ssh_client"
+            echo -e "L'UAC est désactivé sur $ssh_client\n"
         fi
         menu_secondaire
         ;;
