@@ -43,9 +43,8 @@ function menu_secondaire
     esac
 }
 
-log "Demande sur disques"
 
-echo "Bienvenue dans la gestion des Disques et Lecteurs"
+echo "Direction la gestion des Disques et Lecteurs"
 sleep 1
 clear
 
@@ -54,14 +53,17 @@ clear
 while true
 do
     clear
-    echo "Menu Disques"
-    echo "Que souhaitez-vous connaitre ?"
+    log "Demande sur disques"
+    echo "------------------------------------------------"
+    echo "-                  Menu Disques                  -"
+    echo -e "------------------------------------------------\n"
+    echo -e "Que souhaitez-vous connaitre ?\n"
     echo "1 - Le nombre de disques"
     echo "2 - Le partitionnement par disque"
     echo "3 - La liste des lecteurs montés"
     echo "4 - Revenir au menu principal"
-    echo "q - quitter le script"
-    read -p "Quel est votre choix ? :" choix
+    echo -e "q - quitter le script\n"
+    read -p "Quel est votre choix ? : " choix
 
     case $choix in
 
