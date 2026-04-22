@@ -57,15 +57,14 @@ do
     1)
         log "Initialisation création utilisateur client Windows"
         read -p "Saisissez le nom du nouvel utilisateur : " cible_username
-        read -s -p "Saisissez son mot de passe initial : " nouveau_password
         echo ""
         
         # Check si le compte existe déjà (SilentlyContinue masque l'erreur rouge de PowerShell si non trouvé)
         utilisateur_exist=$(ssh $ssh_client "powershell.exe -Command \"Get-LocalUser -Name '$cible_username' -ErrorAction SilentlyContinue\"")
 
         if [ -z "$utilisateur_exist" ]; then
-            # Windows exige un mot de passe converti en SecureString
-            ssh $ssh_client "powershell.exe -Command \"\$sec_pwd = ConvertTo-SecureString '$nouveau_password' -AsPlainText -Force; New-LocalUser -Name '$cible_username' -Password \$sec_pwd\""
+            # Creation utilisateurs sans mot de passe, il devra en définir 1 lors de sa connexion
+            ssh $ssh_client "powershell.exe -Command \"New-LocalUser -Name '$cible_username' -NoPassword\""
             
             if [ $? -eq 0 ]; then
                 echo "L'utilisateur $cible_username a été créé avec succès."
