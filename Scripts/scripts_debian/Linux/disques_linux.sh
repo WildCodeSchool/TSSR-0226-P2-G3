@@ -89,7 +89,7 @@ do
                 taille_part=$(echo "$partition_data" | awk '{print $3}')
                 echo "Concernant la partition $partition"
                 echo "Le File System est : $fs_part"
-                echo "Et la taille de la partition est : $taille_part"
+                echo -e "Et la taille de la partition est : $taille_part \n"
             done
         done
         menu_secondaire
