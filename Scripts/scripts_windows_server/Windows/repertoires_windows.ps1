@@ -1,3 +1,6 @@
+# Appel utilitaires pour logs
+. "./scripts_windows_server/utilitaire.ps1"
+
 function menu_secondaire {
     Write-Host "1 - Revenir au menu répertoires"
     Write-Host "2 - Revenir au menu principal"
