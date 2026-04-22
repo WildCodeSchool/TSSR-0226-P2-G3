@@ -77,15 +77,14 @@ do
         # Mises à jours critiques
     2) 
 	    log "Consulte mises à jours critiques"
-	    if [[ -z "$maj_critiques" ]]
+	    if [[ $(echo "$maj_critiques" | grep -c "KB") -eq 0 ]]
 		then
-        	nombre_maj_critiques=0
-        	echo "Il y a 0 mises à jour critiques à faire"
-    	else
-        	nombre_maj_critiques=$(echo "$maj_critiques" | grep -c "KB")
-        	echo "Il y a $nombre_maj_critiques mises à jour critiques à faire"
-        	echo "Liste des mises à jours :"
-        	echo "$maj_critiques"
+    		echo "Il y a 0 mises à jour critiques à faire"
+		else
+    		nombre_maj_critiques=$(echo "$maj_critiques" | grep -c "KB")
+    		echo "Il y a $nombre_maj_critiques mises à jour critiques à faire"
+    		echo "Liste des mises à jours :"
+    		echo "$maj_critiques"
     	fi
         menu_secondaire
         ;;
