@@ -12,24 +12,24 @@ function menu_secondaire
     1)
         log "Retour menu répertoires"
         echo "Vous retournez au menu répertoires"
-        sleep 3
+        sleep 1
         return
         ;;
     2)
         log "Retour au menu principal"
         echo "Vous retournez au menu principal"
-        sleep 3
+        sleep 1
         exit 0
         ;;
     q)
         log "Quitte le script"
         echo "Vous quittez le script"
-        sleep 3
+        sleep 1
         exit 50
         ;;
     *)
         echo "L'option choisi n'existe pas, veuillez recommencer"
-        sleep 3s
+        sleep 1
         menu_secondaire
         ;;
     esac
@@ -68,7 +68,7 @@ do
 
         # Vérification si le répertoire existe déjà sur Windows
         EXISTE=$(ssh "$ssh_client" \
-            "powershell -Command \"Test-Path -Path '$repo'\"")
+            "powershell.exe -Command \"Test-Path -Path '$repo'\"")
 
         if echo "$EXISTE" | grep -qi "true";
         then
@@ -80,7 +80,7 @@ do
         if [ "$creation" = "o" ] || [ "$creation" = "O" ]; 
         then
             ssh "$ssh_client" \
-                "powershell -Command \"New-Item -ItemType Directory -Path '$repo'\""
+                "powershell.exe -Command \"New-Item -ItemType Directory -Path '$repo'\""
             echo "Le répertoire '$repo' a été créé avec succès."
         else
             echo "Création annulée."
@@ -95,7 +95,7 @@ do
 
         # Vérification si le répertoire existe sur Windows
         EXISTE=$(ssh "$ssh_client" \
-            "powershell -Command \"Test-Path -Path '$reposupp'\"")
+            "powershell.exe -Command \"Test-Path -Path '$reposupp'\"")
 
         if echo "$EXISTE" | grep -qi "false";
         then
@@ -107,7 +107,7 @@ do
         if [ "$supprime" = "o" ] || [ "$supprime" = "O" ]; 
         then
             ssh "$ssh_client" \
-                "powershell -Command \"Remove-Item -Recurse -Force -Path '$reposupp'\""
+                "powershell.exe -Command \"Remove-Item -Recurse -Force -Path '$reposupp'\""
             echo "Le répertoire '$reposupp' a été supprimé avec succès."
         else
             echo "Suppression annulée."
