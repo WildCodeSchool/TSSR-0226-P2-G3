@@ -82,7 +82,7 @@ do
             echo "Numéro du disque : $disk"
             echo "Nombre de partitions du disque $disk : $part_number"
 
-            for partition in $(ssh $ssh_client "powershell.exe -Command 'Get-Partition -DiskNumber '$disk' | Select-Object -ExpandProperty PartitionNumber'")
+            for partition in $(ssh $ssh_client "powershell.exe -Command 'Get-Partition -DiskNumber '$disk' | Select-Object -ExpandProperty PartitionNumber'" | tail -n +3 | grep -E '^[0-9]+$')
             do
                 partition_data=$(ssh $ssh_client "powershell.exe -Command 'Get-Partition -DiskNumber '$disk' -PartitionNumber '$partition' | Get-Volume | Select-Object FileSystemType, Size'")
                 fs_part=$(echo "$partition_data" | awk '{print $2}')
