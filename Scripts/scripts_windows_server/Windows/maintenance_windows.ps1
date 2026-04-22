@@ -1,7 +1,7 @@
 # Appel utilitaires pour logs
 . "./scripts_windows_server/utilitaire.ps1"
 
-function menu_secondaire {
+function MenuSecondaire {
     Write-Host "1 - Revenir au menu maintenance"
     Write-Host "2 - Revenir au menu principal"
     Write-Host "q - Quitter le script"
@@ -9,19 +9,19 @@ function menu_secondaire {
 
     switch ($choix_secondaire) {
         "1" {
-            Write-Log "Retour menu maintenance"
+            Log "Retour menu maintenance"
             Write-Host "Vous retournez au menu maintenance"
             Start-Sleep -Seconds 1
             return
         }
         "2" {
-            Write-Log "Retour au menu principal"
+            Log "Retour au menu principal"
             Write-Host "Vous retournez au menu principal"
             Start-Sleep -Seconds 1
             exit 0
         }
         "q" {
-            Write-Log "Quitte le script"
+            Log "Quitte le script"
             Write-Host "Vous quittez le script"
             Start-Sleep -Seconds 1
             exit 50
@@ -29,7 +29,7 @@ function menu_secondaire {
         default {
             Write-Host "L'option choisie n'existe pas, veuillez recommencer"
             Start-Sleep -Seconds 1
-            menu_secondaire
+            MenuSecondaire
         }
     }
 }
@@ -49,7 +49,7 @@ while ($true) {
     switch ($choix) {
 
         "1" {
-            Write-Log "Redémarrage_De_La_Machine"
+            Log "Redémarrage_De_La_Machine"
             $redemarre = Read-Host "Voulez-vous vraiment faire un redémarrage de la machine ? (O/N) : "
 
             if ($redemarre -eq "O" -or $redemarre -eq "o") {
@@ -60,12 +60,12 @@ while ($true) {
                 }
             } else {
                 Write-Host "Redémarrage annulé."
-                menu_secondaire
+                MenuSecondaire
             }
         }
 
         "2" {
-            Write-Log "Prise_En_Main_A_Distance"
+            Log "Prise_En_Main_A_Distance"
 
             # --- Saisie et validation de l'IP cible ---
             while ($true) {
@@ -100,7 +100,7 @@ while ($true) {
             if (-not (Test-Connection -ComputerName $IP_cible -Count 3 -Quiet)) {
                 Write-Host "Erreur : la machine $IP_cible ne répond pas au ping."
                 Write-Host "Vérifiez que la machine est allumée et accessible sur le réseau."
-                menu_secondaire
+                MenuSecondaire
                 return
             }
 
@@ -121,7 +121,7 @@ while ($true) {
         }
 
         "3" {
-            Write-Log "Activation_Du_Pare_Feu"
+            Log "Activation_Du_Pare_Feu"
             $reponse = Read-Host "Voulez-vous vraiment activer le pare-feu ? (O/N) "
 
             if ($reponse -eq "O" -or $reponse -eq "o") {
@@ -141,18 +141,18 @@ while ($true) {
             } else {
                 Write-Host "Activation pare-feu annulée."
             }
-            menu_secondaire
+           MenuSecondaire
         }
 
         "4" {
-            Write-Log "Execution_Script_A_Distance"
+            Log "Execution_Script_A_Distance"
 
             $testSSH = Test-NetConnection -ComputerName $IP_cible -Port 22
             if ($testSSH.TcpTestSucceeded) {
                 Write-Host "Connexion SSH établie."
             } else {
                 Write-Host "Connexion SSH impossible."
-                menu_secondaire
+                MenuSecondaire
                 break
             }
 
@@ -170,32 +170,32 @@ while ($true) {
                     Write-Host "Script exécuté avec succès."
                 } else {
                     Write-Host "Retour au menu Maintenance."
-                    menu_secondaire
+                    MenuSecondairee
                 }
             } else {
                 Write-Host "Le script est introuvable."
-                menu_secondaire
+                MenuSecondaire
             }
         }
 
         "5" {
-            Write-Log "Liste_Utilisateurs_Locaux"
+            Log "Liste_Utilisateurs_Locaux"
             Write-Host "=== Utilisateurs locaux ($IP_cible - Windows) ==="
             Invoke-Command -ComputerName $IP_cible -Credential $credential -ScriptBlock {
                 Get-LocalUser | Select-Object Name, Enabled, LastLogon
             }
-            menu_secondaire
+            MenuSecondaire
         }
 
         "r" {
-            Write-Log "Retour arrière"
+            Log "Retour arrière"
             Write-Host "Vous allez revenir au menu principal"
             Start-Sleep -Seconds 1
             exit 0
         }
 
         "q" {
-            Write-Log "EndScript"
+            Log "EndScript"
             Write-Host "Vous quittez le script"
             Start-Sleep -Seconds 1
             exit 50
