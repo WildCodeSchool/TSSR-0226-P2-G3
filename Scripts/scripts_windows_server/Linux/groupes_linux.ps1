@@ -1,12 +1,7 @@
-# Définition de la fonction de journalisation
-function Write-Log {
-    param([string]$Message)
-    $Date = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
-    Add-Content -Path "C:\logs\log_evt.log" -Value "[$Date] $Message"
-}
+. "./scripts_windows_server/utilitaire.ps1"
 
 # Sous-menu pour gérer la navigation
-function Show-MenuSecondaire {
+function MenuSecondaire {
     Write-Host "1 - Revenir au menu Groupes"
     Write-Host "2 - Revenir au menu principal"
     Write-Host "q - Quitter le script"
@@ -14,19 +9,19 @@ function Show-MenuSecondaire {
 
     switch ($choix_secondaire) {
         '1' {
-            Write-Log "Retour menu groupes"
+            Log "Retour menu groupes"
             Write-Host "Vous retournez au menu Groupes" -ForegroundColor Cyan
             Start-Sleep -Seconds 1
             return
         }
         '2' {
-            Write-Log "Retour au menu principal"
+            Log "Retour au menu principal"
             Write-Host "Vous retournez au menu principal" -ForegroundColor Cyan
             Start-Sleep -Seconds 1
             exit 0
         }
         'q' {
-            Write-Log "Quitte le script"
+            Log "Quitte le script"
             Write-Host "Vous quittez le script" -ForegroundColor Cyan
             Start-Sleep -Seconds 1
             exit 50
@@ -39,7 +34,7 @@ function Show-MenuSecondaire {
     }
 }
 
-Write-Log "Demande sur groupes"
+Log "Demande sur groupes"
 Write-Host "Bienvenue dans la gestion des Groupes" -ForegroundColor Green
 Start-Sleep -Seconds 1
 Clear-Host
@@ -57,7 +52,7 @@ while ($true) {
 
     switch ($choix) {
         '1' {
-            Write-Log "Initiation ajout admin client Linux"
+            Log "Initiation ajout admin client Linux"
             $cible_username = Read-Host "Quel utilisateur doit devenir administrateur ?"
 
             # Ajout au groupe 'sudo' spécifique à Ubuntu via SSH
@@ -65,16 +60,16 @@ while ($true) {
             
             if ($LASTEXITCODE -eq 0) {
                 Write-Host "$cible_username a été ajouté au groupe d'administration." -ForegroundColor Green
-                Write-Log "Succès ajout admin pour $cible_username"
+                Log "Succès ajout admin pour $cible_username"
             } else {
                 Write-Host "Erreur lors de l'ajout au groupe d'administration." -ForegroundColor Red
-                Write-Log "Erreur ajout admin pour $cible_username"
+                Log "Erreur ajout admin pour $cible_username"
             }
             Show-MenuSecondaire
         }
 
         '2' {
-            Write-Log "Initiation ajout groupe client Linux"
+            Log "Initiation ajout groupe client Linux"
             $cible_username = Read-Host "Nom de l'utilisateur"
             $cible_groupe = Read-Host "Dans quel groupe souhaitez-vous l'ajouter ?"
 
@@ -83,16 +78,16 @@ while ($true) {
             
             if ($LASTEXITCODE -eq 0) {
                 Write-Host "$cible_username a été ajouté au groupe $cible_groupe." -ForegroundColor Green
-                Write-Log "Succès ajout groupe $cible_groupe pour $cible_username"
+                Log "Succès ajout groupe $cible_groupe pour $cible_username"
             } else {
                 Write-Host "Erreur lors de l'ajout au groupe $cible_groupe." -ForegroundColor Red
-                Write-Log "Erreur ajout groupe $cible_groupe pour $cible_username"
+                Log "Erreur ajout groupe $cible_groupe pour $cible_username"
             }
             Show-MenuSecondaire
         }
 
         '3' {
-            Write-Log "Initiation sortie groupe client Linux"
+            Log "Initiation sortie groupe client Linux"
             $cible_username = Read-Host "Nom de l'utilisateur"
             $cible_groupe = Read-Host "De quel groupe souhaitez-vous le retirer ?"
 
@@ -101,23 +96,23 @@ while ($true) {
             
             if ($LASTEXITCODE -eq 0) {
                 Write-Host "$cible_username a été retiré du groupe $cible_groupe." -ForegroundColor Green
-                Write-Log "Succès sortie groupe $cible_groupe pour $cible_username"
+                Log "Succès sortie groupe $cible_groupe pour $cible_username"
             } else {
                 Write-Host "Erreur lors de la sortie du groupe $cible_groupe." -ForegroundColor Red
-                Write-Log "Erreur sortie groupe $cible_groupe pour $cible_username"
+                Log "Erreur sortie groupe $cible_groupe pour $cible_username"
             }
             Show-MenuSecondaire
         }
 
         '4' {
-            Write-Log "Retour au menu principal"
+            Log "Retour au menu principal"
             Write-Host "Vous revenez au menu principal" -ForegroundColor Cyan
             Start-Sleep -Seconds 1
             exit 0
         }
 
         'q' {
-            Write-Log "Quitte le script"
+            Log "Quitte le script"
             Write-Host "Vous quittez le script" -ForegroundColor Cyan
             Start-Sleep -Seconds 1
             exit 50
