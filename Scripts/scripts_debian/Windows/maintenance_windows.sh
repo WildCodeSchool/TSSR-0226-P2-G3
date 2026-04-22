@@ -12,24 +12,24 @@ function menu_secondaire
     1)
         log "Retour menu maintenance"
         echo "Vous retournez au menu maintenance"
-        sleep 3
+        sleep 1
         return
         ;;
     2)
         log "Retour au menu principal"
         echo "Vous retournez au menu principal"
-        sleep 3
+        sleep 1
         exit 0
         ;;
     q)
         log "Quitte le script"
         echo "Vous quittez le script"
-        sleep 3
+        sleep 1
         exit 50
         ;;
     *)
         echo "L'option choisi n'existe pas, veuillez recommencer"
-        sleep 3
+        sleep 1
         menu_secondaire
         ;;
     esac
@@ -57,7 +57,7 @@ do
         if [ "$redemarre" = "O" ] || [ "$redemarre" = "o" ]; then
             echo "Le pc redémarre..."
             sleep 3
-            ssh "$utilisateur_distant@$IP_cible" \
+            ssh "$ssh_client" \
                 "powershell -Command \"Restart-Computer -Force\""
         else
             echo "Redémarrage annulé."
@@ -121,10 +121,10 @@ do
         log "Activation_Du_Pare_Feu"
         read -p "Voulez vous vraiment activer le pare-feu ? (O/N) " reponse
         if [ "$reponse" = "O" ] || [ "$reponse" = "o" ]; then
-            ssh "$utilisateur_distant@$IP_cible" \
+            ssh "$ssh_client" \
                 "powershell -Command \"Set-NetFirewallProfile -Profile Domain,Public,Private -Enabled True\""
 
-            STATUT=$(ssh "$utilisateur_distant@$IP_cible" \
+            STATUT=$(ssh "$ssh_client" \
                 "powershell -Command \"(Get-NetFirewallProfile -Name Public).Enabled\"")
 
             if echo "$STATUT" | grep -qi "true"; then
@@ -151,8 +151,8 @@ do
         if [ -f "$script" ]; then
             read -p "Le script existe, voulez vous vraiment lancer ce script ? (O/N) " reponse
             if [ "$reponse" = "O" ] || [ "$reponse" = "o" ]; then
-                scp "$script" "$utilisateur_distant@$IP_cible:C:/Windows/Temp/script_distant.ps1"
-                ssh "$utilisateur_distant@$IP_cible" \
+                scp "$script" "$ssh_client:C:/Windows/Temp/script_distant.ps1"
+                ssh "$ssh_client" \
                     "powershell -ExecutionPolicy Bypass -File C:\\Windows\\Temp\\script_distant.ps1"
                 if [ $? -eq 0 ]; then
                     echo "Script exécuté avec succès"
@@ -171,19 +171,19 @@ do
     5)
         log "Liste_Utilisateurs_Locaux"
         echo "=== Utilisateurs locaux ($IP_cible - Windows) ==="
-        ssh "$utilisateur_distant@$IP_cible" \
+        ssh "$ssh_client" \
             "powershell -Command \"Get-LocalUser | Select-Object Name, Enabled | Format-Table -AutoSize\""
         ;;
     r)
         log "Retour arrière"
         echo "Vous allez revenir au menu principal"
-        sleep 3
+        sleep 1
         exit 0
         ;;
     q)
         log "EndScript"
         echo "Vous quittez le script"
-        sleep 3
+        sleep 1
         exit 50
         ;;
     *)
