@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# SSH-Agent permettant la connexion sans interrogation du mot de passe
+eval $(ssh-agent -s)
+ssh-add ~/.ssh/id_rsa
 
 #initialisation des variables principales
 
