@@ -78,7 +78,7 @@ do
         echo -e "Le poste $ssh_client contient $number_disk_client avec en détail :\n"
         for disk in $list_disk_client
         do
-            part_number=$(ssh $ssh_client "powershell.exe -Command 'Get-Partition -DiskNumber '$disk' | Measure-Object | Select-Object -ExpandProperty Count'")
+            part_number=$(ssh $ssh_client "powershell.exe -Command \"Get-Partition -DiskNumber $disk | Measure-Object | Select-Object -ExpandProperty Count\"")
             echo "Numéro du disque : $disk"
             echo "Nombre de partitions du disque $disk : $part_number"
 
