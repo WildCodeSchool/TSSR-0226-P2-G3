@@ -2,7 +2,7 @@
 
 #initialisation des variables principales
 
-number_disk_client=$(ssh $ssh_client "powershell.exe -Command '(Get-Disk | Measure-Object).Count'")
+number_disk_client=$(ssh $ssh_client "powershell.exe -Command 'Get-Disk | Measure-Object | Select-Object -ExpandProperty Count'")
 list_disk_client=$(ssh $ssh_client "powershell.exe -Command 'Get-Disk | Select-Object -ExpandProperty DiskNumber'")
 list_reader_client=$(ssh $ssh_client "powershell.exe -Command 'Get-Volume | Where-Object {\$_.DriveLetter -ne \$null} | Select-Object DriveLetter, FriendlyName, FileSystem, DriveType'")
 
