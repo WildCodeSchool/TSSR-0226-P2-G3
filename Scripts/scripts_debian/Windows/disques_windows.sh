@@ -75,12 +75,13 @@ do
         log "Consultation détail des partitions"
         clear
         echo -e "Le poste $ssh_client contient les volumes suivants :\n"
-        echo -e "$list_disk_client\n"
+        echo -e "$volumes_client\n"
         menu_secondaire
         ;;
     3)
         log "Consultation disques montés"
-        echo "La liste des lecteurs montés sur $ssh_client est : $list_reader_client\n"
+        echo -e "La liste des lecteurs montés sur $ssh_client :\n"
+        echo -e "$list_reader_client\n"
         menu_secondaire
         ;;
     4)
