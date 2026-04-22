@@ -13,6 +13,7 @@ function menu_secondaire
         log "Retour menu utilisateurs"
         echo "Vous retournez au menu Utilisateurs"
         sleep 1
+        clear
         return
         ;;
     2)
@@ -44,6 +45,7 @@ clear
 # Boucle principale du menu
 while true
 do
+    clear
     echo "Menu Utilisateurs"
     echo "Que souhaitez-vous faire sur le poste client ?"
     echo "1 - Création de compte utilisateur local"
