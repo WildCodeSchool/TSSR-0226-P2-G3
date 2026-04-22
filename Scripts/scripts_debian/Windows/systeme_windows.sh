@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# SSH-Agent permettant la connexion sans interrogation du mot de passe
-eval $(ssh-agent -s)
-ssh-add ~/.ssh/id_rsa
 
 #initialisation des variables principales
 
@@ -13,37 +10,37 @@ marque_modele=$(ssh $ssh_client "powershell.exe -Command '(Get-WmiObject Win32_C
 uac_status=$(ssh $ssh_client "powershell.exe -Command '(Get-ItemProperty HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System).EnableLUA'")
 
 
-function secondary_menu
+function menu_secondaire
 {
     echo "1 - Revenir au menu Disques"
     echo "2 - Revenir au menu principal"
     echo "q - Quitter le script"
-    read -p "Quel est votre choix ?" choice_secondary
+    read -p "Quel est votre choix ?" choix_secondaire
 
-    case $choice_secondary in
+    case $choix_secondaire in
 
     1)
         log "Retour menu systeme"
         echo "Vous retournez au menu systeme"
-        sleep 3
+        sleep 1
         return
         ;;
     2)
         log "Retour au menu principal"
         echo "Vous retournez au menu principal"
-        sleep 3
+        sleep 1
         exit 0
         ;;
     q)
         log "Quitte le script"
         echo "Vous quittez le script"
-        sleep 3
+        sleep 1
         exit 50
         ;;
     *)
         echo "L'option choisi n'existe pas, veuillez recommencer"
         sleep 3s
-        secondary_menu
+        menu_secondaire
         ;;
     esac
 }
@@ -55,12 +52,12 @@ function secondary_menu
 
 log "Demande sur systeme"
 echo "Bienvenue dans les informations système"
-sleep 3
+sleep 1
 clear
 
 while true
 do
-
+	clear
     echo "Que souhaitez-vous savoir ?"
     echo "1- Version de l'OS"
     echo "2- Mise à jours critiques"
@@ -68,15 +65,15 @@ do
     echo "4- Statut UAC"
     echo "r - Revenir au menu précédent"
     echo "q - Quitter le script"
-    read -p "Quel est votre choix ? :" choice
+    read -p "Quel est votre choix ? :" choix
 
-    case $choice in
+    case $choix in
 
         # Affichage Version OS
     1) 
 	    log "Consulte version OS"
 	    echo "La version de l'OS est : $os_version"
-	    secondary_menu
+	    menu_secondaire
         ;;
         # Mises à jours critiques
     2) 
@@ -84,12 +81,12 @@ do
 	    echo "Il y a $number_critical_update mises à jours critiques à faire"
 	    echo "Liste des mises à jours :"
         echo "$critical_update"
-        secondary_menu
+        menu_secondaire
         ;;
     3) 
 	    log "Consulte marque et modele"
 	    echo "Le client est de la marque/modèle : $brand_and_model"
-        secondary_menu
+        menu_secondaire
         ;;
     4)
         log "Consulte statut UAC"
@@ -98,18 +95,18 @@ do
         else
             echo "L'UAC est désactivé sur $ssh_client"
         fi
-        secondary_menu
+        menu_secondaire
         ;;
     r)
 	    log "Retour arrière"
 	    echo "Vous allez revenir au menu principal"
-	    sleep 3
+	    sleep 1
         exit 0
         ;;
     q)
         log "Quitte le script"
 	    echo "Vous quittez le script"
-	    sleep 3
+	    sleep 1
 	    exit 50
         ;;
     *)
