@@ -4,7 +4,7 @@
 
 nombre_disque_client=$(ssh $ssh_client "lsblk -d | grep disk | wc -l")
 liste_disque_client=$(ssh $ssh_client "lsblk -d | grep disk | awk '{print \$1}'")
-liste_lecteur_client=$(ssh $ssh_client "lsblk -o NAME,TYPE,MOUNTPOINT | awk '\$3 != \"\"' | awk '{print \$1, \$2, \$3}'")
+liste_lecteur_client=$(ssh $ssh_client "lsblk -o NAME,TYPE,MOUNTPOINT | grep -v loop | awk '\$3 != \"\"' | awk '{print \$1, \$2, \$3}'")
 
 
 function menu_secondaire
