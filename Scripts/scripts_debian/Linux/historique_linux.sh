@@ -13,6 +13,7 @@ function menu_secondaire
         log "Retour menu historique"
         echo "Vous retournez au menu connexion"
         sleep 1
+        clear
         return
         ;;
     r)
@@ -45,6 +46,7 @@ clear
 
 while true
 do
+    clear
     echo "Menu Historique"
     echo "Que souhaitez-vous connaitre ?"
     echo "1 - La date de dernière connexion d'un utilisateur"
