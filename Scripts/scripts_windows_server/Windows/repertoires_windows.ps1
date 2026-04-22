@@ -1,7 +1,7 @@
 # Appel utilitaires pour logs
 . "./scripts_windows_server/utilitaire.ps1"
 
-function menu_secondaire {
+function MenuSecondaire {
     Write-Host "1 - Revenir au menu répertoires"
     Write-Host "2 - Revenir au menu principal"
     Write-Host "q - Quitter le script"
@@ -9,19 +9,19 @@ function menu_secondaire {
 
     switch ($choix_secondaire) {
         "1" {
-            Write-Log "Retour menu répertoires"
+            Log "Retour menu répertoires"
             Write-Host "Vous retournez au menu répertoires"
             Start-Sleep -Seconds 1
             return
         }
         "2" {
-            Write-Log "Retour au menu principal"
+            Log "Retour au menu principal"
             Write-Host "Vous retournez au menu principal"
             Start-Sleep -Seconds 1
             exit 0
         }
         "q" {
-            Write-Log "Quitte le script"
+            Log "Quitte le script"
             Write-Host "Vous quittez le script"
             Start-Sleep -Seconds 1
             exit 50
@@ -29,13 +29,13 @@ function menu_secondaire {
         default {
             Write-Host "L'option choisie n'existe pas, veuillez recommencer"
             Start-Sleep -Seconds 1
-            menu_secondaire
+            MenuSecondaire
         }
     }
 }
 
 # Menu Répertoires
-Write-Log "Demande sur répertoire"
+Log "Demande sur répertoire"
 Write-Host "Bienvenue dans le menu répertoires"
 Start-Sleep -Seconds 1
 Clear-Host
@@ -50,7 +50,7 @@ while ($true) {
 
     switch ($choix) {
         "1" {
-            Write-Log "Création répertoire"
+            Log "Création répertoire"
             Write-Host "Exemple: C:\Users\user\monrepertoire ou C:\Temp\monrepertoire"
             $repo = Read-Host "Entrez le chemin du répertoire à créer : "
 
@@ -79,11 +79,11 @@ while ($true) {
             } else {
                 Write-Host "Création annulée."
             }
-            menu_secondaire
+            MenuSecondaire
         }
 
         "2" {
-            Write-Log "Suppression répertoire"
+            Log "Suppression répertoire"
             Write-Host "Exemple: C:\Users\user\monrepertoire ou C:\Temp\monrepertoire"
             $repoSupp = Read-Host "Entrez le chemin du répertoire à supprimer : "
 
@@ -107,18 +107,18 @@ while ($true) {
             } else {
                 Write-Host "Suppression annulée."
             }
-            menu_secondaire
+            MenuSecondaire
         }
 
         "r" {
-            Write-Log "Retour arrière"
+            Log "Retour arrière"
             Write-Host "Vous allez revenir au menu principal"
             Start-Sleep -Seconds 1
             exit 0
         }
 
         "q" {
-            Write-Log "Quitte le script"
+            Log "Quitte le script"
             Write-Host "Vous quittez le script"
             Start-Sleep -Seconds 1
             exit 50
