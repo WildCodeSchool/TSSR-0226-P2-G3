@@ -13,6 +13,7 @@ function menu_secondaire
         log "Retour menu maintenance"
         echo "Vous retournez au menu maintenance"
         sleep 1
+		clear
         return
         ;;
     2)
@@ -40,6 +41,7 @@ function menu_secondaire
 
 while true
 do
+	clear
     echo "=== Maintenance des machines ==="
     echo "1 - Redemarrage de la machine"
     echo "2 - Prise en main a distance"
