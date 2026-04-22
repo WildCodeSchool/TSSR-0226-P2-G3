@@ -3,11 +3,11 @@
 
 #initialisation des variables principales
 
-version_os=$(ssh $ssh_user@$ip_client "powershell.exe -Command '(Get-WmiObject Win32_OperatingSystem).Caption'")
-maj_critiques=$(ssh $ssh_user@$ip_client "powershell.exe -Command 'Import-Module PSWindowsUpdate; Get-WindowsUpdate -Category ''Security Updates'' | Select-Object Title, Size'")
+version_os=$(ssh $ssh_client "powershell.exe -Command '(Get-WmiObject Win32_OperatingSystem).Caption'")
+maj_critiques=$(ssh $ssh_client "powershell.exe -Command 'Import-Module PSWindowsUpdate; Get-WindowsUpdate -Category ''Security Updates'' | Select-Object Title, Size'")
 nombre_maj_critiques=$(echo "$maj_critiques" | wc -l)
-marque_modele=$(ssh $ssh_user@$ip_client "powershell.exe -Command '(Get-WmiObject Win32_ComputerSystem).Manufacturer + '' '' + (Get-WmiObject Win32_ComputerSystem).Model'")
-uac_status=$(ssh $ssh_user@$ip_client "powershell.exe -Command '(Get-ItemProperty HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System).EnableLUA'")
+marque_modele=$(ssh $ssh_client "powershell.exe -Command '(Get-WmiObject Win32_ComputerSystem).Manufacturer + '' '' + (Get-WmiObject Win32_ComputerSystem).Model'")
+uac_status=$(ssh $ssh_client "powershell.exe -Command '(Get-ItemProperty HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System).EnableLUA'")
 
 
 function secondary_menu
@@ -91,9 +91,9 @@ do
     4)
         log "Consulte statut UAC"
         if [[ $uac_status -eq 1 ]]; then
-            echo "L'UAC est activé sur $ip_client"
+            echo "L'UAC est activé sur $ssh_client"
         else
-            echo "L'UAC est désactivé sur $ip_client"
+            echo "L'UAC est désactivé sur $ssh_client"
         fi
         secondary_menu
         ;;
