@@ -73,16 +73,36 @@ L'infrastructure réseau du Groupe 3 repose sur le sous-réseau **172.16.30.0/24
 ---
 ## 5. Difficultés rencontrées 
 
-- 
+* **Connexion des machines entre elles en SSH**
+
+* **Le blocage des commandes sudo pendant nos tests**
+
+* **La saisie des mots de passe en boucle :** On devait retaper notre mot de passe à chaque nouvelle action, surtout pour administrer Windows depuis le serveur Debian.
+
+* **Le manque d'harmonisation des scripts enfants :** Vu qu'on codait à plusieurs en même temps, on n'avait pas tous la même façon de nommer nos variables ou d'indenter le code, ce qui rendait la relecture difficile.
 
 ---
 ## 6. Solutions trouvées 
 
--
+* **Élévation de privilèges ciblée :** Mise en place d'une règle `NOPASSWD` via `visudo` sur les postes clients.
+
+* **Authentification par clés SSH :** Explication ??? Pas tout compris moi!
+
+* **Relecture des scripts :** Un seul technicien dédié à la relecture, à l'harmonisation de tous les scripts.
 
 ---
 ## 7. Améliorations possibles
 
--
+* **Centralisation du menu secondaire :** Rapatrier la fonction du menu de navigation directement dans le script parent et l'exporter vers les scripts enfants.
+
+* **Finalisation des logs :** Intégrer la journalisation complète des sorties de scripts, une partie que nous n'avons pas eu le temps de terminer pendant ce projet.
+
+* **Changement d'utilisateur sécurisé :** Mettre en place une méthode plus sécurisée pour gérer les changements de comptes utilisateurs pendant l'exécution de l'outil.
+
+* **Création d'utilisateurs en masse :** Modifier le script pour qu'il puisse lire un fichier CSV et créer plusieurs dizaines de comptes en une seule fois.
+
+* **Vérification réseau préventive :** Faire en sorte que le script lance un simple `ping` vers la cible avant de démarrer. Si elle ne répond pas, le script s'arrête tout de suite au lieu de charger dans le vide.
+
+* **Un design global amélioré**
 
 ---
