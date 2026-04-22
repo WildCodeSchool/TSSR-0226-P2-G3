@@ -3,7 +3,7 @@
 
 #initialisation des variables principales
 
-last_logins=$(ssh $ssh_client "powershell.exe -Command 'Get-EventLog -LogName Security -InstanceId 4624 -Newest 5 | Select-Object TimeGenerated, @{Name=\"UserName\";Expression={\$_.ReplacementStrings[5]}}'")
+last_logins=$(ssh $ssh_client "powershell.exe -Command 'Get-EventLog -LogName Security -InstanceId 4624 -Newest 5 | Select-Object TimeGenerated, ReplacementStrings'")
 ipcon_client=$(ssh $ssh_client "powershell.exe -Command 'Get-NetIPAddress -AddressFamily IPv4 | Where-Object {\$_.InterfaceAlias -notlike ''*Loopback*''} | Select-Object -ExpandProperty IPAddress'")
 $prefixe = ssh $ssh_client "powershell.exe -Command 'Get-NetIPAddress -AddressFamily IPv4 | Where-Object {\$_.InterfaceAlias -notlike ''*Loopback*''} | Select-Object -ExpandProperty PrefixLength'"
 mask_client=$(ssh $ssh_client "powershell.exe -Command '\$prefix = (Get-NetIPAddress -AddressFamily IPv4 | Where-Object {\$_.InterfaceAlias -notlike ''*Loopback*''}).PrefixLength; \$mask = [uint32]0; for(\$i=0;\$i -lt \$prefix;\$i++){\$mask = \$mask -bor (1 -shl (31-\$i))}; ([System.Net.IPAddress]\$mask).ToString()'")
@@ -48,7 +48,7 @@ function menu_secondaire
 
 log "Demande sur connexion"
 
-echo "Bienvenue dans le menu connexion"
+echo "Direction le menu connexion"
 sleep 1
 clear
 
@@ -69,6 +69,7 @@ do
     # Affichage des 5 dcerniers logins
 
     1) 
+		clear
 	    log "cinq derniers login"
 	    echo "Voici les 5 derniers loggings :"
 	    echo "$last_logins"
@@ -76,7 +77,9 @@ do
         ;;
 # Adresse IP, Masque, Passerelle client
     2) 
+		clear
 	    log "Affichage IP, Masque, Passerelle "
+		echo -e "Voici les informations réseau\n"
 	    echo "L'adresse IP du client est $ipcon_client"
 	    echo "Le masque de sous-réseau du client est $mask_client"
 	    echo -e "La passerelle du client est $gateway_client\n"
@@ -85,13 +88,13 @@ do
     3)
 	    log "Retour arrière"
 	    echo "Vous allez revenir au menu principal"
-	    sleep 3
+	    sleep 1
 	    exit 0
         ;;
     q)
 	    log "EndScript"
 	    echo "Vous quittez le script"
-	    sleep 3
+	    sleep 1
 	    exit 50
         ;;
     *) 
