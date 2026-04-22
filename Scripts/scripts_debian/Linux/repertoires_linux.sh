@@ -13,6 +13,7 @@ function menu_secondaire
         log "Retour menu répertoires"
         echo "Vous retournez au menu répertoires"
         sleep 1
+		clear
         return
         ;;
     2)
@@ -46,6 +47,7 @@ clear
 
 while true
 do
+	clear
     echo "Que souhaitez-vous faire ?"
     echo "1- Créer un répertoire"
     echo "2- Supprimer un répertoire"
