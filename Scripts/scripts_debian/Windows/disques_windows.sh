@@ -2,72 +2,73 @@
 
 #initialisation des variables principales
 
-number_disk_client=$(ssh $ssh_user@$ip_client "powershell.exe -Command '(Get-Disk | Measure-Object).Count'")
-list_disk_client=$(ssh $ssh_user@$ip_client "powershell.exe -Command 'Get-Disk | Select-Object -ExpandProperty DiskNumber'")
-list_reader_client=$(ssh $ssh_user@$ip_client "powershell.exe -Command 'Get-Volume | Where-Object {\$_.DriveLetter -ne \$null} | Select-Object DriveLetter, FriendlyName, FileSystem, DriveType'")
+number_disk_client=$(ssh $ssh_client "powershell.exe -Command '(Get-Disk | Measure-Object).Count'")
+list_disk_client=$(ssh $ssh_client "powershell.exe -Command 'Get-Disk | Select-Object -ExpandProperty DiskNumber'")
+list_reader_client=$(ssh $ssh_client "powershell.exe -Command 'Get-Volume | Where-Object {\$_.DriveLetter -ne \$null} | Select-Object DriveLetter, FriendlyName, FileSystem, DriveType'")
 
 
-function secondary_menu
+function menu_secondaire
 {
     echo "1 - Revenir au menu Disques"
     echo "2 - Revenir au menu principal"
     echo "q - Quitter le script"
-    read -p "Quel est votre choix ?" choice_secondary
+    read -p "Quel est votre choix ?" choix_secondaire
 
-    case $choice_secondary in
+    case $choix_secondaire in
 
     1)
         log "Retour menu disque"
         echo "Vous retournez au menu Disques"
-        sleep 3
+        sleep 1
         return
         ;;
     2)
         log "Retour au menu principal"
         echo "Vous retournez au menu principal"
-        sleep 3
+        sleep 1
         exit 0
         ;;
     q)
         log "Quitte le script"
         echo "Vous quittez le script"
-        sleep 3
+        sleep 1
         exit 50
         ;;
     *)
         echo "L'option choisi n'existe pas, veuillez recommencer"
-        sleep 3s
-        secondary_menu
+        sleep 1
+        menu_secondaire
         ;;
     esac
 }
 
 log "Demande sur disques"
 
-echo "Bienvenue dans la gestion des Disques et Lecteurs"
-sleep 3
+echo "Direction la gestion des Disques et Lecteurs"
+sleep 1
 clear
 
 # Menu disques
 
 while true
 do
-    echo "Menu Disques"
-    echo "Que souhaitez-vous connaitre ?"
+    clear
+    echo -e "Menu Disques\n"
+    echo -e "Que souhaitez-vous connaitre ?\n"
     echo "1 - Le nombre de disques"
     echo "2 - Le partitionnement par disque"
     echo "3 - La liste des lecteurs montés"
     echo "4 - Revenir au menu principal"
     echo "q - quitter le script"
-    read -p "Quel est votre choix ? :" choice
+    read -p "Quel est votre choix ? :" choix
 
-    case $choice in
+    case $choix in
 
      #Affichage du nombre de disques sur le poste client
     1)
         log "Consultation nombre de disques client"
-        echo "Le nombre de disques de $ssh_client est de $number_disk_client"
-        secondary_menu
+        echo -e "Le nombre de disques de $ssh_client est de $number_disk_client\n"
+        menu_secondaire
         ;;
     # Affichage détaillé des partitions
     2)
@@ -86,32 +87,32 @@ do
                 size_part=$(echo "$partition_data" | awk '{print $3}')
                 echo "Concernant la partition $partition"
                 echo "Le File System est : $fs_part"
-                echo "Et la taille de la partition est : $size_part"
+                echo -e "Et la taille de la partition est : $size_part\n"
             done
         done
-        secondary_menu
+        menu_secondaire
         ;;
     3)
         log "Consultation disques montés"
-        echo "La liste des lecteurs montés sur <CLIENT NOM> est : $list_reader_client"
-        secondary_menu
+        echo "La liste des lecteurs montés sur <CLIENT NOM> est : $list_reader_client\n"
+        menu_secondaire
         ;;
     4)
         log "Retour au menu principal"
         echo "Vous revenez au menu principal"
-        sleep 3
+        sleep 1
         exit 0
         ;;
     q)
 
         log "Quitte le script"
         echo "Vous quittez le script"
-        sleep 3
+        sleep 1
         exit 50
         ;;
     *)
         echo "L'option choisi n'existe pas, veuillez recommencer"
-        sleep 3
+        sleep 1
         ;;
     esac
 done
