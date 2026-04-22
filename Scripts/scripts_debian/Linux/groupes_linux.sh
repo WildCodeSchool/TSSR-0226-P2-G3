@@ -7,14 +7,13 @@ function menu_secondaire
     echo "2 - Revenir au menu principal"
     echo "q - Quitter le script"
     read -p "Quel est votre choix ? " choix_secondaire
-    sleep 1
-    clear
 
     case $choix_secondaire in
     1)
         log "Retour menu groupes"
         echo "Vous retournez au menu Groupes"
         sleep 1
+        clear
         return
         ;;
     2)
@@ -46,6 +45,7 @@ clear
 # Boucle principale du menu
 while true
 do
+    clear
     echo "Menu Groupes"
     echo "Que souhaitez-vous faire sur le poste client ($ip_client) ?"
     echo "1 - Ajout à un groupe d'administration"
