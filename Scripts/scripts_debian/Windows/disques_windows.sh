@@ -2,10 +2,9 @@
 
 #initialisation des variables principales
 
-number_disk_client=$(ssh $ssh_client "powershell.exe -Command 'Get-Volume | Measure-Object | Select-Object -ExpandProperty Count'")
-list_disk_client=$(ssh $ssh_client "powershell.exe -Command 'Get-Volume | Select-Object -ExpandProperty DiskNumber'")
-list_reader_client=$(ssh $ssh_client "powershell.exe -Command 'Get-Volume | Where-Object {\$_.DriveLetter -ne \$null} | Select-Object DriveLetter, FriendlyName, FileSystem, DriveType'")
-
+number_disk_client=$(ssh $ssh_client "powershell.exe -Command 'Get-Volume | Where-Object {\$_.DriveType -eq ''Fixed''} | Measure-Object | Select-Object -ExpandProperty Count'")
+volumes_client=$(ssh $ssh_client "powershell.exe -Command 'Get-Volume | Select-Object DriveLetter, FileSystemType, Size, DriveType, FriendlyName'")
+list_reader_client=$(ssh $ssh_client "powershell.exe -Command 'Get-Volume | Where-Object {\$_.DriveLetter -ne \$null} | Select-Object DriveLetter, FileSystemType, Size, FriendlyName'")
 
 function menu_secondaire
 {
@@ -75,28 +74,13 @@ do
     2)
         log "Consultation détail des partitions"
         clear
-        echo -e "Le poste $ssh_client contient $number_disk_client avec en détail :\n"
-        for disk in $list_disk_client
-        do
-            part_number=$(ssh $ssh_client "powershell.exe -Command \"Get-Partition -DiskNumber $disk | Measure-Object | Select-Object -ExpandProperty Count\"")
-            echo "Numéro du disque : $disk"
-            echo "Nombre de partitions du disque $disk : $part_number"
-
-            for partition in $(ssh $ssh_client "powershell.exe -Command 'Get-Partition -DiskNumber '$disk' | Select-Object -ExpandProperty PartitionNumber'" | tail -n +3 | grep -E '^[0-9]+$')
-            do
-                partition_data=$(ssh $ssh_client "powershell.exe -Command 'Get-Partition -DiskNumber '$disk' -PartitionNumber '$partition' | Get-Volume | Select-Object FileSystemType, Size'")
-                fs_part=$(echo "$partition_data" | awk '{print $2}')
-                size_part=$(echo "$partition_data" | awk '{print $3}')
-                echo "Concernant la partition $partition"
-                echo "Le File System est : $fs_part"
-                echo -e "Et la taille de la partition est : $size_part\n"
-            done
-        done
+        echo -e "Le poste $ssh_client contient les volumes suivants :\n"
+        echo -e "$list_disk_client\n"
         menu_secondaire
         ;;
     3)
         log "Consultation disques montés"
-        echo "La liste des lecteurs montés sur <CLIENT NOM> est : $list_reader_client\n"
+        echo "La liste des lecteurs montés sur $ssh_client est : $list_reader_client\n"
         menu_secondaire
         ;;
     4)
