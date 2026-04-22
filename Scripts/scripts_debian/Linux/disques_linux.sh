@@ -96,7 +96,7 @@ do
         ;;
     3)
         log "Consultation disques montés"
-        echo "La liste des lecteurs montés sur $ssh_client est : $liste_lecteur_client"
+        echo -e "La liste des lecteurs montés sur $ssh_client est : \n $liste_lecteur_client"
         menu_secondaire
         ;;
     4)
