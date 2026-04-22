@@ -61,11 +61,11 @@ do
         echo ""
         
         # Check si le compte existe déjà (SilentlyContinue masque l'erreur rouge de PowerShell si non trouvé)
-        utilisateur_exist=$(ssh $ssh_user@$ip_client "powershell.exe -Command \"Get-LocalUser -Name '$cible_username' -ErrorAction SilentlyContinue\"")
+        utilisateur_exist=$(ssh $ssh_client "powershell.exe -Command \"Get-LocalUser -Name '$cible_username' -ErrorAction SilentlyContinue\"")
 
         if [ -z "$utilisateur_exist" ]; then
             # Windows exige un mot de passe converti en SecureString
-            ssh $ssh_user@$ip_client "powershell.exe -Command \"\$sec_pwd = ConvertTo-SecureString '$nouveau_password' -AsPlainText -Force; New-LocalUser -Name '$cible_username' -Password \$sec_pwd\""
+            ssh $ssh_client "powershell.exe -Command \"\$sec_pwd = ConvertTo-SecureString '$nouveau_password' -AsPlainText -Force; New-LocalUser -Name '$cible_username' -Password \$sec_pwd\""
             
             if [ $? -eq 0 ]; then
                 echo "L'utilisateur $cible_username a été créé avec succès."
@@ -88,7 +88,7 @@ do
         echo ""
 
         # Modif du mot de passe via Set-LocalUser
-        ssh $ssh_user@$ip_client "powershell.exe -Command \"\$sec_pwd = ConvertTo-SecureString '$nouveau_password' -AsPlainText -Force; Set-LocalUser -Name '$cible_username' -Password \$sec_pwd\""
+        ssh $ssh_client "powershell.exe -Command \"\$sec_pwd = ConvertTo-SecureString '$nouveau_password' -AsPlainText -Force; Set-LocalUser -Name '$cible_username' -Password \$sec_pwd\""
 
         if [ $? -eq 0 ]; then
             echo "Le mot de passe de $cible_username a été mis à jour."
@@ -108,7 +108,7 @@ do
         if [ "$confirm" = "o" ]; 
         then
             # Suppression via Remove-LocalUser
-            ssh $ssh_user@$ip_client "powershell.exe -Command \"Remove-LocalUser -Name '$cible_username'\""
+            ssh $ssh_client "powershell.exe -Command \"Remove-LocalUser -Name '$cible_username'\""
             
             if [ $? -eq 0 ]; then
                 echo "L'utilisateur $cible_username a été supprimé."
