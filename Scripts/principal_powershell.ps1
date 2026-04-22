@@ -17,7 +17,7 @@ $ssh_client = Read-Host "Quel est le nom de la machine sur laquelle vous souhait
 
 # Démarrage ssh-agent et ajout de la clé
 Start-Service ssh-agent
-ssh-add "$env:USERPROFILE\.ssh\id_ed25519"
+ssh-add "$env:USERPROFILE\.ssh\id_rsa"
 
 Start-Sleep 2
 Clear-Host
