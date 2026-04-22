@@ -11,7 +11,7 @@ marque_modele=$(ssh $ssh_client "dmidecode -t system | grep -E 'Manufacturer|Ver
 
 function menu_secondaire
 {
-    echo "1 - Revenir au menu Disques"
+    echo "1 - Revenir au menu Système"
     echo "2 - Revenir au menu principal"
     echo "q - Quitter le script"
     read -p "Quel est votre choix ?" choix_secondaire
@@ -19,7 +19,7 @@ function menu_secondaire
     case $choix_secondaire in
 
     1)
-        log "Retour menu systeme"
+        log "Retour menu système"
         echo "Vous retournez au menu systeme"
         sleep 1
 		clear
