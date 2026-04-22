@@ -67,22 +67,24 @@ do
      #Affichage du nombre de disques sur le poste client
     1)
         log "Consultation nombre de disques client"
+        clear
         echo -e "Le nombre de disques de $ssh_client est de $number_disk_client\n"
         menu_secondaire
         ;;
     # Affichage détaillé des partitions
     2)
         log "Consultation détail des partitions"
+        clear
         echo "Le poste $ssh_client contient $number_disk_client avec en détail :\n"
         for disk in $list_disk_client
         do
-            part_number=$(ssh $ssh_user@$ip_client "powershell.exe -Command '(Get-Partition -DiskNumber $disk | Measure-Object).Count'")
+            part_number=$(ssh $ssh_client "powershell.exe -Command '(Get-Partition -DiskNumber $disk | Measure-Object).Count'")
             echo "Numéro du disque : $disk"
             echo "Nombre de partitions du disque $disk : $part_number"
 
-            for partition in $(ssh $ssh_user@$ip_client "powershell.exe -Command 'Get-Partition -DiskNumber $disk | Select-Object -ExpandProperty PartitionNumber'")
+            for partition in $(ssh $ssh_client "powershell.exe -Command 'Get-Partition -DiskNumber $disk | Select-Object -ExpandProperty PartitionNumber'")
             do
-                partition_data=$(ssh $ssh_user@$ip_client "powershell.exe -Command 'Get-Partition -DiskNumber $disk -PartitionNumber $partition | Get-Volume | Select-Object FileSystemType, Size'")
+                partition_data=$(ssh $ssh_client "powershell.exe -Command 'Get-Partition -DiskNumber $disk -PartitionNumber $partition | Get-Volume | Select-Object FileSystemType, Size'")
                 fs_part=$(echo "$partition_data" | awk '{print $2}')
                 size_part=$(echo "$partition_data" | awk '{print $3}')
                 echo "Concernant la partition $partition"
