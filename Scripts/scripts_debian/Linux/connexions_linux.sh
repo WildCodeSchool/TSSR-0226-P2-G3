@@ -17,6 +17,8 @@ function menu_secondaire
     echo "2 - Revenir au menu principal"
     echo "q - Quitter le script"
     read -p "Quel est votre choix ?" choix_secondaire
+    sleep 1
+    clear
 
     case $choix_secondaire in
 
