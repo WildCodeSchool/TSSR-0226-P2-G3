@@ -13,7 +13,7 @@ function MenuSecondaire {
 
     switch ($choix_secondaire) {
         "1" {
-            Log "Retour menu maintenance"
+            Log "Retour au menu maintenance"
             Write-Host "Vous retournez au menu maintenance"
             Start-Sleep -Seconds 1
             Clear-Host
@@ -51,7 +51,8 @@ while ($true) {
     Write-Host "3 - Activation de pare feu"
     Write-Host "4 - Execution de script a distance"
     Write-Host "5 - Liste des utilisateurs locaux"
-    Write-Host "r - revenir en arrière"
+    Write-Host "r - retour au menu maintenance"
+    Write-Host "q - retour au menu principal"
     $choix = Read-Host "Votre choix : "
 
     switch ($choix) {
