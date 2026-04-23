@@ -3,7 +3,7 @@ $CURRENT_USER = $env:USERNAME
 $REMOTE_PC    = "SRVWIN01"  # Machine distante où écrire les logs
 
 # Ecrit une ligne dans le fichier log sur la machine distante via WinRM
-function Write-Log {
+function Log {
     param($Event)
     $line = "$(Get-Date -Format 'yyyyMMdd')_$(Get-Date -Format 'HHmmss')_${CURRENT_USER}_${Event}"
     Invoke-Command -ComputerName $REMOTE_PC -ScriptBlock {
@@ -20,15 +20,16 @@ function Init-Log {
             New-Item -ItemType File -Path $f -Force | Out-Null
         }
     } -ArgumentList $LOG_FILE
-    Write-Log "StartScript"
+    Log "StartScript"
 }
 
 # Lance a la fermeture : ecrit EndScript + quitte proprement
 function End-Log {
-    Write-Log "EndScript"
+    Log "EndScript"
     Write-Host "Au revoir $CURRENT_USER !"
     exit 0
 }
+
 # ==============================================================================
 # AFFICHAGE
 # ==============================================================================
