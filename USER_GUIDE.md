@@ -68,9 +68,6 @@ La logique est strictement identique à la version Linux : entrez les identifian
 
 ## FAQ
 
-**Q : Où puis-je consulter l'historique des actions effectuées par le script ?**
-**R :** Notre outil intègre une journalisation .................................... Où ??????
-
 **Q : Le script me renvoie une erreur "Connection refused" ou "Permission denied" au moment de l'action, pourquoi ?**
 
 **R :** Cela signifie que le tunnel de communication n'a pas pu s'établir.
