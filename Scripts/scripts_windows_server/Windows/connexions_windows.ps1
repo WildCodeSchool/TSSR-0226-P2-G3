@@ -3,19 +3,12 @@ param(
     [System.Management.Automation.PSCredential]$REMOTE_CRED
 )
 . "$PSScriptRoot\..\utilitaire.ps1"
-# Variables principales - commandes PowerShell pour client Windows
-$derniers_logins = ssh $ssh_client "powershell.exe -Command 'Get-EventLog -LogName Security -InstanceId 4624 -Newest 5 | Select-Object TimeGenerated, UserName'"
-$ipcon_client = ssh $ssh_client "powershell.exe -Command 'Get-NetIPAddress -AddressFamily IPv4 | Where-Object {\$_.InterfaceAlias -notlike ''*Loopback*''} | Select-Object -ExpandProperty IPAddress'"
-$prefixe = ssh $ssh_client "powershell.exe -Command 'Get-NetIPAddress -AddressFamily IPv4 | Where-Object {\$_.InterfaceAlias -notlike ''*Loopback*''} | Select-Object -ExpandProperty PrefixLength'"
-$masque_client = ConvertirMasque -prefixe $prefixe
-$passerelle_client = ssh $ssh_client "powershell.exe -Command 'Get-NetRoute -DestinationPrefix 0.0.0.0/0 | Select-Object -ExpandProperty NextHop'"
 
 function MenuSecondaire {
     Write-Host "1 - Revenir au menu Connexion"
     Write-Host "2 - Revenir au menu principal"
     Write-Host "q - Quitter le script"
     $choix_secondaire = Read-Host "Quel est votre choix ?"
-
     switch ($choix_secondaire) {
         "1" {
             Log "Retour menu connexion"
@@ -51,7 +44,7 @@ Clear-Host
 while ($true) {
     Write-Host "Menu Connexion"
     Write-Host "Que souhaitez-vous connaitre ?"
-    Write-Host "1 - Les 5 dernières connexions à distance"
+    Write-Host "1 - Les 5 dernieres connexions a distance"
     Write-Host "2 - Adresse IP, masque IP et passerelle du Client"
     Write-Host "3 - Revenir au menu principal"
     Write-Host "q - Quitter le script"
@@ -61,18 +54,34 @@ while ($true) {
         "1" {
             Log "cinq derniers login"
             Write-Host "Voici les 5 derniers loggings :"
-            Write-Host $derniers_logins
+            Invoke-Command -ComputerName $REMOTE_PC -Credential $REMOTE_CRED -ScriptBlock {
+                Get-EventLog -LogName Security -InstanceId 4624 -Newest 5 |
+                Select-Object TimeGenerated, UserName |
+                Format-Table -AutoSize
+            }
             MenuSecondaire
         }
         "2" {
             Log "Affichage IP, Masque, Passerelle"
-            Write-Host "L'adresse IP du client est $ipcon_client"
-            Write-Host "Le masque de sous-réseau du client est $masque_client"
-            Write-Host "La passerelle du client est $passerelle_client"
+            $infos = Invoke-Command -ComputerName $REMOTE_PC -Credential $REMOTE_CRED -ScriptBlock {
+                $ip = Get-NetIPAddress -AddressFamily IPv4 |
+                      Where-Object { $_.InterfaceAlias -notlike '*Loopback*' } |
+                      Select-Object -ExpandProperty IPAddress
+                $prefixe = Get-NetIPAddress -AddressFamily IPv4 |
+                           Where-Object { $_.InterfaceAlias -notlike '*Loopback*' } |
+                           Select-Object -ExpandProperty PrefixLength
+                $passerelle = Get-NetRoute -DestinationPrefix 0.0.0.0/0 |
+                              Select-Object -ExpandProperty NextHop
+                [PSCustomObject]@{ IP = $ip; Prefixe = $prefixe; Passerelle = $passerelle }
+            }
+            $masque = ConvertirMasque -prefixe $infos.Prefixe
+            Write-Host "Adresse IP      : $($infos.IP)"
+            Write-Host "Masque          : $masque"
+            Write-Host "Passerelle      : $($infos.Passerelle)"
             MenuSecondaire
         }
         "3" {
-            Log "Retour arrière"
+            Log "Retour arriere"
             Write-Host "Vous allez revenir au menu principal"
             Start-Sleep 1
             exit 0
