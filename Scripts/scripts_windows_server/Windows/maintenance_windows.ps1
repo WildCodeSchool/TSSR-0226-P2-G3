@@ -1,5 +1,5 @@
 # Appel utilitaires pour logs
-. "./scripts_windows_server/utilitaire.ps1"
+. "$PSScriptRoot\scripts_windows_server\utilitaire.ps1"
 
 function MenuSecondaire {
     Write-Host "1 - Revenir au menu maintenance"
