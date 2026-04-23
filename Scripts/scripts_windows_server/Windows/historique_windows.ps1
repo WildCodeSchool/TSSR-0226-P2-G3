@@ -1,3 +1,9 @@
+param(
+    [string]$REMOTE_PC,
+    [System.Management.Automation.PSCredential]$REMOTE_CRED
+)
+. "$PSScriptRoot\..\utilitaire.ps1"
+
 $LOG_FILE     = "C:\Windows\System32\LogFiles\log_evt.log"
 $CURRENT_USER = $env:USERNAME
 $REMOTE_PC    = "SRVWIN01"  # Machine distante où écrire les logs
