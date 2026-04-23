@@ -1,4 +1,35 @@
-"$PSScriptRoot\scripts_windows_server\utilitaire.ps1"
+Il faut ajouter la demande de credentials au début du script principal et les passer à tous les Invoke-Command.
+utilitaire.ps1 — ajout du paramètre -Credential :
+powershell$LOG_FILE     = "C:\Windows\System32\LogFiles\log_evt.log"
+$CURRENT_USER = $env:USERNAME
+
+function Log {
+    param($Event)
+    $line = "$(Get-Date -Format 'yyyyMMdd')_$(Get-Date -Format 'HHmmss')_${CURRENT_USER}_${Event}"
+    Invoke-Command -ComputerName $REMOTE_PC -Credential $REMOTE_CRED -ScriptBlock {
+        param($l, $f)
+        Add-Content -Path $f -Value $l -Encoding UTF8
+    } -ArgumentList $line, $LOG_FILE
+}
+
+function Init-Log {
+    Invoke-Command -ComputerName $REMOTE_PC -Credential $REMOTE_CRED -ScriptBlock {
+        param($f)
+        if (-not (Test-Path $f)) {
+            New-Item -ItemType File -Path $f -Force | Out-Null
+        }
+    } -ArgumentList $LOG_FILE
+    Log "StartScript"
+}
+
+function End-Log {
+    Log "EndScript"
+    Write-Host "Au revoir $CURRENT_USER !"
+    exit 0
+}
+
+Script principal — ajout de $REMOTE_CRED :
+powershell. "$PSScriptRoot\scripts_windows_server\utilitaire.ps1"
 
 function LancementEnfant {
     param([string]$script)
@@ -10,22 +41,23 @@ function LancementEnfant {
 }
 
 # Demande la machine à cibler
-$ssh_client = Read-Host "Quel est le nom de la machine sur laquelle vous souhaitez vous connecter ?"
-$REMOTE_PC  = $ssh_client  # Utilisé par les fonctions Log de utilitaire.ps1
+$ssh_client  = Read-Host "Quel est le nom de la machine sur laquelle vous souhaitez vous connecter ?"
+$REMOTE_PC   = $ssh_client
+$REMOTE_CRED = Get-Credential -Message "Entrez les credentials de $REMOTE_PC"
 
 # Vérifie que la machine est joignable via WinRM
-if (-not (Test-WSMan -ComputerName $REMOTE_PC -ErrorAction SilentlyContinue)) {
+if (-not (Test-WSMan -ComputerName $REMOTE_PC -Credential $REMOTE_CRED -Authentication Negotiate -ErrorAction SilentlyContinue)) {
     Write-Host "Impossible de joindre $REMOTE_PC via WinRM."
     exit 1
 }
 
-Init-Log  # Crée le fichier log + écrit StartScript
+Init-Log
 
 Start-Sleep 2
 Clear-Host
 
 # Détection OS via WinRM
-$os_type = Invoke-Command -ComputerName $REMOTE_PC -ScriptBlock {
+$os_type = Invoke-Command -ComputerName $REMOTE_PC -Credential $REMOTE_CRED -ScriptBlock {
     if ($env:OS -eq "Windows_NT") { "Windows" } else { "Linux" }
 }
 
