@@ -1,4 +1,4 @@
-"$PSScriptRoot\scripts_windows_server\utilitaire.ps1"
+. "$PSScriptRoot\scripts_windows_server\utilitaire.ps1"
 
 function LancementEnfant {
     param([string]$script)
