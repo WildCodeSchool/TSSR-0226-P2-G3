@@ -1,23 +1,25 @@
-$LOG_FILE     = "C:\Windows\System32\LogFiles\log_evt.log"  # Emplacement du fichier log
-$CURRENT_USER = $env:USERNAME                                # Utilisateur qui lance le script
+$LOG_FILE     = "C:\Windows\System32\LogFiles\log_evt.log"
+$CURRENT_USER = $env:USERNAME
+$REMOTE_PC    = "SRVWIN01"  # Machine distante où écrire les logs
 
-# ==============================================================================
-# JOURNALISATION
-# ==============================================================================
-
-# Ecrit une ligne dans le fichier log
-# Format : yyyymmdd_hhmmss_Utilisateur_Evenement
+# Ecrit une ligne dans le fichier log sur la machine distante via WinRM
 function Write-Log {
     param($Event)
     $line = "$(Get-Date -Format 'yyyyMMdd')_$(Get-Date -Format 'HHmmss')_${CURRENT_USER}_${Event}"
-    Add-Content -Path $LOG_FILE -Value $line -Encoding UTF8
+    Invoke-Command -ComputerName $REMOTE_PC -ScriptBlock {
+        param($l, $f)
+        Add-Content -Path $f -Value $l -Encoding UTF8
+    } -ArgumentList $line, $LOG_FILE
 }
 
 # Lance au demarrage : cree le fichier log si besoin + ecrit StartScript
 function Init-Log {
-    if (-not (Test-Path $LOG_FILE)) {
-        New-Item -ItemType File -Path $LOG_FILE -Force | Out-Null
-    }
+    Invoke-Command -ComputerName $REMOTE_PC -ScriptBlock {
+        param($f)
+        if (-not (Test-Path $f)) {
+            New-Item -ItemType File -Path $f -Force | Out-Null
+        }
+    } -ArgumentList $LOG_FILE
     Write-Log "StartScript"
 }
 
@@ -27,7 +29,6 @@ function End-Log {
     Write-Host "Au revoir $CURRENT_USER !"
     exit 0
 }
-
 # ==============================================================================
 # AFFICHAGE
 # ==============================================================================
