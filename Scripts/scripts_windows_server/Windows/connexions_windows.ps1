@@ -50,7 +50,7 @@ while ($true) {
     Write-Host "Que souhaitez-vous connaitre ?"
     Write-Host "1 - Les 5 dernieres connexions a distance"
     Write-Host "2 - Adresse IP, masque IP et passerelle du Client"
-    Write-Host "3 - Revenir au menu principal"
+    Write-Host "r - Revenir au menu principal"
     Write-Host "q - Quitter le script"
     $choix = Read-Host "Quel est votre choix ?"
 
