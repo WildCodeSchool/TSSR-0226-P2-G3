@@ -51,7 +51,7 @@ while ($true) {
     Write-Host "1 - Le nombre de disques"
     Write-Host "2 - Le partitionnement par disque"
     Write-Host "3 - La liste des lecteurs montes"
-    Write-Host "4 - Revenir au menu principal"
+    Write-Host "r - Revenir au menu principal"
     Write-Host "q - Quitter le script"
     $choix = Read-Host "Quel est votre choix ?"
 
