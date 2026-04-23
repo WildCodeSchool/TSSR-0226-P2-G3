@@ -51,8 +51,8 @@ while ($true) {
     Write-Host "3 - Activation de pare feu"
     Write-Host "4 - Execution de script a distance"
     Write-Host "5 - Liste des utilisateurs locaux"
-    Write-Host "r - retour au menu maintenance"
-    Write-Host "q - retour au menu principal"
+    Write-Host "r - retour au menu précédent"
+    Write-Host "q - quitter le script"
     $choix = Read-Host "Votre choix : "
 
     switch ($choix) {
