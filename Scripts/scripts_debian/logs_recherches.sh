@@ -1,5 +1,7 @@
 #!/bin/bash
 
+log_file=/var/log/log_evt.log
+
 function menu_secondaire
 {
     echo "1 - Revenir au menu Recherche Logs"
