@@ -4,14 +4,6 @@ param(
 )
 . "$PSScriptRoot\..\utilitaire.ps1"
 
-#Il est nécessaire d'installer PSWindowsUpdate sur le client Windows
-# Variables principales - commandes PowerShell pour client Windows
-$version_os = ssh $ssh_client "powershell.exe -Command '(Get-WmiObject Win32_OperatingSystem).Caption'"
-$maj_critiques = ssh $ssh_client "powershell.exe -Command 'Import-Module PSWindowsUpdate; Get-WindowsUpdate -Category ''Security Updates'' | Select-Object Title, Size'"
-$nombre_maj_critiques = ($maj_critiques | Measure-Object -Line).Lines
-$marque_modele = ssh $ssh_client "powershell.exe -Command '(Get-WmiObject Win32_ComputerSystem).Manufacturer + '' '' + (Get-WmiObject Win32_ComputerSystem).Model'"
-$uac_status = ssh $ssh_client "powershell.exe -Command '(Get-ItemProperty HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System).EnableLUA'"
-
 function MenuSecondaire {
     Write-Host "1 - Revenir au menu Système"
     Write-Host "2 - Revenir au menu principal"
