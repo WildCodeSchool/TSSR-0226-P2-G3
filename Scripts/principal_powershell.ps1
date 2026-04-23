@@ -1,5 +1,4 @@
-
-. "$PSScriptRoot\scripts_windows_server\utilitaire.ps1"
+"$PSScriptRoot\scripts_windows_server\utilitaire.ps1"
 
 function LancementEnfant {
     param([string]$script)
@@ -10,20 +9,25 @@ function LancementEnfant {
     }
 }
 
-Log "StartScript"
-
 # Demande la machine à cibler
 $ssh_client = Read-Host "Quel est le nom de la machine sur laquelle vous souhaitez vous connecter ?"
+$REMOTE_PC  = $ssh_client  # Utilisé par les fonctions Log de utilitaire.ps1
 
-# Démarrage ssh-agent et ajout de la clé
-Start-Service ssh-agent
-ssh-add "$env:USERPROFILE\.ssh\id_rsa"
+# Vérifie que la machine est joignable via WinRM
+if (-not (Test-WSMan -ComputerName $REMOTE_PC -ErrorAction SilentlyContinue)) {
+    Write-Host "Impossible de joindre $REMOTE_PC via WinRM."
+    exit 1
+}
+
+Init-Log  # Crée le fichier log + écrit StartScript
 
 Start-Sleep 2
 Clear-Host
 
-# Détection OS
-$os_type = (ssh $ssh_client "uname") 2>$null
+# Détection OS via WinRM
+$os_type = Invoke-Command -ComputerName $REMOTE_PC -ScriptBlock {
+    if ($env:OS -eq "Windows_NT") { "Windows" } else { "Linux" }
+}
 
 while ($true) {
     Write-Host "Bienvenue sur la gestion de $ssh_client"
@@ -58,7 +62,6 @@ while ($true) {
             Write-Host " - De supprimer un compte utilisateur local"
             Read-Host "Appuyez sur Entrée pour continuer..."
         }
-
         "2" {
             Log "Start_Menu_Groupes"
             if ($os_type -eq "Linux") {
