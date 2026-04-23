@@ -1,3 +1,7 @@
+param(
+    [string]$REMOTE_PC,
+    [System.Management.Automation.PSCredential]$REMOTE_CRED
+)
 . "$PSScriptRoot\..\utilitaire.ps1"
 
 #Il est nécessaire d'installer PSWindowsUpdate sur le client Windows
