@@ -16,23 +16,27 @@ function MenuSecondaire {
             Log "Retour menu maintenance"
             Write-Host "Vous retournez au menu maintenance"
             Start-Sleep -Seconds 1
+            Clear-Host
             return
         }
         "2" {
             Log "Retour au menu principal"
             Write-Host "Vous retournez au menu principal"
             Start-Sleep -Seconds 1
+            Clear-Host
             exit 0
         }
         "q" {
             Log "Quitte le script"
             Write-Host "Vous quittez le script"
             Start-Sleep -Seconds 1
+            Clear-Host
             exit 50
         }
         default {
             Write-Host "L'option choisie n'existe pas, veuillez recommencer"
             Start-Sleep -Seconds 1
+            Clear-Host
             MenuSecondaire
         }
     }
