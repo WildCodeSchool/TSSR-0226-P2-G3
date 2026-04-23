@@ -1,6 +1,5 @@
 # Appel utilitaire pour fonction log
-. "./scripts_windows_server/utilitaire.ps1"
-
+. "$PSScriptRoot\scripts_windows_server\utilitaire.ps1"
 # Sous-menu pour gérer la navigation
 function MenuSecondaire {
     Write-Host "1 - Revenir au menu Utilisateurs"
