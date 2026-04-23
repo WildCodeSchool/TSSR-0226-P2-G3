@@ -1,4 +1,4 @@
-. "$PSScriptRoot\scripts_windows_server\utilitaire.ps1"
+. "$PSScriptRoot\..\utilitaire.ps1"
 
 # Variables principales - commandes PowerShell pour client Windows
 $nombre_disque_client = ssh $ssh_client "powershell.exe -Command '(Get-Disk | Measure-Object).Count'"
