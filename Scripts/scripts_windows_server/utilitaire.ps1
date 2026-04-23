@@ -1,21 +1,27 @@
-# Destination des logs
-$log_file = "C:\Windows\System32\LogFiles\log_evt.log"
+$LOG_FILE     = "C:\Windows\System32\LogFiles\log_evt.log"
+$CURRENT_USER = $env:USERNAME
 
-# Fonction d'enregistrement de logs exporté dans parent et enfants
 function Log {
-    param([string]$message)
-    $date = Get-Date -Format "yyyyMMdd_HHmmss"
-    "$date_${env:USERNAME}_$message" | Out-File -Append $log_file
+    param($Event)
+    $line = "$(Get-Date -Format 'yyyyMMdd')_$(Get-Date -Format 'HHmmss')_${CURRENT_USER}_${Event}"
+    Invoke-Command -ComputerName $REMOTE_PC -Credential $REMOTE_CRED -ScriptBlock {
+        param($l, $f)
+        Add-Content -Path $f -Value $l -Encoding UTF8
+    } -ArgumentList $line, $LOG_FILE
 }
 
-# Fonction conversion de CIDR en décimal pour script connexion
-function ConvertirMasque {
-    param([int]$prefixe)
-    $masque = [uint32]0
-    for ($i = 0; $i -lt $prefixe; $i++) {
-        $masque = $masque -bor (1 -shl (31 - $i))
-    }
-    $bytes = [BitConverter]::GetBytes($masque)
-    [Array]::Reverse($bytes)
-    return ($bytes -join ".")
+function Init-Log {
+    Invoke-Command -ComputerName $REMOTE_PC -Credential $REMOTE_CRED -ScriptBlock {
+        param($f)
+        if (-not (Test-Path $f)) {
+            New-Item -ItemType File -Path $f -Force | Out-Null
+        }
+    } -ArgumentList $LOG_FILE
+    Log "StartScript"
+}
+
+function End-Log {
+    Log "EndScript"
+    Write-Host "Au revoir $CURRENT_USER !"
+    exit 0
 }
