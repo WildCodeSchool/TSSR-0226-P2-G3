@@ -40,6 +40,7 @@ function menu_secondaire
     *)
         echo "L'option choisi n'existe pas, veuillez recommencer"
         sleep 1
+        clear
         menu_secondaire
         ;;
     esac
