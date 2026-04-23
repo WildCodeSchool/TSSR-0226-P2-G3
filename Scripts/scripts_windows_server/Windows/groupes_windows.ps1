@@ -1,5 +1,5 @@
 # Appel utilitaires pour logs
-. "./scripts_windows_server/utilitaire.ps1"
+. "$PSScriptRoot\scripts_windows_server\utilitaire.ps1"
 
 # Sous-menu pour gérer la navigation
 function MenuSecondaire {
