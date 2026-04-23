@@ -45,7 +45,7 @@ clear
 while true
 do
     echo "Menu Groupes Windows"
-    echo "Que souhaitez-vous faire sur le poste client ($ip_client) ?"
+    echo "Que souhaitez-vous faire sur le poste client ($ssh_client) ?"
     echo "1 - Ajout à un groupe d'administration"
     echo "2 - Ajout à un groupe standard"
     echo "3 - Sortie d'un groupe"
@@ -60,7 +60,7 @@ do
         read -p "Quel utilisateur doit devenir administrateur ? : " cible_username
 
         # Sous Windows en français, le groupe s'appelle Administrateurs
-        ssh $ssh_user@$ip_client "powershell.exe -Command \"Add-LocalGroupMember -Group 'Administrateurs' -Member '$cible_username'\""
+        ssh $ssh_client "powershell.exe -Command \"Add-LocalGroupMember -Group 'Administrateurs' -Member '$cible_username'\""
         
         if [ $? -eq 0 ]; then
             echo "$cible_username a été ajouté au groupe d'administration."
@@ -77,7 +77,7 @@ do
         read -p "Nom de l'utilisateur : " cible_username
         read -p "Dans quel groupe souhaitez-vous l'ajouter ? : " cible_groupe
 
-        ssh $ssh_user@$ip_client "powershell.exe -Command \"Add-LocalGroupMember -Group '$cible_groupe' -Member '$cible_username'\""
+        ssh $ssh_client "powershell.exe -Command \"Add-LocalGroupMember -Group '$cible_groupe' -Member '$cible_username'\""
         
         if [ $? -eq 0 ]; then
             echo "$cible_username a été ajouté au groupe $cible_groupe."
@@ -94,7 +94,7 @@ do
         read -p "Nom de l'utilisateur : " cible_username
         read -p "De quel groupe souhaitez-vous le retirer ? : " cible_groupe
 
-        ssh $ssh_user@$ip_client "powershell.exe -Command \"Remove-LocalGroupMember -Group '$cible_groupe' -Member '$cible_username'\""
+        ssh $ssh_client "powershell.exe -Command \"Remove-LocalGroupMember -Group '$cible_groupe' -Member '$cible_username'\""
         
         if [ $? -eq 0 ]; then
             echo "$cible_username a été retiré du groupe $cible_groupe."
