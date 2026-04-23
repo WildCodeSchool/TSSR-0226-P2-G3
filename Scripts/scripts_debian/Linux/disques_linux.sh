@@ -27,12 +27,14 @@ function menu_secondaire
         log "Retour au menu principal"
         echo "Vous retournez au menu principal"
         sleep 1
+        clear
         exit 0
         ;;
     q)
         log "Quitte le script"
         echo "Vous quittez le script"
         sleep 1
+        clear
         exit 50
         ;;
     *)
