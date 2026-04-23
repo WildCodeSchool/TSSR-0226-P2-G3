@@ -1,4 +1,4 @@
-. "./scripts_windows_server/utilitaire.ps1"
+. "$PSScriptRoot\scripts_windows_server\utilitaire.ps1"
 
 # Variables principales pour client Linux depuis powershell
 $nombre_disque_client = ssh $ssh_client "lsblk -d | grep disk | wc -l"
