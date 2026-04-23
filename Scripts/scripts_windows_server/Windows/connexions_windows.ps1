@@ -1,4 +1,4 @@
-. "./scripts_windows_server/utilitaire.ps1"
+. "$PSScriptRoot\scripts_windows_server\utilitaire.ps1"
 
 # Variables principales - commandes PowerShell pour client Windows
 $derniers_logins = ssh $ssh_client "powershell.exe -Command 'Get-EventLog -LogName Security -InstanceId 4624 -Newest 5 | Select-Object TimeGenerated, UserName'"
