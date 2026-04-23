@@ -25,3 +25,14 @@ function End-Log {
     Write-Host "Au revoir $CURRENT_USER !"
     exit 0
 }
+
+function ConvertirMasque {
+    param([int]$prefixe)
+    $masque = [uint32]0
+    for ($i = 0; $i -lt $prefixe; $i++) {
+        $masque = $masque -bor (1 -shl (31 - $i))
+    }
+    $bytes = [BitConverter]::GetBytes($masque)
+    [Array]::Reverse($bytes)
+    return ($bytes -join ".")
+}
