@@ -1,4 +1,4 @@
-. "./scripts_windows_server/utilitaire.ps1"
+. "$PSScriptRoot\scripts_windows_server\utilitaire.ps1"
 
 # Variables principales pour client Linux depuis Powershell
 $version_os = ssh $ssh_client "cat /etc/os-release | grep 'VERSION=' | cut -d '=' -f2 | tr -d '`"'"
