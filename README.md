@@ -21,6 +21,10 @@ Ce projet consiste à créer un outil d'administration centralisée multi-platef
 * Créer et rechercher des informations dans des journaux d'événements (logs).
 * Automatiser des opérations ciblées via une interface ergonomique (menus interactifs).
 
+
+![schema](Ressources/Projet2.png)
+
+
 ---
 ## 2. Introduction et mise en contexte
 
