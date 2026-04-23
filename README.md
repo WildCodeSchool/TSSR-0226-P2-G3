@@ -85,6 +85,8 @@ L'infrastructure réseau du Groupe 3 repose sur le sous-réseau **172.16.30.0/24
 
 * **Le manque d'harmonisation des scripts enfants :** Vu qu'on codait à plusieurs en même temps, on n'avait pas tous la même façon de nommer nos variables ou d'indenter le code, ce qui rendait la relecture difficile.
 
+* **Manque de temps et mauvaise organisation pour la partie Powershell**
+
 ---
 ## 6. Solutions trouvées 
 
@@ -108,5 +110,7 @@ L'infrastructure réseau du Groupe 3 repose sur le sous-réseau **172.16.30.0/24
 * **Vérification réseau préventive :** Faire en sorte que le script lance un simple `ping` vers la cible avant de démarrer. Si elle ne répond pas, le script s'arrête tout de suite au lieu de charger dans le vide.
 
 * **Un design global amélioré**
+
+* **Script Powershell fonctionnel**
 
 ---
