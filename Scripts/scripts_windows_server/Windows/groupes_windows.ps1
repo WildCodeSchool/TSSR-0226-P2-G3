@@ -56,7 +56,7 @@ while ($true) {
     Write-Host "1 - Ajout à un groupe d'administration"
     Write-Host "2 - Ajout à un groupe standard"
     Write-Host "3 - Sortie d'un groupe"
-    Write-Host "4 - Revenir au menu principal"
+    Write-Host "r - Revenir au menu principal"
     Write-Host "q - Quitter le script"
     $choix = Read-Host "Quel est votre choix ?"
 
