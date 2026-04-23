@@ -2,7 +2,7 @@
 
 function LancementEnfant {
     param([string]$script)
-    & $script
+    & $script -REMOTE_PC $REMOTE_PC -REMOTE_CRED $REMOTE_CRED
     if ($LASTEXITCODE -eq 50) {
         Log "EndScript"
         exit 0
