@@ -13,7 +13,7 @@ passerelle_client=$(ssh $ssh_client "ip route | grep 'default' | awk '{print \$3
 
 function menu_secondaire
 {
-    echo "1 - Revenir au menu Disques"
+    echo "1 - Revenir au menu Connexion"
     echo "2 - Revenir au menu principal"
     echo "q - Quitter le script"
     read -p "Quel est votre choix ?" choix_secondaire
@@ -58,7 +58,7 @@ clear
 while true
 do
     clear
-    echo "Menu Disques"
+    echo "Menu Connexion"
     echo "Que souhaitez-vous connaitre ?"
     echo "1 - Les 5 dernières connexions à distance"
     echo "2 - Adresse IP, masque IP et passerelle du Client"
