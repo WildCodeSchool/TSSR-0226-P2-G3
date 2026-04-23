@@ -11,11 +11,20 @@ function MenuSecondaire {
     $choix_secondaire = Read-Host "Quel est votre choix ?"
     switch ($choix_secondaire) {
         "1" {
-            Log "Retour menu connexion"
-            Write-Host "Vous retournez au menu connexion"
-            Start-Sleep 1
-            return
-        }
+            Log "cinq derniers login"
+            Write-Host "Voici les 5 derniers loggings :"
+            Invoke-Command -ComputerName $REMOTE_PC -Credential $REMOTE_CRED -ScriptBlock {
+            Get-WinEvent -FilterHashtable @{LogName='Security'; Id=4624} -MaxEvents 5 |
+            ForEach-Object {
+            $xml = [xml]$_.ToXml()
+            $user = $xml.Event.EventData.Data | Where-Object { $_.Name -eq 'TargetUserName' } | Select-Object -ExpandProperty '#text'
+            [PSCustomObject]@{
+                Date     = $_.TimeCreated
+                Username = $user
+                    }
+                } | Format-Table -AutoSize
+            }
+    MenuSecondaire
         "2" {
             Log "Retour au menu principal"
             Write-Host "Vous retournez au menu principal"
