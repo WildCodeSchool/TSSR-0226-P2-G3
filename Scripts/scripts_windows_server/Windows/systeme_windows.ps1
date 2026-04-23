@@ -1,4 +1,4 @@
-. "./scripts_windows_server/utilitaire.ps1"
+. "$PSScriptRoot\scripts_windows_server\utilitaire.ps1"
 
 #Il est nécessaire d'installer PSWindowsUpdate sur le client Windows
 # Variables principales - commandes PowerShell pour client Windows
