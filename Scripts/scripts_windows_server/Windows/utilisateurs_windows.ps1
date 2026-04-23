@@ -1,6 +1,5 @@
-# Appel utilitaire pour fonction log
-. "$PSScriptRoot\scripts_windows_server\utilitaire.ps1"
-# Sous-menu pour gérer la navigation
+. "$PSScriptRoot\..\utilitaire.ps1"
+
 function MenuSecondaire {
     Write-Host "1 - Revenir au menu Utilisateurs"
     Write-Host "2 - Revenir au menu principal"
@@ -12,24 +11,24 @@ function MenuSecondaire {
             Log "Retour menu utilisateurs"
             Write-Host "Vous retournez au menu Utilisateurs" -ForegroundColor Cyan
             Start-Sleep -Seconds 1
-            return # Permet de sortir de la fonction et de relancer la boucle
+            return
         }
         '2' {
             Log "Retour au menu principal"
             Write-Host "Vous retournez au menu principal" -ForegroundColor Cyan
             Start-Sleep -Seconds 1
-            exit 0 # Quitte le script enfant et redonne la main au script parent
+            exit 0
         }
         'q' {
             Log "Quitte le script"
             Write-Host "Vous quittez le script" -ForegroundColor Cyan
             Start-Sleep -Seconds 1
-            exit 50 # Quitte totalement avec un code d'erreur spécifique
+            exit 50
         }
         default {
             Write-Host "L'option choisie n'existe pas, veuillez recommencer" -ForegroundColor Red
             Start-Sleep -Seconds 1
-            MenuSecondaire # Rappel récursif si erreur
+            MenuSecondaire
         }
     }
 }
@@ -39,11 +38,10 @@ Write-Host "Bienvenue dans la gestion des Utilisateurs" -ForegroundColor Green
 Start-Sleep -Seconds 1
 Clear-Host
 
-# Boucle principale du menu
 while ($true) {
     Write-Host "Menu Utilisateurs" -ForegroundColor Yellow
-    Write-Host "Que souhaitez-vous faire sur le poste client ($ip_client) ?"
-    Write-Host "1 - Création de compte utilisateur local"
+    Write-Host "Que souhaitez-vous faire sur le poste client ($REMOTE_PC) ?"
+    Write-Host "1 - Creation de compte utilisateur local"
     Write-Host "2 - Changement de mot de passe"
     Write-Host "3 - Suppression de compte utilisateur local"
     Write-Host "4 - Revenir au menu principal"
@@ -52,33 +50,29 @@ while ($true) {
 
     switch ($choix) {
         '1' {
-            Log "Initialisation création utilisateur client"
+            Log "Initialisation creation utilisateur client"
             $cible_username = Read-Host "Saisissez le nom du nouvel utilisateur"
-            # Read-Host -AsSecureString masque la saisie nativement
             $nouveau_password = Read-Host "Saisissez le mot de passe initial" -AsSecureString
-            
-            # Bloc de commande exécuté à distance via WinRM
+
             $ScriptBlock = {
                 param($user, $pwd)
-                # Vérification si l'utilisateur existe (SilentlyContinue masque l'erreur si introuvable)
                 $exists = Get-LocalUser -Name $user -ErrorAction SilentlyContinue
                 if ($null -eq $exists) {
-                    New-LocalUser -Name $user -Password $pwd -Description "Créé via script d'administration"
+                    New-LocalUser -Name $user -Password $pwd -Description "Cree via script d'administration"
                     return $true
                 } else {
                     return $false
                 }
             }
 
-            # Lancement de l'action sur le client
-            $result = Invoke-Command -ComputerName $ip_client -Credential $cred -ScriptBlock $ScriptBlock -ArgumentList $cible_username, $nouveau_password
+            $result = Invoke-Command -ComputerName $REMOTE_PC -Credential $REMOTE_CRED -ScriptBlock $ScriptBlock -ArgumentList $cible_username, $nouveau_password
 
             if ($result -eq $true) {
-                Write-Host "L'utilisateur $cible_username a été créé avec succès." -ForegroundColor Green
-                Log "Succès création utilisateur $cible_username"
+                Write-Host "L'utilisateur $cible_username a ete cree avec succes." -ForegroundColor Green
+                Log "Succes creation utilisateur $cible_username"
             } else {
-                Write-Host "Erreur : L'utilisateur $cible_username existe déjà ou a échoué." -ForegroundColor Red
-                Log "Erreur création utilisateur $cible_username"
+                Write-Host "Erreur : L'utilisateur $cible_username existe deja ou a echoue." -ForegroundColor Red
+                Log "Erreur creation utilisateur $cible_username"
             }
             MenuSecondaire
         }
@@ -94,9 +88,9 @@ while ($true) {
             }
 
             try {
-                Invoke-Command -ComputerName $ip_client -Credential $cred -ScriptBlock $ScriptBlock -ArgumentList $cible_username, $nouveau_password -ErrorAction Stop
-                Write-Host "Le mot de passe de $cible_username a été mis à jour." -ForegroundColor Green
-                Log "Succès changement mdp $cible_username"
+                Invoke-Command -ComputerName $REMOTE_PC -Credential $REMOTE_CRED -ScriptBlock $ScriptBlock -ArgumentList $cible_username, $nouveau_password -ErrorAction Stop
+                Write-Host "Le mot de passe de $cible_username a ete mis a jour." -ForegroundColor Green
+                Log "Succes changement mdp $cible_username"
             } catch {
                 Write-Host "Erreur lors du changement de mot de passe." -ForegroundColor Red
                 Log "Erreur changement mdp $cible_username"
@@ -106,8 +100,8 @@ while ($true) {
 
         '3' {
             Log "Initiation suppression utilisateur client"
-            $cible_username = Read-Host "Saisissez le nom de l'utilisateur à supprimer"
-            $confirm = Read-Host "Êtes-vous sûr de vouloir supprimer $cible_username ? (o/n)"
+            $cible_username = Read-Host "Saisissez le nom de l'utilisateur a supprimer"
+            $confirm = Read-Host "Etes-vous sur de vouloir supprimer $cible_username ? (o/n)"
 
             if ($confirm -eq 'o') {
                 $ScriptBlock = {
@@ -116,15 +110,15 @@ while ($true) {
                 }
 
                 try {
-                    Invoke-Command -ComputerName $ip_client -Credential $cred -ScriptBlock $ScriptBlock -ArgumentList $cible_username -ErrorAction Stop
-                    Write-Host "L'utilisateur $cible_username a été supprimé." -ForegroundColor Green
-                    Log "Succès suppression utilisateur $cible_username"
+                    Invoke-Command -ComputerName $REMOTE_PC -Credential $REMOTE_CRED -ScriptBlock $ScriptBlock -ArgumentList $cible_username -ErrorAction Stop
+                    Write-Host "L'utilisateur $cible_username a ete supprime." -ForegroundColor Green
+                    Log "Succes suppression utilisateur $cible_username"
                 } catch {
                     Write-Host "Erreur lors de la suppression." -ForegroundColor Red
                     Log "Erreur suppression utilisateur $cible_username"
                 }
             } else {
-                Write-Host "Action annulée." -ForegroundColor Yellow
+                Write-Host "Action annulee." -ForegroundColor Yellow
                 Log "Annulation suppression utilisateur $cible_username"
             }
             MenuSecondaire
