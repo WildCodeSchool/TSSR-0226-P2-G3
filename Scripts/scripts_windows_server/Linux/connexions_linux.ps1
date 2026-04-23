@@ -1,4 +1,4 @@
-. "./scripts_windows_server/utilitaire.ps1"
+. "$PSScriptRoot\scripts_windows_server\utilitaire.ps1"
 
 # Variables principales 
 $derniers_logins = ssh $ssh_client "last -n 5 | grep 'pts'"
