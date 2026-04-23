@@ -1,5 +1,8 @@
+param(
+    [string]$REMOTE_PC,
+    [System.Management.Automation.PSCredential]$REMOTE_CRED
+)
 . "$PSScriptRoot\..\utilitaire.ps1"
-
 # Variables principales - commandes PowerShell pour client Windows
 $derniers_logins = ssh $ssh_client "powershell.exe -Command 'Get-EventLog -LogName Security -InstanceId 4624 -Newest 5 | Select-Object TimeGenerated, UserName'"
 $ipcon_client = ssh $ssh_client "powershell.exe -Command 'Get-NetIPAddress -AddressFamily IPv4 | Where-Object {\$_.InterfaceAlias -notlike ''*Loopback*''} | Select-Object -ExpandProperty IPAddress'"
