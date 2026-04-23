@@ -1,4 +1,3 @@
-
 # Destination des logs
 $log_file = "C:\Windows\System32\LogFiles\log_evt.log"
 
