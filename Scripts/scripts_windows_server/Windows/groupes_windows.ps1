@@ -1,4 +1,8 @@
 # Appel utilitaires pour logs
+param(
+    [string]$REMOTE_PC,
+    [System.Management.Automation.PSCredential]$REMOTE_CRED
+)
 . "$PSScriptRoot\..\utilitaire.ps1"
 
 # Sous-menu pour gérer la navigation
