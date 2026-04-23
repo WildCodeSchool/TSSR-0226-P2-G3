@@ -1,3 +1,7 @@
+param(
+    [string]$REMOTE_PC,
+    [System.Management.Automation.PSCredential]$REMOTE_CRED
+)
 . "$PSScriptRoot\..\utilitaire.ps1"
 
 # Variables principales - commandes PowerShell pour client Windows
