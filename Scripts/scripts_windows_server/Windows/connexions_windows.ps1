@@ -11,20 +11,11 @@ function MenuSecondaire {
     $choix_secondaire = Read-Host "Quel est votre choix ?"
     switch ($choix_secondaire) {
         "1" {
-            Log "cinq derniers login"
-            Write-Host "Voici les 5 derniers loggings :"
-            Invoke-Command -ComputerName $REMOTE_PC -Credential $REMOTE_CRED -ScriptBlock {
-            Get-WinEvent -FilterHashtable @{LogName='Security'; Id=4624} -MaxEvents 5 |
-            ForEach-Object {
-            $xml = [xml]$_.ToXml()
-            $user = $xml.Event.EventData.Data | Where-Object { $_.Name -eq 'TargetUserName' } | Select-Object -ExpandProperty '#text'
-            [PSCustomObject]@{
-                Date     = $_.TimeCreated
-                Username = $user
-                    }
-                } | Format-Table -AutoSize
-            }
-    MenuSecondaire
+            Log "Retour au menu connexion"
+            Write-Host "Vous retournez au menu connexion"
+            Start-Sleep 1
+            exit 0
+        MenuSecondaire
         "2" {
             Log "Retour au menu principal"
             Write-Host "Vous retournez au menu principal"
@@ -64,12 +55,17 @@ while ($true) {
             Log "cinq derniers login"
             Write-Host "Voici les 5 derniers loggings :"
             Invoke-Command -ComputerName $REMOTE_PC -Credential $REMOTE_CRED -ScriptBlock {
-                Get-EventLog -LogName Security -InstanceId 4624 -Newest 5 |
-                Select-Object TimeGenerated, UserName |
-                Format-Table -AutoSize
+            Get-WinEvent -FilterHashtable @{LogName='Security'; Id=4624} -MaxEvents 5 |
+            ForEach-Object {
+            $xml = [xml]$_.ToXml()
+            $user = $xml.Event.EventData.Data | Where-Object { $_.Name -eq 'TargetUserName' } | Select-Object -ExpandProperty '#text'
+            [PSCustomObject]@{
+                Date     = $_.TimeCreated
+                Username = $user
+                    }
+                } | Format-Table -AutoSize
             }
-            MenuSecondaire
-        }
+    MenuSecondaire
         "2" {
             Log "Affichage IP, Masque, Passerelle"
             $infos = Invoke-Command -ComputerName $REMOTE_PC -Credential $REMOTE_CRED -ScriptBlock {
