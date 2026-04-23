@@ -17,23 +17,28 @@ function MenuSecondaire {
             Log "Retour menu groupes"
             Write-Host "Vous retournez au menu Groupes" -ForegroundColor Cyan
             Start-Sleep -Seconds 1
+            Clear-Host
             return
         }
         '2' {
             Log "Retour au menu principal"
             Write-Host "Vous retournez au menu principal" -ForegroundColor Cyan
             Start-Sleep -Seconds 1
+            Clear-Host
             exit 0
         }
         'q' {
             Log "Quitte le script"
             Write-Host "Vous quittez le script" -ForegroundColor Cyan
             Start-Sleep -Seconds 1
+            Clear-Host
+        
             exit 50
         }
         default {
             Write-Host "L'option choisie n'existe pas, veuillez recommencer" -ForegroundColor Red
             Start-Sleep -Seconds 1
+            Clear-Host
             MenuSecondaire
         }
     }
