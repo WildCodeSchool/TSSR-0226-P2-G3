@@ -52,7 +52,7 @@ Clear-Host
 # Boucle principale du menu
 while ($true) {
     Write-Host "Menu Groupes" -ForegroundColor Yellow
-    Write-Host "Que souhaitez-vous faire sur le poste client ($ip_client) ?"
+    Write-Host "Que souhaitez-vous faire sur le poste client ?"
     Write-Host "1 - Ajout à un groupe d'administration"
     Write-Host "2 - Ajout à un groupe standard"
     Write-Host "3 - Sortie d'un groupe"
