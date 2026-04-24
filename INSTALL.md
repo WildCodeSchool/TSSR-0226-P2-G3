@@ -347,12 +347,12 @@ Get-Service sshd
 ``` powershell
 New-Item -ItemType Directory -Path "C:\ProgramData\ssh" -Force
 ```
+![Screen Snap](Ressources/SCREENSHOT/Config_Debian_SERV/Config_SSH_DEBSERV_UBU/SSH_Repo.png).
 
 **Ensuite il faut créer le fichier ou mes clés seront stockés**
 ``` powershell
 New-Item -ItemType File -Path "C:\ProgramData\ssh\authorized_keys" -Force
 ```
-![Screen Snap]().
 
 **Vous trouverez la suite de la procedure jusqte ici : 3. Configuration de l'interconnexion SSH avec le client windows.**
 # 6. FAQ
