@@ -141,15 +141,10 @@ sudo systemctl status ssh
 ``` bash
 ssh-keygen -t ed25519
 ```
-![Screen Snap](Ressources/SCREENSHOT/Config_Win11/Creation_clé_SSH.png)
+![Screen Snap]()
 
 **Renseigner quel nom et ou seront stocké la paire de clé SSH**
-
-![Screen Snap](Ressources/SCREENSHOT/Config_Win11/Destination_clé.png)
-
 **Enfin renseigner le mot de passe que vous souhaiter créer pour cette paire de clé**
-
-![Screen Snap](Ressources/SCREENSHOT/Config_Win11/Creation_mdp.png)
 
 **Sur votre serveur debian - Il faudra copier la clé plublique vers Windows11**
 ``` bash
