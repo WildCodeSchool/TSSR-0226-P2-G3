@@ -189,44 +189,35 @@ ou
 ssh-keygen -t ed25519
 ```
 
-![Screen Snap]()
+![Screen Snap](Ressources/SCREENSHOT/Config_Debian_SERV/Config_SSH_DEBSERV_UBU/SSH_Debian.png)
 
 **Vous trouverez la clé publique à l’aide de cette commande** (.pub correspond a la clé public)  
 
 ``` bash
-cat ~/.ssh/id_ed25519.pub
+cat ~/.ssh/Ubuntu.pub
 ```
 
-![Screen Snap]()
+![Screen Snap](Ressources/SCREENSHOT/Config_Debian_SERV/Config_SSH_DEBSERV_UBU/SSH_Public.png)
 
 **Une fois la clé SSH crée, copiez la vers le serveur voulu avec ssh-copy-id** (confirmation de connexion) 
 
 ``` bash
-ssh-copy-id -i ~/.ssh/id_ed25519.pub wilder@172.16.30.10
+ssh-copy-id -i ~/.ssh/Ubuntu.pub wilder@172.16.30.10
 ```
 
-![Screen Snap]()  
-Comme vous pouvez le constater on vous pose une question avant de passer a la suite repondez yes si vous souhaité continuer la copie si les informations renseignés sont bonnes.
+![Screen Snap](Ressources/SCREENSHOT/Config_Debian_SERV/Config_SSH_DEBSERV_UBU/SSH_copi_id.png)  
 
-**Entrez le mot de passe de votre serveur Debian** 
-
-``` bash
-# wilder@172.16.30.10's password: "Votre mot de passe"
-```
-
-![Screen Snap]()  
-
-**Et voilà la clé publique est enregistrée sur votre machine client**
-
-![Screen Snap]()
+- Etape1 : tapez yes si vous souhiater vraiment connecter les deux machine en ssh  
+- Entrez le mot de passe de votre serveur Debian  
+- Et voilà la clé publique est enregistrée sur votre machine client  
 
 **Pour éviter de retaper votre passphrase à chaque connexion vous pouvez activer l’agent SSH sur le client avec ssh-add ~/votre_chemin puis entrez un mot de passe ou pas pour sécuriser votre connexion** 
 
 ``` bash
-ssh-add ~/.ssh/id_ed25519
+ssh-add ~/.ssh/Ubuntu
 ```
 
-![Screen Snap]()
+![Screen Snap](Ressources/SCREENSHOT/Config_Debian_SERV/Config_SSH_DEBSERV_UBU/SSH_add.png)
 
 Et voilà l’interconnexion sécurisé via OpenSSH entre vos deux machines est desormais établie.
 
