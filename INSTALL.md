@@ -314,6 +314,27 @@ sudo apt install ipcalc
 
 # 5. Configuration sur le client windows (Windows 11)
 ## 1. Configuration de la carte réseau
+**Ouvrir PowerShell et taper la commande pour ouvrir le gestionnaire de carte réseau**
+``` powershell
+ncpa.cpl
+```
+![Screen Snap](Ressources/SCREENSHOT/Config_Win11/NCPA.png).
+
+**Choisir la carte réseau souhaité**  
+![Screen Snap](Ressources/SCREENSHOT/Config_Win11/Coix_Carte_Réseau.png)
+
+**Ouvrir les propriétés de la carte réseau**  
+![Screen Snap](Ressources/SCREENSHOT/Config_Win11/Propriétés_Carte.png)
+
+**Ouvrir la configuration IPv4**  
+![Screen Snap](Ressources/SCREENSHOT/Config_Win11/Propriété_IPv4.png)
+
+**Puis modifier les paramètres IPv4**  
+![Screen Snap](Ressources/SCREENSHOT/Config_Win11/Config_IPv4.png)
+
+
+
+
 
 ## 2. Configuration de l'interconnexion SSH avec le serveur Linux Debian
 #### Avant toute chose pensez a lancer PowerShell en administrateur (évite tout problème de droit)
