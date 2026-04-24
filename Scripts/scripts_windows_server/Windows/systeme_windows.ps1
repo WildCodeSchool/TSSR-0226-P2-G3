@@ -46,6 +46,7 @@ Start-Sleep 1
 Clear-Host
 
 while ($true) {
+    Write-Host "Menu Système"
     Write-Host "Que souhaitez-vous savoir ?"
     Write-Host "1 - Version de l'OS"
     Write-Host "2 - Mises a jour critiques"
