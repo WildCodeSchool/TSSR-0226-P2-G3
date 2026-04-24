@@ -123,7 +123,7 @@ while ($true) {
             MenuSecondaire
         }
 
-        '4' {
+        'r' {
             Log "Retour au menu principal"
             Write-Host "Vous revenez au menu principal" -ForegroundColor Cyan
             Start-Sleep -Seconds 1
