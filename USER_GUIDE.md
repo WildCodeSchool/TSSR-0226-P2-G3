@@ -29,7 +29,7 @@ Ouvrez votre terminal et placez-vous dans le dossier contenant le script :
 **Étape 2 : Exécution**
 
 Lancez le script parent avec la commande suivante :
-`sudo ./pincipal_bash.sh`
+`./pincipal_bash.sh`
 *(Note : Si le système vous indique "Permission non accordée", tapez d'abord `chmod +x principal_bash.sh` pour lui donner les droits d'exécution).*
 
 ![Screen Snap](Ressources/SCREENSHOT/Lancement_et_navigation_du_script/commande_a_taper_pour_lancer_le_script.png)
@@ -58,7 +58,11 @@ Ouvrez une console **PowerShell en tant qu'Administrateur** et naviguez vers le 
 **Étape 2 : Exécution**
 
 Lancez le script parent avec la commande :
-`sudo .\principal_windows.ps1`
+`.\principal_windows.ps1`
+
+Si des ID sont demandés :
+ID : CLIWIN01\Wilder
+MDP : Azerty1*
 
 **Étape 3 : Navigation**
 
