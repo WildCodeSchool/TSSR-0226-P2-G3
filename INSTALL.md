@@ -29,15 +29,15 @@
 
 | OS | Nom d'hôte | Adresse IP | Comptes Utilisateurs Requis |
 | :--- | :--- | :--- | :--- |
-| **Debian** | `srvlx01` | `172.16.30.10` | <ul><li>`root` (Administrateur système)</li><li>`wilder` (Utilisateur standard) |
-| **Windows Server 2022** | `srvwin01` | `172.16.30.5` | <ul><li>`Administrator` (Administrateur local/domaine)</li><li>`wilder` (Utilisateur standard)</li></ul> |
+| **Debian** | `srvlx01` | `172.16.30.10` | `root` (Administrateur système)`wilder` (Utilisateur standard) |
+| **Windows Server 2022** | `srvwin01` | `172.16.30.5` | `Administrator` (Administrateur local/domaine)`wilder` (Utilisateur standard) |
 
 ### Pôle Clients
 
 | OS | Nom d'hôte | Adresse IP | Comptes Utilisateurs Requis |
 | :--- | :--- | :--- | :--- |
-| **Linux** | `clilin01` | `172.16.30.30` | <ul><li>`wilder`</li></ul> |
-| **Windows 10** | `cliwin01` | `172.16.30.20` | <ul><li>`wilder`</li></ul> |
+| **Linux** | `clilin01` | `172.16.30.30` | `wilder` |
+| **Windows 10** | `cliwin01` | `172.16.30.20` | `wilder` |
 
 # 2. Configuration sur le serveur Debian (Debian 13)
 
