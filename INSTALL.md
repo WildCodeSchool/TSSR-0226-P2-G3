@@ -141,7 +141,7 @@ sudo systemctl status ssh
 ``` bash
 ssh-keygen -t ed25519
 ```
-![Screen Snap]()
+![Screen Snap](Ressources/SCREENSHOT/Config_Win11/Creation_clé_SSH.png)
 
 **Renseigner quel nom et ou seront stocké la paire de clé SSH**
 **Enfin renseigner le mot de passe que vous souhaiter créer pour cette paire de clé**
