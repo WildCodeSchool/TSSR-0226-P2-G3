@@ -29,7 +29,7 @@
 
 | OS | Nom d'hôte | Adresse IP | Comptes Utilisateurs Requis |
 | :--- | :--- | :--- | :--- |
-| **Debian** | `srvlx01` | `172.16.30.10` | <ul><li>`root` (Administrateur système)</li><li>`wilder` (Utilisateur standard)</li></ul> |
+| **Debian** | `srvlx01` | `172.16.30.10` | <ul><li>`root` (Administrateur système)</li><li>`wilder` (Utilisateur standard) |
 | **Windows Server 2022** | `srvwin01` | `172.16.30.5` | <ul><li>`Administrator` (Administrateur local/domaine)</li><li>`wilder` (Utilisateur standard)</li></ul> |
 
 ### Pôle Clients
