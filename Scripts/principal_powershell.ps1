@@ -1,4 +1,4 @@
-. "$PSScriptRoot\scripts_windows_server\utilitaire.ps1"
+. "$PSScriptRoot\..\Ressources\scripts_windows_server\utilitaire.ps1"
 
 function LancementEnfant {
     param([string]$script)
@@ -48,9 +48,9 @@ while ($true) {
         "1" {
             Log "Start_Menu_Utilisateurs"
             if ($os_type -eq "Linux") {
-                LancementEnfant "$PSScriptRoot\scripts_windows_server\Linux\utilisateurs_linux.ps1"
+                LancementEnfant "$PSScriptRoot\..\Ressources\scripts_windows_server\Linux\utilisateurs_linux.ps1"
             } else {
-                LancementEnfant "$PSScriptRoot\scripts_windows_server\Windows\utilisateurs_windows.ps1"
+                LancementEnfant "$PSScriptRoot\..\Ressources\scripts_windows_server\Windows\utilisateurs_windows.ps1"
             }
         }
         "1?" {
@@ -63,9 +63,9 @@ while ($true) {
         "2" {
             Log "Start_Menu_Groupes"
             if ($os_type -eq "Linux") {
-                LancementEnfant "$PSScriptRoot\scripts_windows_server\Linux\groupes_linux.ps1"
+                LancementEnfant "$PSScriptRoot\..\Ressources\scripts_windows_server\Linux\groupes_linux.ps1"
             } else {
-                LancementEnfant "$PSScriptRoot\scripts_windows_server\Windows\groupes_windows.ps1"
+                LancementEnfant "$PSScriptRoot\..\Ressources\scripts_windows_server\Windows\groupes_windows.ps1"
             }
         }
         "2?" {
@@ -78,9 +78,9 @@ while ($true) {
         "3" {
             Log "Start_Menu_Repertoires"
             if ($os_type -eq "Linux") {
-                LancementEnfant "$PSScriptRoot\scripts_windows_server\Linux\repertoires_linux.ps1"
+                LancementEnfant "$PSScriptRoot\..\Ressources\scripts_windows_server\Linux\repertoires_linux.ps1"
             } else {
-                LancementEnfant "$PSScriptRoot\scripts_windows_server\Windows\repertoires_windows.ps1"
+                LancementEnfant "$PSScriptRoot\..\Ressources\scripts_windows_server\Windows\repertoires_windows.ps1"
             }
         }
         "3?" {
@@ -92,9 +92,9 @@ while ($true) {
         "4" {
             Log "Start_Menu_Maintenance"
             if ($os_type -eq "Linux") {
-                LancementEnfant "$PSScriptRoot\scripts_windows_server\Linux\maintenance_linux.ps1"
+                LancementEnfant "$PSScriptRoot\..\Ressources\scripts_windows_server\Linux\maintenance_linux.ps1"
             } else {
-                LancementEnfant "$PSScriptRoot\scripts_windows_server\Windows\maintenance_windows.ps1"
+                LancementEnfant "$PSScriptRoot\..\Ressources\scripts_windows_server\Windows\maintenance_windows.ps1"
             }
         }
         "4?" {
@@ -108,9 +108,9 @@ while ($true) {
         "5" {
             Log "Start_Menu_Connexions"
             if ($os_type -eq "Linux") {
-                LancementEnfant "$PSScriptRoot\scripts_windows_server\Linux\connexions_linux.ps1"
+                LancementEnfant "$PSScriptRoot\..\Ressources\scripts_windows_server\Linux\connexions_linux.ps1"
             } else {
-                LancementEnfant "$PSScriptRoot\scripts_windows_server\Windows\connexions_windows.ps1"
+                LancementEnfant "$PSScriptRoot\..\Ressources\scripts_windows_server\Windows\connexions_windows.ps1"
             }
         }
         "5?" {
@@ -122,9 +122,9 @@ while ($true) {
         "6" {
             Log "Start_Menu_Disques"
             if ($os_type -eq "Linux") {
-                LancementEnfant "$PSScriptRoot\scripts_windows_server\Linux\disques_linux.ps1"
+                LancementEnfant "$PSScriptRoot\..\Ressources\scripts_windows_server\Linux\disques_linux.ps1"
             } else {
-                LancementEnfant "$PSScriptRoot\scripts_windows_server\Windows\disques_windows.ps1"
+                LancementEnfant "$PSScriptRoot\..\Ressources\scripts_windows_server\Windows\disques_windows.ps1"
             }
         }
         "6?" {
@@ -137,9 +137,9 @@ while ($true) {
         "7" {
             Log "Start_Menu_Systeme"
             if ($os_type -eq "Linux") {
-                LancementEnfant "$PSScriptRoot\scripts_windows_server\Linux\systeme_linux.ps1"
+                LancementEnfant "$PSScriptRoot\..\Ressources\scripts_windows_server\Linux\systeme_linux.ps1"
             } else {
-                LancementEnfant "$PSScriptRoot\scripts_windows_server\Windows\systeme_windows.ps1"
+                LancementEnfant "$PSScriptRoot\..\Ressources\scripts_windows_server\Windows\systeme_windows.ps1"
             }
         }
         "7?" {
@@ -152,9 +152,9 @@ while ($true) {
         "8" {
             Log "Start_Menu_Historique"
             if ($os_type -eq "Linux") {
-                LancementEnfant "$PSScriptRoot\scripts_windows_server\Linux\historique_linux.ps1"
+                LancementEnfant "$PSScriptRoot\..\Ressources\scripts_windows_server\Linux\historique_linux.ps1"
             } else {
-                LancementEnfant "$PSScriptRoot\scripts_windows_server\Windows\historique_windows.ps1"
+                LancementEnfant "$PSScriptRoot\..\Ressources\scripts_windows_server\Windows\historique_windows.ps1"
             }
         }
         "8?" {
@@ -167,9 +167,9 @@ while ($true) {
         "9" {
             Log "Start_Menu_Recherche_logs"
             if ($os_type -eq "Linux") {
-                LancementEnfant "$PSScriptRoot\scripts_windows_server\Linux\logs_recherches_linux.ps1"
+                LancementEnfant "$PSScriptRoot\..\Ressources\scripts_windows_server\Linux\logs_recherches_linux.ps1"
             } else {
-                LancementEnfant "$PSScriptRoot\scripts_windows_server\Windows\logs_recherches_windows.ps1"
+                LancementEnfant "$PSScriptRoot\..\Ressources\scripts_windows_server\Windows\logs_recherches_windows.ps1"
             }
         }
         "9?" {
