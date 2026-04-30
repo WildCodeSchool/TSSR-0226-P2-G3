@@ -41,9 +41,9 @@ function menu_secondaire
 
 
 # Menu Maintenance
-
+# Boucle de choix d'option
 while true
-do
+do  
 	clear
     echo "=== Maintenance des machines ==="
     echo "1 - Redemarrage de la machine"
@@ -58,7 +58,8 @@ do
     1) 
         log "Redémarrage_De_La_Machine"
         read -p "Voulez-vous vraiment faire un redémarrage de la machine ? (O/N) : " redemarre
-
+		
+		# Validation de redémarrage
         if [ "$redemarre" = "O" ] || [ "$redemarre" = "o" ]; then
             echo "Le pc redémarre..."
             sleep 1
@@ -70,16 +71,19 @@ do
         ;;
     2)
         log "Prise_En_Main_A_Distance"
-        # --- Saisie et validation de l'IP cible ---
+		
+        # Boucle de saisie et validation de l'IP cible
         while true
 		do
             read -p "Entrez l'adresse IP de la machine distante : " IP_cible
-
+			
+			# Vérification champ IP vide ou pas
             if [ -z "$IP_cible" ]; then
                 echo "Vous n'avez pas entré d'adresse IP, réessayez."
                 continue
             fi
-
+			
+			# Controle de saisie : IP valide ou non
             if [[ ! "$IP_cible" =~ ^([0-9]{1,3}\.){3}[0-9]{1,3}$ ]]; then
                 echo "Format d'adresse IP invalide, réessayez."
                 continue
@@ -88,11 +92,12 @@ do
             break
         done
 
-        # --- Saisie du nom d'utilisateur distant ---
+        # ---Saisie du nom d'utilisateur distant---
         while true
 		do
             read -p "Entrez le nom d'utilisateur distant : " utilisateur_distant
-
+			
+			# Vérification Utilisateur vide ou pas
             if [ -z "$utilisateur_distant" ]; then
                 echo "Vous n'avez pas entré de nom d'utilisateur, recommencez."
                 continue
@@ -101,9 +106,10 @@ do
             break
         done
 
-        # --- Test de connectivité avant SSH ---
+        # ---Test de connectivité avant SSH---
         echo "Test de connectivité vers $IP_cible..."
-
+		
+		# Tentative ping vers IP cible
         if ! ping -c 3 -W 2 "$IP_cible" &>/dev/null
 		then
             echo "Erreur : la machine $IP_cible ne répond pas au ping."
@@ -114,7 +120,7 @@ do
 
         echo "Ping OK, tentative de connexion SSH..."
 
-        # --- #connexion_ssh ---
+        # ---connexion_ssh ---
         echo "Tentative de connexion SSH vers $utilisateur_distant@$IP_cible..."
 
         if ssh "$utilisateur_distant@$IP_cible"
@@ -128,9 +134,14 @@ do
     3)
         log "Activation_Du_pare_Feu"
         read -p "Voulez vous vraiment activer les pare-feu ? (O/N) " reponse
+
+		# Vérification de la réponse du client
         if [ "$reponse" = "O" ] || [ "$reponse" = "o" ]
 		then
+
+			# Activation Pare-feu
             ssh $ssh_client ufw enable
+				# Vérification si pare-feu activé
                 if ufw status | grep -q "Status: active"
 				then
                     echo "Vos Pare-Feu ont bien été activé"
@@ -143,7 +154,10 @@ do
         menu_secondaire
         ;;
     4)
-        log "Execution_Script_A_Distance"
+        
+	log "Execution_Script_A_Distance"
+	
+		# vérification connection via clé SSH sans mot de passe
         if ssh -q -o BatchMode=yes -o ConnectTimeout=5 "$utilisateur_distant@$IP_cible" exit
 		then
             echo "Connexion SSH établie"
@@ -154,9 +168,11 @@ do
 
         read -p "Quel script souhaitez vous lancer ? " script
 
+		#Vérification que le fichier script existe et qu'il est exécutable
         if [ -f "$script" ] && [ -x "$script" ]
 		then
             read -p "Le script existe et est exécutable voulez vous vraiment lancer ce script (O/N)" reponse
+			# Demande deuxieme validation
             if [ "$reponse" = "O" ] || [ "$reponse" = "o" ]
 			then
             bash "$script"
@@ -177,6 +193,8 @@ do
         ;;
     5)
         log "Liste_Utilisateurs_Locaux"
+
+		# Récupère la liste de tous les noms d'utilisateurs et stocke dans la variable liste
 		liste=$(cat /etc/passwd | cut -d: -f1)
 		if [ $? -eq 0 ]
 		then
