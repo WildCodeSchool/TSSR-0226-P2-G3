@@ -62,7 +62,7 @@ ip addr add 172.16.30.10/24 dev enp0s8
 **Si vous n'avez pas de carte réseau configuré ouvrez le fichier d'interface réseau**
 
 ``` bash
-nano /etc/network/interface
+nano /etc/network/interfaces
 ```
 
 **Une fois dans le fichier interface ajouter votre carte réseau ainsi que les informations souhaité**
